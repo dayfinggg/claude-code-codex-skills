@@ -2,6 +2,8 @@
 
 My daily setup for [Claude Code](https://code.claude.com) and [Codex CLI](https://developers.openai.com/codex): agent skills, subagents, output styles, hooks and config templates. Copy two folders into your home directory, restart, done.
 
+**[See every skill in action →](https://dayfinggg.github.io/claude-code-codex-skills/)** — before/after examples of what each one changes.
+
 ## Install
 
 **macOS / Linux**
