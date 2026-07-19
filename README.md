@@ -45,6 +45,23 @@ codex/    → ~/.codex     skills, agents, model instructions, config.toml
 
 The configs favor autonomy (few approval prompts, permissive sandbox) — skim `claude/settings.json` and `codex/config.toml` before adopting them as-is.
 
+## FAQ
+
+**How do Claude Code skills work?**
+Skills are folders with a `SKILL.md` file that Claude Code discovers in `~/.claude/skills`. When a task matches a skill's description, Claude loads its instructions — so a Python task follows Python rules, a SQL migration follows database rules, and so on. Codex CLI uses the same format under `~/.codex/skills`.
+
+**What are Claude Code subagents?**
+Subagents are role definitions in `~/.claude/agents` (Markdown) or `~/.codex/agents` (TOML). Each one gets its own context window, a limited toolset and preloaded skills — a researcher can't edit files, an executor stays inside its assigned scope.
+
+**What is a Claude Code output style?**
+An output style replaces the default response behavior. The `operating-policy` style in this repo makes Claude Code work silently and reply once with a verified result. For Codex CLI the same policy ships as `model-instructions.md`, wired via `model_instructions_file` in `config.toml`.
+
+**Does this work on Windows, macOS and Linux?**
+Yes. All paths are relative, nothing is machine-specific. The only extra requirement is `bash` and `jq` for the Claude Code hook (Git Bash covers both on Windows).
+
+**Can I use just part of it?**
+Sure — every piece is independent. Take only the skills, only the agents, or a single skill folder; nothing else breaks.
+
 ## License
 
 MIT
