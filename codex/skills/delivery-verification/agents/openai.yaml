@@ -1,0 +1,4 @@
+interface:
+  display_name: "Delivery Verification"
+  short_description: "Risk-based completion and release checks"
+  default_prompt: "Use $delivery-verification to independently prove this change meets its acceptance criteria and is safe to deliver."

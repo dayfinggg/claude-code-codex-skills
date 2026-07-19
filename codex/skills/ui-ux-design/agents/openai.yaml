@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI/UX Design"
+  short_description: "Create polished, accessible, non-generic interfaces"
+  default_prompt: "Use $ui-ux-design to design or reproduce this interface with precise, accessible, non-generic UI."

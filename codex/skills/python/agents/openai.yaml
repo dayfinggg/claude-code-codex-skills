@@ -1,0 +1,4 @@
+interface:
+  display_name: "Python Engineering"
+  short_description: "Build secure, maintainable Python systems"
+  default_prompt: "Use $python to implement and verify a secure production Python change."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Web Research"
+  short_description: "Evidence-first web and docs research"
+  default_prompt: "Use $web-research to research this current question with authoritative evidence, version matching, and concise citations."
+
+policy:
+  allow_implicit_invocation: true

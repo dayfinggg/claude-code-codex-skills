@@ -1,0 +1,4 @@
+interface:
+  display_name: "Software Architecture"
+  short_description: "Design and evolve software architecture safely"
+  default_prompt: "Use $software-architecture to assess and evolve this design from repository evidence and explicit tradeoffs."

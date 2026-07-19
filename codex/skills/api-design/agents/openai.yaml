@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Design"
+  short_description: "Design durable, secure API contracts and lifecycles"
+  default_prompt: "Use $api-design to design or review this API contract for semantics, compatibility, security, and operability."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MongoDB Engineering"
+  short_description: "Design and operate reliable MongoDB systems"
+  default_prompt: "Use $mongodb to design, review, debug, or operate this MongoDB-backed feature safely."

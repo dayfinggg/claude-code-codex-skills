@@ -1,0 +1,4 @@
+interface:
+  display_name: "PowerShell Engineering"
+  short_description: "Build reliable PowerShell automation"
+  default_prompt: "Use $powershell to run or implement safe, reliable PowerShell automation."

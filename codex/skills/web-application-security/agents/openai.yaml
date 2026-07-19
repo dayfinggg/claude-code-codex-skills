@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Application Security"
+  short_description: "Threat-model and secure full-stack web systems"
+  default_prompt: "Use $web-application-security to threat-model and secure this web change with risk-matched verification."

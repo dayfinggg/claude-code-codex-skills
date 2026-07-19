@@ -1,0 +1,7 @@
+interface:
+  display_name: "Planning"
+  short_description: "Evidence-backed complex task planning"
+  default_prompt: "Use $planning to draft an evidence-backed executable plan with decisions, risks, recovery, and acceptance criteria."
+
+policy:
+  allow_implicit_invocation: true

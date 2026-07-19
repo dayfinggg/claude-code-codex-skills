@@ -1,0 +1,4 @@
+interface:
+  display_name: "Node.js Engineering"
+  short_description: "Build reliable production Node.js systems"
+  default_prompt: "Use $node-js to implement and verify a reliable production Node.js change."

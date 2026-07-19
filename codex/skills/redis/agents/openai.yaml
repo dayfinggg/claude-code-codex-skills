@@ -1,0 +1,4 @@
+interface:
+  display_name: "Redis Engineering"
+  short_description: "Design and operate reliable Redis systems"
+  default_prompt: "Use $redis to design, review, debug, or operate this Redis-backed feature safely."
