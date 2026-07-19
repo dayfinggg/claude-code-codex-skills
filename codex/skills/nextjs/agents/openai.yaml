@@ -1,0 +1,4 @@
+interface:
+  display_name: "Next.js"
+  short_description: "Build secure, production-ready Next.js apps"
+  default_prompt: "Use $nextjs to implement and verify this Next.js change against the project's installed version, router, and conventions."

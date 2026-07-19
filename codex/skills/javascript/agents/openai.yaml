@@ -1,0 +1,4 @@
+interface:
+  display_name: "JavaScript Engineering"
+  short_description: "Build secure, maintainable JavaScript"
+  default_prompt: "Use $javascript to implement and verify a secure production JavaScript change."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Systematic Debugging"
+  short_description: "Evidence-driven root-cause debugging"
+  default_prompt: "Use $systematic-debugging to reproduce this failure, isolate the root cause, and verify the smallest fix."

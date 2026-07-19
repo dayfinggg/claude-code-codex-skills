@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript Engineering"
+  short_description: "Build type-safe production TypeScript"
+  default_prompt: "Use $typescript to implement and verify a type-safe production TypeScript change."

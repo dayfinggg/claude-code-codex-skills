@@ -1,0 +1,15 @@
+model_reasoning_effort = "medium"
+personality = "pragmatic"
+model_reasoning_summary = "none"
+model_verbosity = "medium"
+model_instructions_file = "model-instructions.md"
+web_search = "cached"
+
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+project_doc_max_bytes = 32768
+
+[agents]
+max_threads = 4
+max_depth = 1
+interrupt_message = false
