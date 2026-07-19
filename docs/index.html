@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code & Codex Skills — what each skill changes</title>
+<meta name="description" content="Before/after examples of every agent skill and the operating policy for Claude Code and OpenAI Codex CLI: engineering, security, testing, Git, TypeScript, Python, SQL and more.">
+<style>
+:root{
+  --bg:#ffffff;--surface:#f6f8fa;--border:#d1d9e0;--text:#1f2328;--muted:#59636e;
+  --accent:#0969da;--add-bg:#dafbe1;--add:#116329;--del-bg:#ffebe9;--del:#82071e;
+  --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 96px}
+header{border-bottom:1px solid var(--border);padding:48px 16px 32px}
+.head-inner{max-width:860px;margin:0 auto}
+h1{margin:0 0 8px;font-size:28px;line-height:1.2}
+.sub{color:var(--muted);max-width:65ch;margin:0 0 16px}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+nav a{font-size:13px;text-decoration:none;border:1px solid var(--border);border-radius:16px;padding:3px 12px;color:var(--text)}
+nav a:hover{background:var(--surface)}
+section{margin-top:48px;scroll-margin-top:16px}
+h2{font-size:20px;margin:0 0 4px;padding-top:16px;border-top:1px solid var(--border)}
+.tag{font-size:12px;color:var(--muted);font-family:var(--mono)}
+section>p{color:var(--muted);max-width:70ch;margin:8px 0 12px}
+.diff{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 0;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.45;margin:0}
+.diff span{display:block;padding:0 16px;white-space:pre}
+.diff .d{background:var(--del-bg);color:var(--del)}
+.diff .a{background:var(--add-bg);color:var(--add)}
+.diff .h{color:var(--muted)}
+footer{border-top:1px solid var(--border);margin-top:64px;padding:24px 16px;color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <h1>Claude Code &amp; Codex Skills</h1>
+    <p class="sub">What actually changes when the agent works with these skills and the operating policy installed. Each example is a real before/after: the left-behind habit in red, the enforced behavior in green.</p>
+    <p class="sub"><a href="https://github.com/dayfinggg/claude-code-codex-skills">Get it on GitHub →</a></p>
+    <nav aria-label="Skills">
+      <a href="#policy">operating-policy</a><a href="#software-engineering">software-engineering</a><a href="#software-architecture">software-architecture</a><a href="#api-design">api-design</a><a href="#debugging">debugging</a><a href="#verification">verification</a><a href="#test-engineering">test-engineering</a><a href="#planning">planning</a><a href="#agent-delegation">agent-delegation</a><a href="#project-documentation">project-documentation</a><a href="#web-research">web-research</a><a href="#web-application-security">web-application-security</a><a href="#git">git</a><a href="#typescript">typescript</a><a href="#javascript">javascript</a><a href="#node-js">node-js</a><a href="#react">react</a><a href="#nextjs">nextjs</a><a href="#python">python</a><a href="#sql">sql</a><a href="#mongodb">mongodb</a><a href="#redis">redis</a><a href="#powershell">powershell</a><a href="#ui-ux-design">ui-ux-design</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section id="policy">
+  <h2>Operating policy <span class="tag">output style / model instructions</span></h2>
+  <p>The assistant stops narrating and reports once, with evidence. Same task, different transcript.</p>
+  <pre class="diff"><span class="h"># assistant transcript</span><span class="d">- Great question! Let me first look at the code...</span><span class="d">- I found the issue! Now let me fix it...</span><span class="d">- The fix is applied. Let me run the tests...</span><span class="d">- Tests pass! ✅ Let me know if you need anything else!</span><span class="a">+ Fixed the race in queue.ts:41 — the worker read the batch</span><span class="a">+ before the lock was acquired. `npm test`: 214 passed, 0 failed.</span></pre>
+</section>
+
+<section id="software-engineering">
+  <h2>software-engineering <span class="tag">base layer, always loaded</span></h2>
+  <p>Root cause over symptom. A retry loop around broken logic preserves the defect — the skill forces finding why it fails.</p>
+  <pre class="diff"><span class="h">  def load_config(path):</span><span class="d">-     for _ in range(3):</span><span class="d">-         try:</span><span class="d">-             return json.loads(open(path).read())</span><span class="d">-         except Exception:</span><span class="d">-             time.sleep(1)</span><span class="a">+     with open(path, encoding="utf-8-sig") as f:</span><span class="a">+         return json.load(f)</span><span class="h">  # the file had a BOM — retrying never helped</span></pre>
+</section>
+
+<section id="software-architecture">
+  <h2>software-architecture <span class="tag">boundaries and ownership</span></h2>
+  <p>Domain logic stops depending on transport. Pricing rules no longer import an HTTP client.</p>
+  <pre class="diff"><span class="d">- def apply_discount(order):</span><span class="d">-     rate = requests.get(RATES_URL).json()["vip"]</span><span class="d">-     return order.total * (1 - rate)</span><span class="a">+ def apply_discount(order, rate):</span><span class="a">+     return order.total * (1 - rate)</span><span class="h">  # the caller at the boundary fetches the rate; the rule is now testable</span></pre>
+</section>
+
+<section id="api-design">
+  <h2>api-design <span class="tag">contracts that survive</span></h2>
+  <p>No more HTTP 200 with an error inside. Status codes and error shapes become part of the contract.</p>
+  <pre class="diff"><span class="d">- return jsonify({"ok": False, "msg": "not found"}), 200</span><span class="a">+ return jsonify({"error": {"code": "user_not_found",</span><span class="a">+                           "message": "No user with id 42"}}), 404</span></pre>
+</section>
+
+<section id="debugging">
+  <h2>debugging <span class="tag">reproduce, then fix</span></h2>
+  <p>Sleeps that hide races are banned. The failure gets reproduced and the ordering fixed.</p>
+  <pre class="diff"><span class="d">- await new Promise(r => setTimeout(r, 500)); // flaky fix</span><span class="d">- expect(cache.get("user")).toBeDefined();</span><span class="a">+ await warmup;                    // the promise the test never awaited</span><span class="a">+ expect(cache.get("user")).toBeDefined();</span></pre>
+</section>
+
+<section id="verification">
+  <h2>verification <span class="tag">evidence before "done"</span></h2>
+  <p>Completion claims must be backed by checks that actually ran in the session.</p>
+  <pre class="diff"><span class="d">- Done! The migration should work now.</span><span class="a">+ Migration applied and verified: `alembic upgrade head` succeeded,</span><span class="a">+ `pytest tests/test_orders.py` — 31 passed. Rollback tested with</span><span class="a">+ `alembic downgrade -1` on a copy of the schema.</span></pre>
+</section>
+
+<section id="test-engineering">
+  <h2>test-engineering <span class="tag">test behavior, not internals</span></h2>
+  <p>Tests assert observable behavior and cover the edge that actually broke, deterministically.</p>
+  <pre class="diff"><span class="d">- assert parser._tokens[3].kind == 7</span><span class="a">+ assert parse("price: -0.00").price == Decimal("0")</span><span class="a">+ assert parse("price: 1e999").error == "overflow"</span></pre>
+</section>
+
+<section id="planning">
+  <h2>planning <span class="tag">plan before code</span></h2>
+  <p>Complex work starts with acceptance criteria and a validation strategy, not with the first edit.</p>
+  <pre class="diff"><span class="d">- *starts rewriting the auth module in message one*</span><span class="a">+ Done means: existing sessions survive the deploy, login p95 &lt; 300ms,</span><span class="a">+ `test_auth.py` green. Steps: extract token store → dual-read window →</span><span class="a">+ switch writes → remove legacy. Rollback: flip AUTH_STORE env back.</span></pre>
+</section>
+
+<section id="agent-delegation">
+  <h2>agent-delegation <span class="tag">the right agent for the job</span></h2>
+  <p>Big tasks split across scoped subagents with disjoint file ownership instead of one overloaded context.</p>
+  <pre class="diff"><span class="d">- one context: reads 80 files, plans, edits, reviews itself</span><span class="a">+ codebase-analysis maps the call sites (read-only)</span><span class="a">+ executor implements within src/billing/** only</span><span class="a">+ verifier runs the checks and reports pass/fail with output</span></pre>
+</section>
+
+<section id="project-documentation">
+  <h2>project-documentation <span class="tag">one source of truth</span></h2>
+  <p>Docs stop duplicating what code already declares — they link to it and stay current.</p>
+  <pre class="diff"><span class="d">- ## All 47 CLI flags explained (copied, stale since v2)</span><span class="a">+ Run `mytool --help` for the full flag list.</span><span class="a">+ Common workflows: [deploy](docs/deploy.md), [rollback](docs/rollback.md)</span></pre>
+</section>
+
+<section id="web-research">
+  <h2>web-research <span class="tag">verify, don't recall</span></h2>
+  <p>Versioned facts get checked against primary sources, with dates, instead of answered from memory.</p>
+  <pre class="diff"><span class="d">- Next.js supports that config option, I believe it's `swcMinify`.</span><span class="a">+ `swcMinify` was removed in Next.js 15 (SWC is always on) —</span><span class="a">+ confirmed in the v15 upgrade guide, checked 2026-07-19.</span></pre>
+</section>
+
+<section id="web-application-security">
+  <h2>web-application-security <span class="tag">untrusted input stays untrusted</span></h2>
+  <p>String-built SQL, missing ownership checks and leaked secrets get caught at review and at write time.</p>
+  <pre class="diff"><span class="d">- db.query(`SELECT * FROM docs WHERE id = ${req.params.id}`)</span><span class="a">+ db.query("SELECT * FROM docs WHERE id = $1 AND owner_id = $2",</span><span class="a">+          [req.params.id, req.user.id])</span></pre>
+</section>
+
+<section id="git">
+  <h2>git <span class="tag">the repo is shared</span></h2>
+  <p>State gets inspected before acting; destructive commands are replaced with recoverable ones.</p>
+  <pre class="diff"><span class="d">- git add . && git commit -m "fix" && git push --force</span><span class="a">+ git status --short --branch</span><span class="a">+ git add src/parser.ts test/parser.test.ts</span><span class="a">+ git commit -m "Handle BOM in config files"</span><span class="a">+ git push --force-with-lease   # only because a rewrite was requested</span></pre>
+</section>
+
+<section id="typescript">
+  <h2>typescript <span class="tag">types that mean something</span></h2>
+  <p>No `any` escapes, no lying assertions — illegal states become unrepresentable.</p>
+  <pre class="diff"><span class="d">- const user = JSON.parse(raw) as any;</span><span class="d">- if (user.status == 1 || user.status == "active") { ... }</span><span class="a">+ const user = UserSchema.parse(raw);</span><span class="a">+ if (user.status === "active") { ... }</span><span class="h">  // status: "active" | "suspended" — the third case can't exist</span></pre>
+</section>
+
+<section id="javascript">
+  <h2>javascript <span class="tag">modern, predictable JS</span></h2>
+  <p>Loose equality, accidental mutation and floating promises don't survive review.</p>
+  <pre class="diff"><span class="d">- items.sort();              // mutates, sorts numbers as strings</span><span class="d">- if (total == "0") reset();</span><span class="a">+ const sorted = [...items].sort((a, b) => a - b);</span><span class="a">+ if (total === 0) await reset();</span></pre>
+</section>
+
+<section id="node-js">
+  <h2>node-js <span class="tag">the event loop is not yours to block</span></h2>
+  <p>Sync I/O leaves request paths; errors and shutdown get handled like production matters.</p>
+  <pre class="diff"><span class="d">- app.get("/report", (req, res) => {</span><span class="d">-   const data = fs.readFileSync(reportPath);</span><span class="a">+ app.get("/report", async (req, res, next) => {</span><span class="a">+   const data = await fs.promises.readFile(reportPath);</span></pre>
+</section>
+
+<section id="react">
+  <h2>react <span class="tag">state where it belongs</span></h2>
+  <p>Derived state stops living in effects; dependencies stop being lied about.</p>
+  <pre class="diff"><span class="d">- const [fullName, setFullName] = useState("");</span><span class="d">- useEffect(() => { setFullName(first + " " + last); }, [first]);</span><span class="a">+ const fullName = `${first} ${last}`;</span></pre>
+</section>
+
+<section id="nextjs">
+  <h2>nextjs <span class="tag">server first</span></h2>
+  <p>Data fetching moves to the server component; the client bundle stops shipping fetch waterfalls.</p>
+  <pre class="diff"><span class="d">- "use client";</span><span class="d">- useEffect(() => { fetch("/api/posts").then(...) }, []);</span><span class="a">+ export default async function Posts() {</span><span class="a">+   const posts = await db.post.findMany({ take: 20 });</span><span class="a">+   return &lt;PostList posts={posts} /&gt;;</span><span class="a">+ }</span></pre>
+</section>
+
+<section id="python">
+  <h2>python <span class="tag">idiomatic and typed</span></h2>
+  <p>The classic traps — mutable defaults, bare excepts, float money — get caught before they ship.</p>
+  <pre class="diff"><span class="d">- def add_item(item, cart=[]):</span><span class="d">-     cart.append(item)</span><span class="a">+ def add_item(item: Item, cart: list[Item] | None = None) -&gt; list[Item]:</span><span class="a">+     cart = cart if cart is not None else []</span><span class="a">+     cart.append(item)</span></pre>
+</section>
+
+<section id="sql">
+  <h2>sql <span class="tag">queries the planner can love</span></h2>
+  <p>N+1 loops become joins; `SELECT *` becomes explicit columns; migrations get rollback paths.</p>
+  <pre class="diff"><span class="d">- for user in users:                      # 1 + N queries</span><span class="d">-     orders = query("SELECT * FROM orders WHERE user_id = %s", user.id)</span><span class="a">+ SELECT u.id, u.email, o.id, o.total</span><span class="a">+ FROM users u JOIN orders o ON o.user_id = u.id</span><span class="a">+ WHERE o.created_at &gt;= %s;               -- one query, indexed</span></pre>
+</section>
+
+<section id="mongodb">
+  <h2>mongodb <span class="tag">documents by workload</span></h2>
+  <p>Unbounded reads get projections, limits and indexes; schemas follow the queries.</p>
+  <pre class="diff"><span class="d">- const all = await db.collection("events").find({}).toArray();</span><span class="d">- const recent = all.filter(e =&gt; e.ts &gt; since).slice(0, 50);</span><span class="a">+ const recent = await db.collection("events")</span><span class="a">+   .find({ ts: { $gt: since } }, { projection: { type: 1, ts: 1 } })</span><span class="a">+   .sort({ ts: -1 }).limit(50).toArray();   // uses { ts: -1 } index</span></pre>
+</section>
+
+<section id="redis">
+  <h2>redis <span class="tag">fast stays fast</span></h2>
+  <p>Blocking commands leave production paths; keys get TTLs and a naming scheme.</p>
+  <pre class="diff"><span class="d">- const keys = await redis.keys("session:*");   // blocks the server</span><span class="a">+ for await (const key of redis.scanIterator({ MATCH: "session:*",</span><span class="a">+                                              COUNT: 100 })) { ... }</span><span class="a">+ await redis.set(`session:${id}`, data, { EX: 3600 });</span></pre>
+</section>
+
+<section id="powershell">
+  <h2>powershell <span class="tag">objects, not strings</span></h2>
+  <p>Text parsing gives way to the object pipeline; errors become terminating and handled.</p>
+  <pre class="diff"><span class="d">- $size = (dir $path | Out-String) -split "`n" | Select-String "Length"</span><span class="a">+ $size = (Get-ChildItem $path -File | Measure-Object Length -Sum).Sum</span></pre>
+</section>
+
+<section id="ui-ux-design">
+  <h2>ui-ux-design <span class="tag">designed, not generated</span></h2>
+  <p>Emoji icons, template gradients and lorem ipsum are replaced with tokens, states and real content.</p>
+  <pre class="diff"><span class="d">- &lt;div class="card"&gt;✨ Feature 1&lt;/div&gt;</span><span class="d">- background: linear-gradient(135deg, #667eea, #764ba2);</span><span class="a">+ &lt;article class="card"&gt;&lt;svg class="icon"&gt;…&lt;/svg&gt; Invoice reminders&lt;/article&gt;</span><span class="a">+ background: var(--surface);</span><span class="a">+ .card:focus-visible { outline: 2px solid var(--accent); }</span></pre>
+</section>
+
+</main>
+<footer>
+  <a href="https://github.com/dayfinggg/claude-code-codex-skills">claude-code-codex-skills</a> · MIT
+</footer>
+</body>
+</html>
