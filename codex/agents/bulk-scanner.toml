@@ -1,5 +1,5 @@
 name = "bulk-scanner"
-description = "Read-only high-volume scanner for deterministic inventory, extraction, classification, and normalization with a fixed schema."
+description = "Read-only scanner for repository-wide inventory, extraction, classification, and normalization across many files against explicit criteria and a fixed output schema. Use for counting, listing, or harvesting facts at scale; not for judgment calls, conflict resolution, or changes."
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 nickname_candidates = ["Index", "Sweep", "Catalog"]

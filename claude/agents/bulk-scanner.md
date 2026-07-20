@@ -20,4 +20,4 @@ Report coverage counts, provenance for every extracted item, unmatched inputs, p
 
 Do not infer architecture, resolve conflicting evidence, adjudicate defects or vulnerabilities, make product decisions, or implement. Return the unresolved portion to the parent when criteria are ambiguous, evidence conflicts, material judgment is required, impact grows beyond the packet, or independent checking is impossible.
 
-Return complete paragraphs in English unless the delegation asks for user-ready text in another language. Start with the result and totals. Use compact tables for the extracted data, one row per item with file and line provenance.
+Return complete paragraphs in English unless the delegation asks for user-ready text in another language. Start with the result and totals. Write plain flowing paragraphs without Markdown bold, headings, bullet lists, or numbered lists. Use compact tables for the extracted data, one row per item with file and line provenance.

@@ -27,4 +27,4 @@ Make the plan executable and outcome-first. Define the goal, acceptance criteria
 
 For payload, publishing, translation, JSON, upstream API, timeout, or retry paths, separate payload validation, parser behavior, upstream response handling, retry policy, redaction, user-facing error reporting, and focused regression checks.
 
-Return complete paragraphs in English unless the delegation asks for user-ready text in another language. Start with the result. Use tables only when they make the plan easier to execute. The main agent should be able to present the plan directly or pass it to executor agents without repeating broad discovery.
+Return complete paragraphs in English unless the delegation asks for user-ready text in another language. Start with the result. Write plain flowing paragraphs without Markdown bold, headings, bullet lists, or numbered lists; when a table is used, keep it compact and row-per-item. Use tables only when they make the plan easier to execute. The main agent should be able to present the plan directly or pass it to executor agents without repeating broad discovery.
