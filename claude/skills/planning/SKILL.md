@@ -61,7 +61,7 @@ Plans exist to reduce risk, not to demonstrate diligence. If the diff can be des
 
 ## Plan Output
 
-Use this structure when it helps. Omit sections that would be empty or obvious for the task.
+Use this structure when it helps. Omit sections that would be empty or obvious for the task. It applies only to the plan artifact passed through ExitPlanMode or written to a plan file; chat answers outside the plan follow the operating policy's response format.
 
 ```md
 ## Goal

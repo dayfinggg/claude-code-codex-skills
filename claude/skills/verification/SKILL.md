@@ -1,6 +1,6 @@
 ---
 name: verification
-description: Evidence-based completion and validation discipline. Use before claiming any work is done, fixed, passing, deployed, or synchronized, when validating changes against acceptance criteria, choosing which checks to run, assessing regression or release readiness, or reporting results of coding, configuration, data, or infrastructure work. Complements the built-in /verify and /code-review commands.
+description: Evidence-based completion and validation discipline. Use before claiming any work is done, fixed, passing, deployed, or synchronized, when validating changes against acceptance criteria, choosing which checks to run, assessing regression or release readiness, or reporting results of coding, configuration, data, or infrastructure work. Complements the built-in /code-review command.
 ---
 
 # Verification
@@ -26,7 +26,7 @@ Run the cheapest decisive check first and escalate with risk:
 2. Targeted: the specific tests covering the changed behavior.
 3. Neighborhood: suites of the modules that consume the changed contract.
 4. Build and package: when configuration, dependencies, or build inputs changed.
-5. Runtime: start the application and drive the affected flow end-to-end — the only rung that proves the feature works rather than compiles. Use the /verify skill when a runtime surface exists.
+5. Runtime: start the application and drive the affected flow end-to-end — the only rung that proves the feature works rather than compiles. Use the run skill when a runtime surface exists.
 6. Broad: full suite, integration, and smoke checks when shared contracts, infrastructure, or user-facing behavior changed.
 
 Stop escalating when the remaining risk no longer justifies the cost, and say which rungs were skipped and why. Do not add tooling the project does not already use just to climb a rung.

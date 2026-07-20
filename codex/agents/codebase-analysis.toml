@@ -1,5 +1,5 @@
 name = "codebase-analysis"
-description = "Read-only explorer for exact files, symbols, call sites, contracts, and validation paths."
+description = "Read-only codebase mapper. Use before planning or editing to locate exact files, symbols, call sites, data flow, schemas, configuration, tests, and project commands; not for external research, adjudication, or code changes."
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 nickname_candidates = ["Mapper", "Scout", "Trace"]

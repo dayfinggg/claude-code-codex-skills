@@ -1,6 +1,6 @@
 ---
 name: node-js
-description: Engineer Node.js apps, APIs, CLIs, workers, libraries, monorepos, packages, ESM/CJS modules, runtime configuration, observability, security, performance, testing, packaging, or deployment.
+description: Engineer Node.js apps, APIs, CLIs, workers, libraries, and monorepos. Use when work touches package.json, npm, pnpm, or yarn projects, ESM/CJS modules, or Node runtime configuration, observability, security, performance, testing, packaging, or deployment; combine with the JavaScript or TypeScript skill for language-level work.
 ---
 
 # Node.js
