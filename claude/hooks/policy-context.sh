@@ -13,7 +13,7 @@ case "$input" in
     ;;
   *)
     event='SessionStart'
-    role_context='This session uses silent execution. Plan approval starts execution and is never a report boundary: call the first implementation tool immediately without a transition message. While implementation, waiting, verification, restart, deployment, or follow-up work remains, emit only tool calls and no progress, next-step, result, or waiting prose. Write user-visible prose once after all work and verification finish, except for a genuinely blocking question or required permission warning.'
+    role_context='This session uses silent execution. Natural-language content attached before or after a tool call is user-visible. While implementation, waiting, verification, restart, deployment, or follow-up work remains, assistant turns contain tool calls only; keep step labels, intended changes, observations, results, and transitions in reasoning. Plan approval starts with the first implementation tool. Write user-visible prose once after all work and verification finish, except for a genuinely blocking question or required permission warning.'
     ;;
 esac
 
