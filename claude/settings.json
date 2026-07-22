@@ -28,8 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$HOME/.claude/hooks/policy-context.sh\"",
-            "shell": "bash",
+            "command": "bash \"$HOME/.claude/hooks/policy-context.sh\"",
             "timeout": 5
           }
         ]
@@ -40,15 +39,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$HOME/.claude/hooks/policy-context.sh\"",
-            "shell": "bash",
+            "command": "bash \"$HOME/.claude/hooks/policy-context.sh\"",
             "timeout": 5
           }
         ]
       }
     ]
   },
-  "model": "claude-fable-5[1m]",
   "outputStyle": "operating-policy",
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
