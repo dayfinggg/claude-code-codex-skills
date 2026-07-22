@@ -1,4 +1,4 @@
 interface:
   display_name: "Redis Engineering"
-  short_description: "Design and operate reliable Redis systems"
-  default_prompt: "Use $redis to design, review, debug, or operate this Redis-backed feature safely."
+  short_description: "Engineer Redis keys, TTLs, and failure semantics"
+  default_prompt: "Use $redis to design, review, debug, or migrate this Redis-specific behavior with exact client and topology semantics."

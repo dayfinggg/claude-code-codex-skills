@@ -42,7 +42,7 @@ footer{border-top:1px solid var(--border);margin-top:64px;padding:24px 16px;colo
     <p class="sub">What actually changes when the agent works with these skills and the operating policy installed. Each example is a real before/after: the left-behind habit in red, the enforced behavior in green.</p>
     <p class="sub"><a href="https://github.com/dayfinggg/claude-code-codex-skills">Get it on GitHub →</a></p>
     <nav aria-label="Skills">
-      <a href="#policy">operating-policy</a><a href="#software-engineering">software-engineering</a><a href="#software-architecture">software-architecture</a><a href="#api-design">api-design</a><a href="#debugging">debugging</a><a href="#verification">verification</a><a href="#test-engineering">test-engineering</a><a href="#planning">planning</a><a href="#agent-delegation">agent-delegation</a><a href="#project-documentation">project-documentation</a><a href="#web-research">web-research</a><a href="#web-application-security">web-application-security</a><a href="#git">git</a><a href="#typescript">typescript</a><a href="#javascript">javascript</a><a href="#node-js">node-js</a><a href="#react">react</a><a href="#nextjs">nextjs</a><a href="#python">python</a><a href="#sql">sql</a><a href="#mongodb">mongodb</a><a href="#redis">redis</a><a href="#powershell">powershell</a><a href="#ui-ux-design">ui-ux-design</a>
+      <a href="#policy">operating-policy</a><a href="#software-engineering">software-engineering</a><a href="#domain-modeling">domain-modeling</a><a href="#api-design">api-design</a><a href="#systematic-debugging">systematic-debugging</a><a href="#full-stack-testing">full-stack-testing</a><a href="#grill-me">grill-me</a><a href="#planning">planning</a><a href="#delegate-work">delegate-work</a><a href="#project-documentation">project-documentation</a><a href="#web-research">web-research</a><a href="#web-application-security">web-application-security</a><a href="#git">git</a><a href="#typescript">typescript</a><a href="#javascript">javascript</a><a href="#node-js">node-js</a><a href="#react">react</a><a href="#nextjs">nextjs</a><a href="#python">python</a><a href="#sql">sql</a><a href="#mongodb">mongodb</a><a href="#redis">redis</a><a href="#powershell">powershell</a><a href="#ui-ux-design">ui-ux-design</a>
     </nav>
   </div>
 </header>
@@ -55,15 +55,15 @@ footer{border-top:1px solid var(--border);margin-top:64px;padding:24px 16px;colo
 </section>
 
 <section id="software-engineering">
-  <h2>software-engineering <span class="tag">base layer, always loaded</span></h2>
+  <h2>software-engineering <span class="tag">broad or mixed-stack work</span></h2>
   <p>Root cause over symptom. A retry loop around broken logic preserves the defect — the skill forces finding why it fails.</p>
   <pre class="diff"><span class="h">  def load_config(path):</span><span class="d">-     for _ in range(3):</span><span class="d">-         try:</span><span class="d">-             return json.loads(open(path).read())</span><span class="d">-         except Exception:</span><span class="d">-             time.sleep(1)</span><span class="a">+     with open(path, encoding="utf-8-sig") as f:</span><span class="a">+         return json.load(f)</span><span class="h">  # the file had a BOM — retrying never helped</span></pre>
 </section>
 
-<section id="software-architecture">
-  <h2>software-architecture <span class="tag">boundaries and ownership</span></h2>
-  <p>Domain logic stops depending on transport. Pricing rules no longer import an HTTP client.</p>
-  <pre class="diff"><span class="d">- def apply_discount(order):</span><span class="d">-     rate = requests.get(RATES_URL).json()["vip"]</span><span class="d">-     return order.total * (1 - rate)</span><span class="a">+ def apply_discount(order, rate):</span><span class="a">+     return order.total * (1 - rate)</span><span class="h">  # the caller at the boundary fetches the rate; the rule is now testable</span></pre>
+<section id="domain-modeling">
+  <h2>domain-modeling <span class="tag">explicit-only discovery</span></h2>
+  <p>Ambiguous business language becomes a decision record before it becomes a data model or API.</p>
+  <pre class="diff"><span class="d">- status: string  // "active" means several different things</span><span class="a">+ SubscriptionState = Trial | Paid | GracePeriod | Cancelled</span><span class="a">+ Decision: access continues during GracePeriod; billing does not.</span><span class="h">  # invoked only when the user asks to model the domain</span></pre>
 </section>
 
 <section id="api-design">
@@ -72,22 +72,22 @@ footer{border-top:1px solid var(--border);margin-top:64px;padding:24px 16px;colo
   <pre class="diff"><span class="d">- return jsonify({"ok": False, "msg": "not found"}), 200</span><span class="a">+ return jsonify({"error": {"code": "user_not_found",</span><span class="a">+                           "message": "No user with id 42"}}), 404</span></pre>
 </section>
 
-<section id="debugging">
-  <h2>debugging <span class="tag">reproduce, then fix</span></h2>
+<section id="systematic-debugging">
+  <h2>systematic-debugging <span class="tag">reproduce, hypothesize, falsify</span></h2>
   <p>Sleeps that hide races are banned. The failure gets reproduced and the ordering fixed.</p>
   <pre class="diff"><span class="d">- await new Promise(r => setTimeout(r, 500)); // flaky fix</span><span class="d">- expect(cache.get("user")).toBeDefined();</span><span class="a">+ await warmup;                    // the promise the test never awaited</span><span class="a">+ expect(cache.get("user")).toBeDefined();</span></pre>
 </section>
 
-<section id="verification">
-  <h2>verification <span class="tag">evidence before "done"</span></h2>
-  <p>Completion claims must be backed by checks that actually ran in the session.</p>
+<section id="full-stack-testing">
+  <h2>full-stack-testing <span class="tag">cross-boundary acceptance evidence</span></h2>
+  <p>One public-contract vertical scenario proves the behavior before coverage expands, and completion claims stay tied to checks that actually ran.</p>
   <pre class="diff"><span class="d">- Done! The migration should work now.</span><span class="a">+ Migration applied and verified: `alembic upgrade head` succeeded,</span><span class="a">+ `pytest tests/test_orders.py` — 31 passed. Rollback tested with</span><span class="a">+ `alembic downgrade -1` on a copy of the schema.</span></pre>
 </section>
 
-<section id="test-engineering">
-  <h2>test-engineering <span class="tag">test behavior, not internals</span></h2>
-  <p>Tests assert observable behavior and cover the edge that actually broke, deterministically.</p>
-  <pre class="diff"><span class="d">- assert parser._tokens[3].kind == 7</span><span class="a">+ assert parse("price: -0.00").price == Decimal("0")</span><span class="a">+ assert parse("price: 1e999").error == "overflow"</span></pre>
+<section id="grill-me">
+  <h2>grill-me <span class="tag">explicit-only requirements interview</span></h2>
+  <p>The agent inspects discoverable facts first, then asks one consequential question at a time with a recommended answer and tradeoff.</p>
+  <pre class="diff"><span class="d">- Please answer this generic list of 18 questions.</span><span class="a">+ Decision needed: should expired invitations be reusable?</span><span class="a">+ Recommended: no — rotate the token to prevent replay; this requires</span><span class="a">+ a new invitation record when an administrator retries.</span></pre>
 </section>
 
 <section id="planning">
@@ -96,10 +96,10 @@ footer{border-top:1px solid var(--border);margin-top:64px;padding:24px 16px;colo
   <pre class="diff"><span class="d">- *starts rewriting the auth module in message one*</span><span class="a">+ Done means: existing sessions survive the deploy, login p95 &lt; 300ms,</span><span class="a">+ `test_auth.py` green. Steps: extract token store → dual-read window →</span><span class="a">+ switch writes → remove legacy. Rollback: flip AUTH_STORE env back.</span></pre>
 </section>
 
-<section id="agent-delegation">
-  <h2>agent-delegation <span class="tag">the right agent for the job</span></h2>
-  <p>Big tasks split across scoped subagents with disjoint file ownership instead of one overloaded context.</p>
-  <pre class="diff"><span class="d">- one context: reads 80 files, plans, edits, reviews itself</span><span class="a">+ codebase-analysis maps the call sites (read-only)</span><span class="a">+ executor implements within src/billing/** only</span><span class="a">+ verifier runs the checks and reports pass/fail with output</span></pre>
+<section id="delegate-work">
+  <h2>delegate-work <span class="tag">bounded independent packets</span></h2>
+  <p>Delegation is used only when independent work justifies coordination; the parent keeps decisions, integration, and acceptance.</p>
+  <pre class="diff"><span class="d">- one context delegates every phase and loses the live constraints</span><span class="a">+ researcher returns versioned primary evidence (read-only)</span><span class="a">+ reviewer independently checks the finished diff</span><span class="a">+ parent integrates, verifies, and reports the result</span></pre>
 </section>
 
 <section id="project-documentation">

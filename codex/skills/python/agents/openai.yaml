@@ -1,4 +1,4 @@
 interface:
-  display_name: "Python Engineering"
-  short_description: "Build secure, maintainable Python systems"
-  default_prompt: "Use $python to implement and verify a secure production Python change."
+  display_name: "Python Runtime"
+  short_description: "Own Python semantics, async, imports, and packaging"
+  default_prompt: "Use $python for this Python language, interpreter, typing, async, import, packaging, subprocess, or serialization task; do not infer scope from pyproject.toml alone."

@@ -16,6 +16,10 @@ For the global `CODEX_HOME` layer, Codex uses `AGENTS.override.md` when present;
 
 Include durable repository commands, conventions, architecture boundaries, test expectations, generated-file rules, and review constraints. Exclude task-specific narrative, secrets, copied tool manuals, and requirements already enforced elsewhere.
 
+For a complex or fast-moving dependency, include only a short version-matched source map when repeated work needs it: the dependency and supported version, authoritative manifest or lockfile, local types or source path, optional read-only upstream checkout at an exact revision, official documentation or release path, and the command that refreshes the mapping. Do not copy vendor documentation into instructions. Update or remove the map when the dependency version, source location, or support policy changes.
+
+When a product repeatedly requires non-discoverable integration setup, prefer a repository-local `test-<product>` skill linked to verified scripts over more global prose. Its owner is the product or test surface that owns the setup; refresh it when startup, fixtures, authentication, supported clients, or cleanup changes, and retire it when project commands make the workflow self-evident.
+
 ## Claude Code hierarchy and imports
 
 Choose scope deliberately:

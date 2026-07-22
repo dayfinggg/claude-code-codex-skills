@@ -1,68 +1,85 @@
 # Claude Code & Codex Skills
 
-My daily setup for [Claude Code](https://code.claude.com) and [Codex CLI](https://developers.openai.com/codex): agent skills, subagents, output styles, hooks and config templates. Copy two folders into your home directory, restart, done.
+A compact personal setup for Claude Code and OpenAI Codex: 23 narrowly triggered skills, five specialist subagents, silent execution, evidence-first final reports, and structural checks for the Codex catalog.
 
-**[See every skill in action →](https://dayfinggg.github.io/claude-code-codex-skills/)** — before/after examples of what each one changes.
+The catalog deliberately avoids a universal skill cascade. A framework, language, database, or package activates a skill only when the requested behavior depends on that domain; `domain-modeling` and `grill-me` are explicit-only workflows.
+
+[See every skill in action](https://dayfinggg.github.io/claude-code-codex-skills/).
 
 ## Install
 
-**macOS / Linux**
+Back up existing configuration first. The copy commands replace same-named files but do not remove unrelated files already present in `~/.claude` or `~/.codex`, so delete retired catalog entries or install into a clean directory when upgrading from an older release.
+
+### macOS / Linux
 
 ```bash
 git clone https://github.com/dayfinggg/claude-code-codex-skills.git
 cd claude-code-codex-skills
-cp -r claude/. ~/.claude/
-cp -r codex/. ~/.codex/
+cp -R claude/. "$HOME/.claude/"
+cp -R codex/. "$HOME/.codex/"
+chmod +x "$HOME/.claude/hooks/policy-context.sh"
 ```
 
-**Windows (PowerShell)**
+### Windows (PowerShell)
 
 ```powershell
 git clone https://github.com/dayfinggg/claude-code-codex-skills.git
-cd claude-code-codex-skills
-Copy-Item -Recurse -Force claude\* "$HOME\.claude\"
-Copy-Item -Recurse -Force codex\* "$HOME\.codex\"
+Set-Location claude-code-codex-skills
+Copy-Item -Recurse -Force .\claude\* "$HOME\.claude\"
+Copy-Item -Recurse -Force .\codex\* "$HOME\.codex\"
 ```
 
-Already have a `settings.json` or `config.toml`? Back it up first or merge the keys by hand. Want only the skills? Copy just `skills/` and `agents/`.
+`claude/settings.json` and `codex/config.toml` are opinionated templates with permissive execution settings. Merge them manually if you already have MCP servers, plugins, trusted projects, status-line hooks, model selections, or platform-specific paths. The repository contains no user-specific absolute paths; the shipped Codex agent paths point from `~/.codex/agents` to the sibling `~/.codex/skills` tree.
 
-## What's inside
+Restart Claude Code and Codex after installation so both catalogs are rediscovered.
 
+## Layout
+
+```text
+claude/
+  CLAUDE.md
+  agents/             five specialist agents
+  hooks/              SessionStart/SubagentStart context only
+  output-styles/      silent execution and evidence report
+  settings.json       portable template
+  skills/             23 Claude-adapted skills
+
+codex/
+  agents/             five specialist agents
+  checks/             catalog and routing quality tooling
+  config.toml         portable template
+  model-instructions.md
+  skills/             23 Codex skills with agents/openai.yaml
 ```
-claude/   → ~/.claude    skills, agents, output style, hooks, settings.json
-codex/    → ~/.codex     skills, agents, model instructions, config.toml
+
+## Skills
+
+The shared catalog contains `api-design`, `delegate-work`, `domain-modeling`, `full-stack-testing`, `git`, `grill-me`, `javascript`, `mongodb`, `nextjs`, `node-js`, `planning`, `powershell`, `project-documentation`, `python`, `react`, `redis`, `software-engineering`, `sql`, `systematic-debugging`, `typescript`, `ui-ux-design`, `web-application-security`, and `web-research`.
+
+`grill-me` performs a user-invoked requirements interview: it inspects discoverable facts first, asks one high-value decision at a time, recommends an answer with consequences, and returns a compact decision record. `domain-modeling` is also explicit-only. Architecture guidance now lives behind just-in-time references in `software-engineering`, while acceptance and delivery evidence lives in `full-stack-testing`; the retired `software-architecture` and `delivery-verification` skills should be removed during upgrades.
+
+## Agents
+
+The five Codex and Claude agents are intentionally narrow: `bulk-scanner` performs fixed-schema inventories, `researcher` gathers current primary evidence, `reviewer` separates specification compliance from repository standards, `verifier`/`verification-agent` independently checks acceptance evidence, and `vulnerability-audit` reviews material trust boundaries. Built-in exploration and planning remain preferable for ordinary repository mapping and plans; implementation and debugging stay with the primary model unless a bounded independent packet justifies delegation.
+
+## Behavior
+
+The global policy keeps authorization, scope preservation, production-ready implementation, verification, and response evidence at the top level. It does not repeat language, architecture, testing, and security checklists already owned by narrower skills.
+
+Claude's hook runs only at `SessionStart` and `SubagentStart` and returns `additionalContext`; it is not a stop hook and does not block tool calls. Its short model-specific branches cover Fable 5, Opus 4.8, and Sonnet 5 without duplicating the full policy.
+
+Final coding reports lead with delivered behavior and scope, then name observed commands and results, and end with material residual risk or checks that were not run. Work remains silent until that report unless a genuinely blocking question or required permission warning is necessary.
+
+## Codex checks
+
+Run the structural validator from the repository root:
+
+```bash
+python codex/checks/validate_codex_rules.py
+python codex/checks/validate_codex_rules.py --self-test
 ```
 
-- **23 skills** — software engineering and architecture as the base, plus TypeScript, JavaScript, Node.js, React, Next.js, Python, SQL, MongoDB, Redis, PowerShell, Git, API design, testing, debugging, security, web research, UI/UX and more. Both CLIs pick them up automatically.
-- **Subagents** — planner, executor, debugger, researcher, code reviewer, security auditor, verifier and others, each with its own tools and preloaded skills.
-- **Operating policy** — an output style (Claude) / model instructions (Codex) that make the assistant work quietly and answer once with evidence, instead of narrating every step.
-- **Hooks & configs** — a small hook that keeps long sessions on-policy, plus settings tuned for autonomous work.
-
-## What changes
-
-- The assistant loads the relevant skills before touching code, so every task follows the same engineering rules: find the root cause, keep the diff small, verify before claiming done.
-- No progress chatter — tools run silently and you get one final answer backed by checks that actually ran.
-- Generated code comes without filler comments, TODOs or placeholder scaffolding.
-- Bigger tasks get delegated to focused subagents instead of one context doing everything.
-
-The configs favor autonomy (few approval prompts, permissive sandbox) — skim `claude/settings.json` and `codex/config.toml` before adopting them as-is.
-
-## FAQ
-
-**How do Claude Code skills work?**
-Skills are folders with a `SKILL.md` file that Claude Code discovers in `~/.claude/skills`. When a task matches a skill's description, Claude loads its instructions — so a Python task follows Python rules, a SQL migration follows database rules, and so on. Codex CLI uses the same format under `~/.codex/skills`.
-
-**What are Claude Code subagents?**
-Subagents are role definitions in `~/.claude/agents` (Markdown) or `~/.codex/agents` (TOML). Each one gets its own context window, a limited toolset and preloaded skills — a researcher can't edit files, an executor stays inside its assigned scope.
-
-**What is a Claude Code output style?**
-An output style replaces the default response behavior. The `operating-policy` style in this repo makes Claude Code work silently and reply once with a verified result. For Codex CLI the same policy ships as `model-instructions.md`, wired via `model_instructions_file` in `config.toml`.
-
-**Does this work on Windows, macOS and Linux?**
-Yes. All paths are relative, nothing is machine-specific. The only extra requirement is `bash` and `jq` for the Claude Code hook (Git Bash covers both on Windows).
-
-**Can I use just part of it?**
-Sure — every piece is independent. Take only the skills, only the agents, or a single skill folder; nothing else breaks.
+The Node-based routing and behavior harness is optional and requires installing its package dependencies inside `codex/checks`. Generated reports, temporary fixtures, and `node_modules` are intentionally not committed.
 
 ## License
 

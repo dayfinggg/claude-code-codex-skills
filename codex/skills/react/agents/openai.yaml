@@ -1,4 +1,4 @@
 interface:
-  display_name: "React"
-  short_description: "Build reliable, accessible React applications"
-  default_prompt: "Use $react to implement and verify this React change against the project's installed version and conventions."
+  display_name: "React Runtime"
+  short_description: "Own components, Hooks, rendering, and hydration"
+  default_prompt: "Use $react for this component, Hook, state, Effect, rendering, SSR, or hydration task; use $nextjs instead for Next routing, caching, or revalidation."

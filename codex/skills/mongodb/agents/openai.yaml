@@ -1,4 +1,4 @@
 interface:
   display_name: "MongoDB Engineering"
-  short_description: "Design and operate reliable MongoDB systems"
-  default_prompt: "Use $mongodb to design, review, debug, or operate this MongoDB-backed feature safely."
+  short_description: "Engineer MongoDB data and consistency behavior"
+  default_prompt: "Use $mongodb to design, review, debug, or migrate this MongoDB-specific data path with exact server and driver semantics."

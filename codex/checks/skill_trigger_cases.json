@@ -1,0 +1,94 @@
+{
+  "api-design": {
+    "positive": "Define the public REST error response and idempotency contract for an external payments endpoint.",
+    "negative": "Refactor a private price calculation helper without changing any public request, response, or external contract."
+  },
+  "delegate-work": {
+    "positive": "Split this authorized migration into independent agent work packets with disjoint file ownership.",
+    "negative": "Fix one tightly coupled function in a single file without using other agents."
+  },
+  "domain-modeling": {
+    "positive": "Use $domain-modeling to define invoice states, invariants, ownership, and acceptance examples before implementation.",
+    "negative": "Implement routine CRUD for an entity whose behavior is already specified."
+  },
+  "full-stack-testing": {
+    "positive": "Design a CI and cross-layer verification strategy spanning an API, database, browser, and deployment artifact.",
+    "negative": "Add and run focused endpoint tests without changing test strategy, infrastructure, CI, or cross-boundary delivery evidence."
+  },
+  "git": {
+    "positive": "Resolve this Git merge conflict without losing either branch's intended change.",
+    "negative": "Edit a source file without staging, committing, or inspecting Git state."
+  },
+  "grill-me": {
+    "positive": "Use $grill-me to interview me one consequential decision at a time before you plan or implement anything.",
+    "negative": "Ask the one blocking clarification needed to complete an ordinary implementation request."
+  },
+  "javascript": {
+    "positive": "Fix promise cleanup and ESM interop in this .mjs build script.",
+    "negative": "Implement an ordinary JavaScript REST handler whose correctness does not depend on JavaScript language semantics."
+  },
+  "mongodb": {
+    "positive": "Make this MongoDB inventory update atomic and add the required compound index.",
+    "negative": "Write a transactional PostgreSQL migration."
+  },
+  "nextjs": {
+    "positive": "Fix App Router revalidation and Server Component cache behavior in the installed Next.js version.",
+    "negative": "Fix a generic React Hook that has no Next.js behavior."
+  },
+  "node-js": {
+    "positive": "Handle Node.js process signals, child-process cancellation, and asynchronous stream cleanup.",
+    "negative": "Fix ordinary API authorization logic merely hosted on Node, with no Node process, module, package, I/O, worker, CLI, or runtime API behavior."
+  },
+  "planning": {
+    "positive": "Create an evidence-backed migration plan with sequencing, decision points, rollback, and acceptance checks.",
+    "negative": "Implement this already specified one-line local fix."
+  },
+  "powershell": {
+    "positive": "Repair PowerShell native argument quoting and terminating error handling for literal paths.",
+    "negative": "Change a generic Windows application preference through its supported UI."
+  },
+  "project-documentation": {
+    "positive": "Update AGENTS.md from repository evidence and verify every documented command and path.",
+    "negative": "Rewrite customer-facing landing-page copy."
+  },
+  "python": {
+    "positive": "Fix Python asyncio cancellation cleanup and packaging metadata for the installed interpreter.",
+    "negative": "Run a Python-based tool while changing only non-Python source."
+  },
+  "react": {
+    "positive": "Fix a React Effect loop, hydration mismatch, and component focus behavior.",
+    "negative": "Change only Next.js route caching and revalidation policy."
+  },
+  "redis": {
+    "positive": "Fix a Redis idempotency-key race involving SET NX, TTL, and concurrent retries.",
+    "negative": "Change an implementation-neutral cache interface with no Redis semantics."
+  },
+  "software-engineering": {
+    "positive": "Implement a mixed-stack change that alters repository-wide contracts, persistence, errors, and delivery evidence.",
+    "negative": "Research whether to upgrade one dependency without implementing a code or architecture change."
+  },
+  "sql": {
+    "positive": "Design a PostgreSQL migration with constraints, locking, index rollout, and rollback semantics.",
+    "negative": "Implement a MongoDB document update."
+  },
+  "systematic-debugging": {
+    "positive": "Reproduce and fix this observed intermittent crash with a deterministic regression test.",
+    "negative": "Apply an already diagnosed pre-scoped fix when no reproduction or root-cause work remains."
+  },
+  "typescript": {
+    "positive": "Fix a TypeScript declaration merge, generic constraint, and tsconfig compiler error.",
+    "negative": "Fix React rendering in a TSX file without changing types, declarations, tsconfig, compiler behavior, or typed contracts."
+  },
+  "ui-ux-design": {
+    "positive": "Implement and visually verify a responsive accessible dashboard and its interaction states.",
+    "negative": "Change a backend API with no user interface."
+  },
+  "web-application-security": {
+    "positive": "Fix cross-tenant object authorization and add negative tests at the web trust boundary.",
+    "negative": "Parse trusted internal data in an ordinary web helper with no sensitive sink."
+  },
+  "web-research": {
+    "positive": "Evaluate the current supported version and migration risks of a dependency using official sources.",
+    "negative": "Answer from complete stable local evidence when browsing is neither requested nor useful."
+  }
+}

@@ -1,4 +1,4 @@
 interface:
-  display_name: "TypeScript Engineering"
-  short_description: "Build type-safe production TypeScript"
-  default_prompt: "Use $typescript to implement and verify a type-safe production TypeScript change."
+  display_name: "TypeScript Types"
+  short_description: "Own TypeScript types, tsconfig, and typed modules"
+  default_prompt: "Use $typescript for this type-system, declaration, tsconfig, compiler, or typed-module task; do not use it for generic React rendering or Node runtime behavior."

@@ -1,4 +1,5 @@
 {
+  "cleanupPeriodDays": 30,
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "600000",
     "BASH_MAX_TIMEOUT_MS": "1200000",
@@ -8,7 +9,8 @@
     "MCP_TIMEOUT": "60000",
     "MCP_TOOL_TIMEOUT": "300000",
     "API_TIMEOUT_MS": "600000",
-    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000"
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1"
   },
   "attribution": {
     "commit": "",
@@ -16,10 +18,12 @@
     "sessionUrl": false
   },
   "includeCoAuthoredBy": false,
-  "outputStyle": "operating-policy",
-  "effortLevel": "xhigh",
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "skipDangerousModePermissionPrompt": true
+  },
   "hooks": {
-    "UserPromptSubmit": [
+    "SessionStart": [
       {
         "hooks": [
           {
@@ -42,44 +46,18 @@
           }
         ]
       }
-    ],
-    "PostToolBatch": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME/.claude/hooks/policy-context.sh\"",
-            "shell": "bash",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME/.claude/hooks/policy-context.sh\"",
-            "shell": "bash",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "^Agent$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME/.claude/hooks/policy-context.sh\"",
-            "shell": "bash",
-            "timeout": 5
-          }
-        ]
-      }
     ]
-  }
+  },
+  "model": "claude-fable-5[1m]",
+  "outputStyle": "operating-policy",
+  "spinnerTipsEnabled": false,
+  "effortLevel": "high",
+  "showClearContextOnPlanAccept": true,
+  "tui": "fullscreen",
+  "autoMemoryEnabled": false,
+  "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
+  "showTurnDuration": false,
+  "terminalProgressBarEnabled": false,
+  "useAutoModeDuringPlan": true
 }
