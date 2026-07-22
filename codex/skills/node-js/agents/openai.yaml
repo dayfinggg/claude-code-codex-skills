@@ -1,4 +1,4 @@
 interface:
-  display_name: "Node.js Engineering"
-  short_description: "Build reliable production Node.js systems"
-  default_prompt: "Use $node-js to implement and verify a reliable production Node.js change."
+  display_name: "Node.js Runtime"
+  short_description: "Own Node processes, modules, packages, and async I/O"
+  default_prompt: "Use $node-js for this Node process, module, package, CLI, worker, or async-runtime task; do not use it for browser React or TypeScript type-system work."

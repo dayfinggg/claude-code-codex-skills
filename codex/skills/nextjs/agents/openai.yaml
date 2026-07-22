@@ -1,4 +1,4 @@
 interface:
-  display_name: "Next.js"
-  short_description: "Build secure, production-ready Next.js apps"
-  default_prompt: "Use $nextjs to implement and verify this Next.js change against the project's installed version, router, and conventions."
+  display_name: "Next.js Framework"
+  short_description: "Own Next routing, rendering, caching, and runtimes"
+  default_prompt: "Use $nextjs for this installed-version Next router, rendering, cache, revalidation, handler, action, metadata, or runtime task; do not use it for generic React behavior."

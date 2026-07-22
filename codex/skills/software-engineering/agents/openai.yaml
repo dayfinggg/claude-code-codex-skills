@@ -1,4 +1,4 @@
 interface:
   display_name: "Software Engineering"
-  short_description: "Universal production software engineering rules"
-  default_prompt: "Use $software-engineering to apply repository-first production engineering discipline to this software task."
+  short_description: "Cross-language production engineering baseline"
+  default_prompt: "Use $software-engineering for repository-wide production engineering invariants and evidence."

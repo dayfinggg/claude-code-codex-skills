@@ -1,82 +1,38 @@
 ---
 name: react
-description: Engineer, review, debug, secure, test, optimize, or migrate React applications and libraries in JSX or TSX, including components, Hooks, state, Effects, forms, rendering, accessibility, performance, SSR, hydration, React Server Components, and React Compiler compatibility. Use whenever behavior depends on React itself; combine with the repository's framework, TypeScript or JavaScript, styling, and test skills as applicable.
+description: Engineer React components, Hooks, state, Effects, rendering, Suspense, SSR, hydration, and Server Components. Use for React-owned behavior; not Next.js routing or caching, and not merely because React is installed.
 ---
 
-# React Engineering
+# React
 
-## Work from the installed project
+## Resolve the React contract
 
-1. Read the nearest repository instructions and inspect `package.json`, the lockfile, workspace manifests, TypeScript and lint configuration, framework or bundler configuration, source layout, tests, and deployment target.
-2. Resolve the installed versions of `react`, `react-dom`, their type packages, `eslint-plugin-react-hooks`, and React Compiler tooling from the lockfile or installed package metadata. Treat declared ranges as constraints, not proof of the resolved version. Check for duplicate React copies and mismatched renderer versions when Hooks, hydration, or context behave unexpectedly.
-3. Identify the owner of rendering and data behavior: client-only React, an SSR framework, a React Server Components framework, a native renderer, or a component library. Follow that owner's version-matched contract rather than transplanting browser or framework assumptions.
-4. Identify existing choices for routing, server state, forms, validation, styling, component primitives, testing, and error reporting. Do not introduce a competing library when the current stack satisfies the requirement.
-5. Classify the requested change before editing: pure UI, local interaction, shared client state, external synchronization, data read, mutation, form, navigation, SSR/hydration, RSC boundary, performance, accessibility, or migration.
+- Inspect the renderer owner, source, lockfile, framework or bundler configuration, tests, and installed metadata. Resolve the exact `react`, `react-dom` or other renderer, type package, Hooks lint plugin, and compiler versions; declared ranges are not resolved versions.
+- Check for duplicate React copies and renderer/version mismatches when Hooks, context, hydration, or scheduling behave unexpectedly. Identify whether the owner is client-only React, SSR, React Server Components, native rendering, or a component library.
+- Follow the framework for routing, data caches, server endpoints, and deployment behavior. This skill owns React semantics; use the Next.js skill for Next router and cache behavior.
 
-Read [versioning-interop.md](references/versioning-interop.md) before a migration, compiler change, framework boundary change, or version-sensitive API decision. Consult [sources.md](references/sources.md) whenever current support, security, or API status matters.
+Read [versioning and interop](references/versioning-interop.md) before migrations, compiler changes, or version-sensitive APIs. Use [authoritative React sources](references/sources.md) when support or API status matters.
 
-## Design the smallest coherent change
+## Preserve component and Hook semantics
 
-- Derive the component tree from user-visible states: success, loading, empty, partial, error, disabled, offline, and permission-denied where relevant.
-- Keep each component or Hook responsible for one coherent concept. Split when responsibilities, abstraction levels, platform boundaries, ownership, or independent test needs diverge; never split only to satisfy an arbitrary line count.
-- Prefer composition and explicit props. Introduce context only for truly cross-cutting values or services with a clear provider boundary. Introduce a reducer when named events and related transitions are clearer than several independent setters.
-- Preserve state at the intentional identity and reset it with an intentional key or position change. Use stable data IDs for list keys; never use generated-per-render values.
-- Keep transport records, validated domain data, editable form drafts, and view models distinct when their invariants differ.
+- Keep render idempotent and free of observable side effects. Treat props, state, context, Hook inputs, and existing JSX as immutable snapshots; never depend on render count or timing.
+- Call components through JSX and Hooks only at permitted top-level positions. Keep the repository's Hooks lint rules enabled and restructure code rather than suppressing dependency diagnostics.
+- Derive values during render when possible. Put user-caused work in event handlers or Actions. Use an Effect only to synchronize with a system outside React, pair setup with complete cleanup, and make it safe to restart.
+- Preserve state through stable component identity. Reset intentionally with position or keys, and use stable data identifiers for list keys rather than array position or generated-per-render values.
+- Choose local state, reducer, context, or an external store by ownership. Context is for a real provider boundary, not a substitute for passing a small number of clear props. Use [component, state, and Effect guidance](references/component-state-effects.md) for detailed choices.
+- Keep controlled text input updates urgent. Use transitions or deferred values only for non-urgent rendering work and expose pending state without making correctness depend on scheduling.
 
-Use [component-state-effects.md](references/component-state-effects.md) for detailed component, state, Hook, Effect, ref, and external-store decisions.
+## Handle rendering boundaries and failures
 
-## Enforce React correctness
+- Keep server and client initial output deterministic. Fix hydration mismatches at the source rather than suppressing warnings or rendering a deliberately different first tree.
+- Keep browser-only APIs out of server/shared modules and privileged code out of client graphs. Treat every serialized prop as public and verify values crossing an RSC boundary are serializable.
+- Let the renderer or framework own streaming and RSC transport. Use direct React DOM streaming APIs only when implementing the renderer integration, with the stream type supported by the host.
+- Place Suspense and error boundaries around independently recoverable regions. Error boundaries do not catch every event-handler, asynchronous callback, or server-rendering failure.
+- Abort obsolete work or ignore stale completions, bound concurrency and retries, and define cache ownership before adding caching. Do not create an Effect-based fetch layer when the framework or existing data library owns reads.
+- Never render unsanitized HTML. Preserve semantic names, focus behavior, keyboard interaction, status announcements, and reduced motion in component behavior.
 
-- Keep render idempotent and free of observable side effects. Treat props, state, context, Hook arguments, and JSX already created as immutable snapshots.
-- Call components through JSX and Hooks only at the top level of components or custom Hooks, except for React APIs whose documented contract explicitly permits conditional use.
-- Compute values during render when they are derivable. Handle user-caused work in event handlers or Actions. Use an Effect only to synchronize with a system outside React.
-- Make every Effect setup independent and pair it with complete cleanup. Include every reactive dependency; restructure code instead of suppressing `exhaustive-deps`.
-- Assume renders may be restarted, interrupted, batched, replayed in development, or committed later. Never depend on render count or timing for correctness.
-- Keep controlled text-input updates urgent. Use transitions or deferred values for non-urgent rendering work only, and preserve visible pending feedback.
-- Enable or preserve Strict Mode and the repository's React Hooks lint rules unless a documented compatibility constraint prevents it.
+Use [rendering and performance guidance](references/rendering-performance.md) for concurrency, Suspense, memoization, SSR, hydration, and RSC details. Use [forms, data, and error guidance](references/forms-data-errors.md) for form Actions, optimistic state, cancellation, and recovery. Use [testing, accessibility, and security guidance](references/testing-accessibility-security.md) when those contracts change.
 
-Use [rendering-performance.md](references/rendering-performance.md) for concurrency, Suspense, memoization, profiling, SSR, hydration, and RSC guidance.
+## Use project feedback
 
-## Handle forms, data, and failures at boundaries
-
-- Prefer semantic HTML form behavior and progressive enhancement where the renderer supports it. Choose controlled fields for React-owned live behavior and uncontrolled fields when the DOM can own transient values safely.
-- Validate for usability in the client and for trust on the authoritative server or persistence boundary. Model field, form, transport, and unexpected errors separately.
-- Follow the framework or existing data library for reads, deduplication, cancellation, caching, invalidation, retries, and Suspense integration. Do not invent an Effect-based fetch layer by default.
-- Abort obsolete work or ignore stale completions, bound retries and concurrency, and define cache ownership plus invalidation before adding caching.
-- Place error boundaries at useful recovery scopes. Do not expect them to catch event-handler failures, arbitrary asynchronous callbacks, or every server-rendering failure.
-
-Use [forms-data-errors.md](references/forms-data-errors.md) for detailed form, Action, optimistic UI, data fetching, error, and retry patterns.
-
-## Preserve platform boundaries
-
-- Keep browser-only APIs and secrets out of server/shared modules, and keep privileged server code out of client bundles. Treat every value serialized to the client as public.
-- Keep server and client initial output deterministic. Fix hydration mismatches at their source; do not silence them globally or render a different first tree merely to hide the warning.
-- Let the framework own RSC transport, bundling, request memoization, streaming, and Server Function endpoints. Verify serializability and module graph direction at each server/client boundary.
-- Use React DOM streaming APIs only when building the renderer integration itself. Select Node streams for Node and Web Streams for compatible edge environments, following the installed React documentation.
-
-## Meet production quality
-
-- Build semantic, keyboard-operable UI with visible focus, correct names and labels, deliberate focus movement, announced status/error changes, sufficient contrast, reduced-motion support, and touch targets appropriate to the product standard.
-- Never render unsanitized HTML. Validate navigation URLs, keep secrets and authorization on the server, and treat Server Functions and public endpoints as hostile-input boundaries.
-- Measure before optimizing. Profile the real interaction and build, then address the largest render, network, bundle, layout, or algorithmic cost. Do not add blanket `memo`, `useMemo`, or `useCallback`.
-- Test observable behavior through the same roles, labels, text, and interactions a user uses. Add integration or browser coverage for hydration, routing, RSC, forms, focus, and critical workflows that component tests cannot prove.
-- Include rejected input, error, retry, cancellation, empty, slow, and accessibility states when they are part of the changed contract.
-
-Use [testing-accessibility-security.md](references/testing-accessibility-security.md) for the production checklist and source-backed test and accessibility heuristics.
-
-## Migrate deliberately
-
-- Read the installed major's upgrade guidance and release notes before changing React, the renderer, types, compiler, lint plugin, framework, or test utilities.
-- Keep React and its renderer compatible, update one coherent compatibility set, run official codemods only on a clean reviewable diff, and inspect every transformation.
-- Do not introduce Canary, RC, or experimental APIs into production unless the repository already owns that channel or the user explicitly requests it. Isolate unavoidable experiments behind narrow boundaries.
-- Characterize legacy behavior before replacing class lifecycles, render props, manual subscriptions, deprecated root APIs, or effect-driven data flows.
-- Run the repository's focused typecheck, lint, tests, and production build. Add a real browser or server smoke test when static checks cannot validate rendering or hydration.
-
-## Reference map
-
-- [component-state-effects.md](references/component-state-effects.md): component shape, state ownership, reducers, context, Effects, refs, custom Hooks, and external stores.
-- [rendering-performance.md](references/rendering-performance.md): rendering semantics, transitions, Suspense, profiling, memoization, SSR, hydration, and RSC boundaries.
-- [forms-data-errors.md](references/forms-data-errors.md): forms, Actions, optimistic UI, data reads, caches, cancellation, and error recovery.
-- [testing-accessibility-security.md](references/testing-accessibility-security.md): test layers, accessible UI, security, privacy, and production checks.
-- [versioning-interop.md](references/versioning-interop.md): local version discovery, stable versus experimental APIs, compiler and framework interoperability, and migration strategy.
-- [sources.md](references/sources.md): authoritative source inventory, scope, currentness notes, and access dates.
+Run the repository's focused typecheck, Hooks lint, and component or integration tests. Run the production build and a real browser/server smoke test when changing SSR, hydration, RSC boundaries, Suspense, compiler behavior, or renderer versions. Profile before adding memoization, and verify rendered behavior through roles, labels, text, and interactions rather than component internals.

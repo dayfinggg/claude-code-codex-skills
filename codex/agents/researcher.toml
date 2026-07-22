@@ -1,5 +1,6 @@
 name = "researcher"
 description = "Read-only evidence specialist for current documentation, standards, releases, issues, and data."
+model = "gpt-5.6-terra"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 nickname_candidates = ["Archivist", "Source", "Beacon"]
@@ -12,9 +13,5 @@ Return confirmed facts with direct links, relevant dates or versions, only neces
 """
 
 [[skills.config]]
-path = "../skills/web-research/SKILL.md"
-enabled = true
-
-[[skills.config]]
-path = "../skills/.system/openai-docs/SKILL.md"
+path = '../skills/web-research/SKILL.md'
 enabled = true

@@ -1,121 +1,44 @@
 ---
 name: planning
-description: Create or review evidence-backed plans for complex software or operational work. Use in Plan mode or for requested decomposition, estimation, sequencing, or plan revision; not for implementation or simple tasks.
+description: Create or review evidence-backed plans for complex, risky, cross-cutting, or explicitly planned work. Use for sequencing, estimates, decisions, migrations, roadmaps, or Plan mode; not to implement or add ceremony to simple work.
 ---
 
 # Planning
 
-Produce an executable decision and delivery map, not a ceremonial checklist. Stay read-only unless the user explicitly asks to create or edit a plan artifact.
+Produce the smallest executable decision and delivery map. Stay read-only unless the user explicitly requests a plan artifact to be edited.
 
-Read [plan-patterns.md](references/plan-patterns.md) when the task needs milestones, estimates, a decision record, a risk register, or an evolving roadmap. Read [sources.md](references/sources.md) before invoking a named planning, architecture, or delivery framework; tailor it to repository evidence rather than copying the framework.
+Read [plan-patterns.md](references/plan-patterns.md) for milestones, estimates, decision records, risk registers, and evolving roadmaps. Read [sources.md](references/sources.md) before applying a named planning, architecture, or delivery framework; adapt it to repository evidence.
 
-## Planning Algorithm
+## Establish the contract
 
-1. Frame the outcome.
-   - State the desired end state and user-visible value in one sentence.
-   - Define measurable acceptance criteria, scope, non-goals, ownership, allowed side effects, constraints, and deadline only when one exists.
-   - Translate vague quality words into observable properties.
+1. Inspect the repository before asking questions: applicable instructions, current files, entry points, call sites, tests, schemas, configuration, scripts, CI, deployment paths, and existing plans. Verify paths and commands instead of inventing them.
+2. State the desired behavior and user-visible outcome. Record scope, non-goals, ownership, allowed side effects, constraints, compatibility needs, and a deadline only when one exists.
+3. Identify test seams: the boundaries, observable outputs, fixtures, contracts, or operational signals through which each behavior can be falsified.
+4. Separate observed facts, user-provided facts, inferences, assumptions, and unknowns. Ask only when an unknown materially changes safety, architecture, cost, compatibility, or outcome.
+5. Ask one materially blocking question at a time. Include a recommended answer and its consequence so the user can decide quickly. Continue without asking when repository evidence or a reversible default is sufficient.
 
-2. Establish evidence.
-   - Inspect applicable instructions, relevant code, call sites, tests, schemas, interfaces, logs, commands, issue text, and current official documentation.
-   - Separate `Observed`, `User-provided`, `Inferred`, `Assumption`, and `Needs confirmation`.
-   - Ask only when an unresolved fact changes safety, architecture, cost, compatibility, or the requested outcome.
+## Shape the approach
 
-3. Map the system and dependencies.
-   - Identify entry points, data flow, state transitions, trust boundaries, external services, persistence, deployment path, and affected contracts.
-   - Build a dependency graph. Put enabling decisions, reproduction, contract discovery, and irreversible choices before downstream work.
-   - Mark the critical path, parallel-safe work, serialization points, and merge gates.
+Map the affected entry points, data flow, state transitions, trust boundaries, persistence, external services, public contracts, and deployment path. Put contract discovery, reproduction, enabling decisions, and irreversible choices before dependent work.
 
-4. Resolve uncertainty deliberately.
-   - Rank unknowns by impact and cost of being wrong.
-   - Convert high-impact unknowns into a bounded spike, prototype, measurement, documentation check, or reversible experiment with a decision criterion.
-   - Prefer reversible decisions while evidence is weak. Escalate irreversible decisions for explicit review.
+For material or unfamiliar decisions, compare the leading option with at least one meaningfully different alternative, including a simpler subtractive option when plausible. Judge correctness, complexity, security, compatibility, performance, operations, migration, maintenance, and rollback. Do not manufacture alternatives for routine changes.
 
-5. Compare designs when the decision is material.
-   - Consider at least two materially different options for high-impact or unfamiliar architecture decisions, including the simplest subtractive option when plausible.
-   - Compare correctness, complexity, compatibility, security, performance, operability, migration, maintenance, cost, and rollback.
-   - Choose one option and record why the rejected alternatives lose. Do not manufacture alternatives for routine work.
+Turn uncertainty into a bounded experiment with a decision criterion. Use a spike, measurement, documentation check, or prototype only when prose cannot resolve the uncertainty cheaply. Mark exploratory prototypes disposable, isolate them from production paths, and require a separate reviewed implementation decision; never let a prototype silently become production code.
 
-6. Decompose into vertical milestones.
-   - Each milestone must produce an artifact, behavior, decision, or verification signal.
-   - Give every step inputs, exact targets when known, owner or write boundary, dependencies, expected output, acceptance check, and stop condition.
-   - Prefer small end-to-end slices over horizontal layers that remain unverifiable until the end.
+## Sequence delivery
 
-7. Design validation and recovery.
-   - Build a validation matrix that maps each acceptance criterion and major risk to evidence.
-   - Order checks from focused and cheap to broad and expensive.
-   - Include migration rehearsal, backup, rollback, feature flags, observability, staged rollout, and recovery for high-impact changes.
+Prefer small vertical tracer slices that cross the real boundaries and produce observable behavior. Use the first slice to validate the riskiest contract, integration, or test seam, then extend it incrementally. Avoid horizontal phases that build every layer before anything can run.
 
-8. Run a pre-mortem.
-   - Ask what could make the plan technically correct but operationally fail.
-   - Check hidden consumers, backward compatibility, concurrency, permissions, data quality, partial failure, rate limits, timezones, encoding, accessibility, privacy, supply chain, deployment ordering, and rollback realism where relevant.
+Give each step verified inputs and targets, dependencies, owner or write boundary, expected behavior or artifact, acceptance check, and stop condition. Mark the critical path, parallel-safe packets, shared-state serialization, and integration gates only when they matter.
 
-9. Review the plan backward.
-   - Starting from `Done When`, confirm every criterion has an implementing step and a verification step.
-   - Remove steps that do not change a decision, artifact, behavior, or confidence level.
-   - Confirm no step invents a file, command, API, dependency, or environment fact.
+Keep the plan proportional. A small change needs a short ordered checklist, not discovery, design, build, rollout, and retrospective ceremony. Add migrations, flags, observability, staged rollout, rollback, backup, or recovery only when the affected risk calls for them.
 
-## Plan Shape
+Persist a handoff only when work must survive a context reset or transfer. Record accepted decisions, exact current state, completed evidence, unresolved risks, and the smallest next executable action; retire the handoff when the work or its canonical tracker supersedes it.
 
-Use only the sections that materially help execution.
+## Review the plan
 
-```md
-## Goal
-Desired end state and measurable success.
+Map every requested behavior and major risk to evidence, starting with focused cheap checks and expanding only as needed. Review backward from completion: every criterion needs an implementing step and a falsifying check; every step must change behavior, an artifact, a decision, or confidence.
 
-## Scope
-In scope, out of scope, ownership, constraints, and allowed side effects.
+Remove unsupported paths, commands, APIs, dependencies, and redundant steps. Expose irreversible decisions, residual assumptions, and recovery ownership. Revise the plan when evidence invalidates an assumption, scope changes, or a validation result crosses a stop condition; do not silently rewrite prior constraints.
 
-## Evidence And Assumptions
-Observed facts, assumptions, decisions, and blocking questions.
-
-## System Impact
-Affected files, interfaces, data, dependencies, users, and operations.
-
-## Decision Record
-Options considered, selected option, rationale, and consequences.
-
-## Sequence
-1. Step with inputs, targets, output, acceptance check, and stop condition.
-2. Step with inputs, targets, output, acceptance check, and stop condition.
-
-## Parallel Work
-Independent work packets, file ownership, merge points, and serialization gates.
-
-## Risks And Recovery
-Risk, mitigation, detection, rollback, and residual risk.
-
-## Validation Matrix
-Acceptance criterion mapped to command, test, inspection, or operational evidence.
-
-## Done When
-Observable completion criteria and required evidence.
-```
-
-## Delegation Packets
-
-When active runtime, project, skill, or user instructions permit delegation, define each packet with:
-
-- Role and single objective.
-- Required skills and exact inputs.
-- Read and write boundaries, including forbidden files or actions.
-- Dependencies and whether it can run in parallel.
-- Required output, evidence, validation, stop conditions, and merge point.
-
-Do not delegate merely to make the plan look sophisticated. Keep shared-state writes serialized and retain integration ownership in the main task.
-
-## Planning Quality Gates
-
-- The plan is specific enough for another capable engineer or agent to execute without repeating broad discovery.
-- The critical path and irreversible decisions are visible.
-- Acceptance criteria cover behavior, not only file creation or command execution.
-- Risks have detection and recovery, not only labels.
-- Commands and paths are verified or explicitly marked unknown.
-- Estimates, when requested, state assumptions and ranges rather than false precision.
-- The plan remains proportional to the task. Use a short checklist for a small change.
-
-## Change Control
-
-Revise the plan when evidence invalidates an assumption, a dependency changes, validation fails, scope changes, or a risk crosses its stop threshold. Preserve the goal and decision history; do not silently rewrite constraints.
-
-End with the smallest next action. Do not implement unless the user subsequently authorizes implementation.
+End with the smallest next executable action. Do not implement unless implementation is separately authorized.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Full-Stack Testing"
-  short_description: "Build risk-based full-stack test strategies"
-  default_prompt: "Use $full-stack-testing to create and verify a risk-based test strategy for this application."
+  short_description: "Risk-based testing and delivery evidence"
+  default_prompt: "Use $full-stack-testing to design and verify risk-based test and delivery evidence."

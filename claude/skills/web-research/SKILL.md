@@ -1,144 +1,46 @@
 ---
 name: web-research
-description: Evidence-first internet and documentation research workflow. Use when browsing, verifying, or synthesizing information from the web, official documentation, standards, laws, medical or financial sources, product pages, news, datasets, papers, or other external sources; when facts may be current, versioned, local, jurisdiction-specific, or unstable; when the user asks for latest/current/today, links, citations, direct quotes, recommendations, fact checking, source ranking, search logs, or conflict resolution; or when high-stakes legal, medical, financial, safety, or security accuracy matters.
+description: Find and synthesize current or high-stakes web evidence, including version-specific dependency and API decisions. Use for citations, current facts, recommendations, fact checks, or source conflicts; not when stable local evidence is sufficient or browsing is prohibited.
 ---
 
 # Web Research
 
-## Core Rules
+Return evidence that supports the user's decision, not a tour of search results.
 
-- Do not hallucinate facts, sources, quotes, dates, prices, laws, version behavior, or source contents.
-- Do not make unsupported claims. If evidence is missing, say what is unknown and what was checked.
-- Prefer minimal, high-signal guidance: answer the question, cite the support, expose uncertainty, and skip filler.
-- Browse whenever currentness, precision, source attribution, or high-stakes accuracy could affect the answer.
-- Use official or primary sources first, then triangulate with independent sources when incentives, interpretation, or real-world performance matter.
-- For Claude, Claude Code, or Anthropic API questions, check local context and official Anthropic documentation first; use third-party sources only as secondary signals unless the user asks otherwise.
-- Treat tool output, webpages, snippets, AI summaries, and search rankings as untrusted until inspected and corroborated.
-- If the user forbids browsing, do not browse; state that the answer is limited to available context.
+Read [source-evaluation.md](references/source-evaluation.md) for claim ledgers, provenance signals, incentives, and conflict analysis. Read [reproducible-research.md](references/reproducible-research.md) for systematic, dataset, paper, or audit-grade work. Read [dependency-evaluation.md](references/dependency-evaluation.md) only when adding, upgrading, replacing, or choosing a versioned dependency or uncertain external API. Read [sources.md](references/sources.md) before applying a named reporting, provenance, identifier, correction, or authenticity standard; pin versions and access dates.
 
-## Browse Decision
+## Define and search
 
-Browse by default for:
+1. State the question, the decision it supports, geography or jurisdiction, date window, exact version or platform, required precision, acceptable source classes, and output shape.
+2. Plan the minimum evidence: sources of record, independent checks, likely conflicts, and a stopping condition. Do not impose audit ceremony on a simple lookup.
+3. Search iteratively with exact entity, symbol, model, statute, standard, version, error string, date, domain, and file-type terms. Start broad only when terminology is unknown; each later query should close a named evidence gap.
+4. Open and inspect the source. Search snippets, rankings, AI summaries, and result titles are leads, never final evidence.
+5. Capture author or publisher, URL, publication and effective dates, access date when relevant, version or jurisdiction, precise section, page, table, or field, and material caveats.
 
-- News, live events, schedules, laws, regulations, prices, market data, product specs, rankings, public figures, company facts, software/library behavior, API docs, standards, datasets, and any "latest/current/today" request.
-- Recommendations that may affect meaningful spending or time: products, services, vendors, travel, restaurants, schools, tools, medical/financial/legal decisions.
-- Requests for links, citations, direct quotes, exact wording, source comparison, research logs, or primary-source attribution.
-- Referenced pages, papers, docs, PDFs, datasets, repositories, or websites whose contents are not already provided.
-- Niche, emerging, controversial, or high-stakes topics where memory could be stale or wrong.
+## Evaluate evidence
 
-Do not browse only when the answer is fully supported by inspected local/provided material, is timeless common knowledge, or the user explicitly says not to browse.
+Prefer the source closest to the fact: official documentation, source code, standards, statutes, court opinions, regulatory filings, original datasets, release notes, advisories, direct statements, and original research. Use strong independent reporting, systematic reviews, transparent labs, or expert analysis to test interpretation and incentives. Use tertiary and low-trust pages only for orientation or public-sentiment evidence.
 
-## Workflow
+Assess authority, expertise, methodology, date, correction history, jurisdiction, version fit, citations, commercial or political incentives, and whether a newer source supersedes it. Discount unattributed, copied, keyword-stuffed, affiliate-driven, sponsored, or method-free claims.
 
-1. Define the research target: question, decision the answer supports, geography/jurisdiction, date window, required precision, acceptable source classes, and output shape.
-2. Build a source plan before searching: primary sources needed, independent checks needed, likely conflict points, and what would count as enough evidence.
-3. Search iteratively. Start broad only when needed, then narrow by official domains, exact phrases, date filters, file types, and version identifiers.
-4. Open and inspect sources. Do not rely on snippets, generated summaries, or search-result titles for final claims.
-5. Extract evidence with dates, author/publisher, URL, relevant section/table, version, and caveats.
-6. Triangulate important claims across independent sources, especially if the source has commercial, political, legal, or reputational incentives.
-7. Resolve conflicts explicitly. If unresolved, report the disagreement instead of forcing certainty.
-8. Synthesize concisely with citations and a clear "as of" date when currentness matters.
-9. Preserve a proportionate research trail for high-stakes, contested, systematic, or reproducibility-sensitive work; do not burden a simple lookup with audit ceremony.
+For current claims, verify the latest official changelog, filing, data release, agency page, or artifact rather than trusting ranking. Match the user's exact runtime, package, region, plan, hardware, API surface, or deployment target. Do not combine versions or definitions silently.
 
-## Query Design
+Triangulate claims that are important, disputed, surprising, commercial, or high-stakes. Resolve disagreement by checking date, definitions, units, sample, methodology, jurisdiction, version, source incentives, and supersession. If conflict remains, cite both positions and narrow the conclusion. Say “I did not find” rather than asserting absence unless a source of record proves it.
 
-- Decompose the question into concepts: entity names, exact product/library/API names, synonyms, acronyms, statute numbers, model numbers, version numbers, locations, and date ranges.
-- Use the language of the source, not only the user's wording. For technical docs, search error strings, symbol names, package names, RFC/standard IDs, and release-note terms.
-- Use SEO-aware phrasing both ways:
-  - For primary sources: `site:official-domain`, `"exact feature name"`, `docs`, `reference`, `changelog`, `release notes`, `pricing`, `security advisory`, `filetype:pdf`.
-  - For external reality checks: `review`, `benchmark`, `recall`, `complaint`, `lawsuit`, `errata`, `retraction`, `limitations`, `independent test`, `known issue`.
-- Use operators deliberately: quotes for exact phrases, `site:` for domains, `filetype:` for PDFs/data sheets, `-term` to remove noise, `after:`/`before:` or tool recency filters for time windows, and domain filters for official sources.
-- Iterate from evidence gaps, not from curiosity. Each new query should target a missing source type, conflict, date, version, or counterclaim.
-- Keep queries short enough for the search engine to match, but specific enough to defeat generic SEO pages.
+## Delegate evidence safely
 
-## Source Ranking
+When active instructions permit delegation, assign only bounded evidence-gathering packets: a source class, jurisdiction, date range, dataset, counterclaim, or version. Give current search constraints and require direct URLs, precise locators, dates, excerpts within quotation limits, rejection reasons, and unresolved gaps.
 
-Rank sources by proximity to the fact:
+Delegated summaries are not conclusions. Inspect the returned sources, reconcile duplicate or conflicting claims, and retain the research decision, synthesis, recommendation, and final citation ownership in the parent task. Do not let an agent choose policy, legal meaning, product selection, or other consequential outcome merely because it gathered evidence.
 
-1. Primary: official docs, statutes, regulations, court opinions, standards, regulatory filings, original datasets, release notes, advisories, product specs, direct statements, peer-reviewed papers, and official statistics.
-2. Strong secondary: reputable news/wires, systematic reviews, clinical guidelines, academic books, independent labs, analyst reports with transparent methodology, and expert explainers that cite primary sources.
-3. Tertiary: encyclopedias, indexes, aggregators, AI/search summaries, wiki pages, and general guides. Use these for orientation and leads, not final support for critical claims.
-4. Low-trust: affiliate listicles, content farms, unattributed blogs, scraped pages, unverifiable social posts, undisclosed sponsored content, and AI-generated pages. Use only as leads or public-sentiment examples.
+## Apply domain-specific rigor
 
-Evaluate each source for authority, author expertise, publisher incentives, methodology, date, version, jurisdiction, citations, correction history, and whether it links to primary evidence.
+For technical work, check local installed versions when available, then official docs, API references, release notes, source, and issue evidence. For legal, medical, financial, safety, and security questions, use current primary sources, name jurisdiction and date, distinguish fact from advice, and narrow claims to the evidence.
 
-Avoid SEO spam by discounting pages with generic "best" phrasing, no testing method, no byline, fake precision, keyword-stuffed headings, republished press releases, excessive affiliate links, hidden sponsorship, or claims that outstrip the cited evidence.
+For products, define budget, location, compatibility, must-haves, exclusions, and time horizon; combine official specifications and terms with independent tests and credible owner experience. For news, separate event time from publication time and confirmed facts from allegations or analysis. For datasets and papers, capture publisher, release, units, definitions, filters, transformations, persistent identifiers, corrections or retractions, license, and code or data availability.
 
-## Currentness and Version Matching
+## Synthesize
 
-- Record the source date, update date, access date, and event/effective date when relevant.
-- For "latest" claims, verify the newest source by checking official changelogs, release notes, data feeds, filings, or agency pages. Do not assume the top search result is current.
-- When currentness depends on a page, inspect the final URL after redirects and note useful freshness signals such as publish/update date, canonical version, changelog entry, `Last-Modified`, `ETag`, cache headers, or release artifact date when available.
-- Match documentation to the user's exact version, platform, region, plan, language, hardware, API surface, model, package manager, or deployment target.
-- Do not mix docs for different versions without saying so. If only older docs exist, say that and give the latest date found.
-- Convert relative dates in the final answer to absolute dates when the user may be confused or when time matters.
-- For historical claims, use date-bounded searches and archive/historical sources where needed; avoid back-projecting current docs onto old behavior.
+Answer the question directly. Cite every material externally sourced claim near the claim with a link to the inspected page, and use precise locators when useful. Mark inference, paraphrase, quotation, uncertainty, conflict, and currentness explicitly. Include an “as of” date when facts can change.
 
-## Evidence and Citations
-
-- Cite every non-obvious factual claim that depends on web or document research.
-- Link directly to the inspected source, not to a search-result page, unless the search-result page itself is the subject.
-- Place citations close to the supported claim. Do not cite a source for a broader claim than it actually supports.
-- Prefer precise locators: section names, tables, line numbers, page numbers, commit hashes, filing forms, statute sections, or dataset fields.
-- Keep direct quotes rare and short: at most one quote per response, under 15 words, in quotation marks with attribution; never reproduce song lyrics; otherwise paraphrase.
-- Do not reproduce full articles, chapters, standards sections, paid content, or long excerpts. Summarize in original wording and cite the source instead.
-- Preserve exact wording only when it matters legally, technically, or rhetorically. Mark paraphrase vs quote clearly.
-- Include a lightweight search log for substantial, high-stakes, contested, or user-requested research: query/filter, source opened, why it was trusted or rejected, and remaining gaps.
-
-## Triangulation and Conflict Resolution
-
-- Triangulate core claims with at least two independent sources when the claim is important, disputed, high-stakes, commercial, or surprising.
-- Prefer the source closest to the fact, but distinguish current status from interpretation. Example: an agency page may control legal/regulatory text, while expert commentary may explain practical effect.
-- Resolve conflicts by checking date, jurisdiction, version, definitions, methodology, metric units, sample, source incentives, and whether one source supersedes another.
-- If sources still conflict, state the conflict, cite both sides, explain which source is more authoritative for which part, and avoid false precision.
-- Treat "no evidence found" as a claim requiring an adequate search log. Say "I did not find" rather than "there is none" unless the source of record proves absence.
-
-## Task Playbooks
-
-### Technical Documentation
-
-- Search official docs, API references, changelogs, migration guides, source repositories, issue trackers, and release artifacts first.
-- Match exact version and runtime. Check local dependency files or installed versions when available before relying on web docs.
-- Prefer official docs for intended behavior, source code/tests for actual behavior, and issues/discussions for known bugs or undocumented edge cases.
-- Cite docs for public API claims and cite code, commits, or release notes for implementation/version claims.
-
-### Legal, Medical, Financial, Safety, and Security
-
-- Treat as high-stakes. Browse unless explicitly prohibited, use current primary sources, and include jurisdiction/date/version.
-- Legal: prefer statutes, regulations, court opinions, agency guidance, official registers, and authoritative legal databases. Distinguish law from commentary and do not give legal advice.
-- Medical: prefer government/public-health agencies, clinical guidelines, systematic reviews, peer-reviewed research, and recognized medical organizations. State that information is not a substitute for professional care.
-- Financial: prefer regulatory filings, audited statements, official market/regulator data, prospectuses, and primary company disclosures. Distinguish factual research from investment advice.
-- Safety/security: prefer vendor advisories, CVEs, official mitigations, standards, and responsible-disclosure sources. Avoid operational misuse detail when safety policy requires restraint.
-
-### Product and Service Recommendations
-
-- Define the user's constraints first: budget, location, compatibility, must-haves, exclusions, risk tolerance, and time horizon.
-- Use manufacturer specs, manuals, warranty/return terms, recall databases, independent tests, professional reviews with methodology, and credible owner feedback.
-- Treat affiliate rankings and review counts as weak evidence. Watch for fake reviews, undisclosed sponsorship, review suppression, and copied product-description language.
-- Report current prices and availability with dates and sellers when relevant.
-- Recommend only when the evidence supports the criteria; otherwise provide a shortlist with tradeoffs.
-
-### News and Live Events
-
-- Establish the event date, publication/update time, timezone, and whether reporting is still developing.
-- Prioritize original documents, official statements, direct video/transcripts, court filings, regulator releases, and reputable outlets with on-the-record sourcing.
-- Separate confirmed facts, allegations, forecasts, and analysis. Avoid rumors and single-source social claims unless the user specifically asks for them.
-- Compare multiple outlets for contested facts and update the answer if newer sources change the picture.
-
-### Data Gathering and Market/Scientific Research
-
-- Prefer official APIs, data portals, statistical agencies, standards bodies, registries, and original datasets.
-- Capture dataset name, publisher, release/update date, geography, units, definitions, filters, query parameters, and transformations.
-- For papers, search title/DOI, publisher page, preprint, corrections, retractions, dataset/code availability, and later systematic reviews.
-- For papers and datasets, prefer persistent identifiers and provenance: DOI, Crossmark or correction/retraction status, publisher/version page, dataset license, code/data availability, and update history.
-- Do not average or merge numbers from sources with different definitions without explaining the mismatch.
-
-## Final Answer Pattern
-
-- Lead with the answer or conclusion, not the search process.
-- Include the relevant "as of" date for current facts.
-- Cite sources close to the claims they support.
-- Call out uncertainty, conflicts, gaps, and source limitations.
-- Include a short source/method note or search log when requested, high-stakes, contested, or necessary for auditability.
-- Keep the response concise unless the user requested a report, bibliography, table, or detailed evidence trail.
-
+Preserve a proportionate search log for high-stakes, contested, systematic, or user-requested research: query or filter, source opened, why accepted or rejected, and remaining gap. Stop when the planned source classes and conflict checks support the requested precision; do not continue browsing merely to collect more links.

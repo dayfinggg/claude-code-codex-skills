@@ -6,3 +6,6 @@
 *.sqlite-wal
 .DS_Store
 Thumbs.db
+node_modules/
+codex/checks/reports/
+codex/checks/.eval-tmp/

@@ -1,6 +1,6 @@
 ---
 name: git
-description: Safe Git workflows for status and diffs, branches, staging, commits, history edits, conflicts, stash and worktrees, tags, remotes, submodules, hooks, investigation, cleanup, and recovery. Use for actual Git operations.
+description: Operate Git safely for status, diffs, branches, staging, commits, history, conflicts, worktrees, tags, remotes, hooks, cleanup, and recovery. Use only for actual Git operations.
 ---
 
 # Git

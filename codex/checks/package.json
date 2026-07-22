@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:rules": "python validate_codex_rules.py",
+    "test:instructions": "node run_instruction_behavior_tests_sdk.mjs",
+    "test:quality-evals": "node run_skill_quality_evals_sdk.mjs",
+    "compare:quality-evals": "node compare_skill_quality_evals.mjs",
+    "test:quality-tools": "python -B validate_codex_rules.py --self-test && node compare_skill_quality_evals.mjs --self-test && node run_skill_quality_evals_sdk.mjs --self-test && node run_instruction_behavior_tests_sdk.mjs --self-test"
+  },
+  "dependencies": {
+    "@openai/codex-sdk": "0.145.0"
+  }
+}

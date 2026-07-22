@@ -1,4 +1,4 @@
 interface:
-  display_name: "JavaScript Engineering"
-  short_description: "Build secure, maintainable JavaScript"
-  default_prompt: "Use $javascript to implement and verify a secure production JavaScript change."
+  display_name: "JavaScript Semantics"
+  short_description: "Handle JavaScript semantics, modules, and host behavior"
+  default_prompt: "Use $javascript for this JavaScript language, module, promise, host-portability, or build-script change; prefer $typescript for .ts/.tsx and do not infer React or Node scope from package presence alone."

@@ -1,6 +1,6 @@
 ---
 name: git
-description: Production Git workflow guidance for safe repository work. Use when inspecting repository status or diffs, preserving user changes, creating or managing branches, staging files, writing commits, rebasing, merging, cherry-picking, reverting, using stash or worktrees, managing tags, remotes, submodules, hooks, conflicts, bisect, blame, logs, cleanup, and recovery, or validating Git state before and after changes.
+description: Operate Git safely for status, diffs, branches, staging, commits, history, conflicts, worktrees, tags, remotes, hooks, cleanup, and recovery. Use only for actual Git operations.
 ---
 
 # Git
@@ -11,10 +11,8 @@ Treat the repository as shared. Inspect first, preserve user work, and make the 
 
 - Run Git commands to verify state; do not infer branch, cleanliness, staged files, upstreams, conflicts, tags, or remotes from memory.
 - Use official Git docs (`https://git-scm.com/docs/git-<command>`) when command behavior, flags, or edge cases matter.
-- Verify the installed Git version for version-sensitive syntax before relying on rolling command documentation.
-- Never revert, overwrite, delete, restage, amend, rebase, force-push, clean, or reset changes you did not make unless the user explicitly asks for that exact operation.
+- Verify the installed Git version for version-sensitive syntax and read [authoritative Git sources](references/sources.md) before relying on rolling command documentation.
 - Before writing or committing, inspect `git status --short --branch`, changed file names or stats, targeted diffs, and recent history when history affects the operation.
-- Avoid hallucinated facts. If evidence is missing, say what is unknown and which command would verify it.
 - Prefer non-destructive commands. Treat `reset --hard`, `clean`, `checkout -- <path>`, `restore <path>`, force-push, submodule deinit, tag deletion, and history rewriting as high-risk.
 
 ## First Inspection
@@ -77,7 +75,7 @@ git log --oneline --left-right --cherry-pick HEAD...@{upstream}
 
 ## Commits
 
-Only commit when the user asks or the workflow clearly requires it.
+Only commit when the user explicitly authorizes the commit.
 
 - Inspect `git diff --staged` and `git status --short --branch` immediately before `git commit`.
 - Use a message that describes the user-visible or maintainer-visible change, not the implementation trivia.
@@ -164,7 +162,7 @@ Do not use `git stash clear`. Do not pop a stash unless immediate deletion on su
 - Inspect remotes with `git remote -v` before fetch/push operations.
 - Fetch before comparing local and remote state.
 - Treat pushes as external side effects. Push only when the user asks or the workflow explicitly calls for it.
-- Use `--force-with-lease`, not `--force`, and only when the user explicitly requested a history rewrite or remote correction. Verify the remote ref and prefer a qualified `--force-with-lease=<ref>:<expected-oid>`; an unqualified lease can be weakened by background fetches, and any lease protects only the named expectation.
+- For an explicitly authorized history rewrite, never use plain `--force`. Verify the remote ref and prefer `--force-with-lease=<ref>:<expected-oid>`; an unqualified lease can be weakened by background fetches, and any lease protects only the named expectation.
 - For tags, prefer annotated tags for releases: `git tag -a <tag> -m "<message>"`. Verify target commit with `git show <tag>` or `git rev-parse <tag>^{}`.
 - Do not delete or move local or remote tags without explicit instruction.
 
@@ -225,13 +223,17 @@ Always run `git bisect reset` before leaving the task. If the test command mutat
 ```bash
 git reflog
 git show ORIG_HEAD
-git fsck --lost-found
+git fsck
 git stash list
 ```
 
-Treat reflog and unreachable-object recovery as local, best-effort, and time-limited. Reflogs expire and unreachable objects can be pruned. After locating an object, immediately protect it with an appropriate branch, tag, ref, patch, or bundle before further cleanup. Use `git fsck --lost-found` only when its repository-metadata writes into `.git/lost-found` are intentional and authorized; inspect with read-only `git fsck` options first.
+Treat reflog and unreachable-object recovery as local, best-effort, and time-limited. Reflogs expire and unreachable objects can be pruned. After locating an object, immediately protect it with an appropriate branch, tag, ref, patch, or bundle before further cleanup.
+
+Use `git fsck --lost-found` only when its repository-metadata writes into `.git/lost-found` are intentional and authorized; inspect with read-only `git fsck` options first.
 
 If recovery involves another person's work, preserve evidence first with a branch, tag, patch file, or bundle before attempting cleanup.
+
+Read [safety, rewriting, and recovery](references/safety-and-recovery.md) before force updates, history rewriting, cleanup, worktree removal, or recovery.
 
 ## Validation
 
@@ -243,6 +245,7 @@ Choose checks based on risk:
 - Commit validation: `git show --stat HEAD` and `git show --check HEAD`
 - Push validation: compare local and upstream with `git log --oneline --left-right HEAD...@{upstream}`
 
-Report whether commits, tags, branches, or remotes changed, which validation commands ran with their results, and any skipped validation.
+## References
 
-
+- Read [safety, rewriting, and recovery](references/safety-and-recovery.md) for state machines, explicit leases, machine-readable status, worktree/stash safety, and best-effort recovery.
+- Read [authoritative Git sources](references/sources.md) for current command semantics and source classification. Pin the installed Git version before using version-sensitive flags.
