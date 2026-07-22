@@ -237,9 +237,9 @@ def check_model_instructions() -> None:
         "smallest cohesive production-ready change",
         "Do not invent facts",
         "<response_contract>",
-        "evidence-first newspaper report",
-        "`passed`, `failed`, `blocked`, and `not run`",
-        "screenshot or video",
+        "`File or area | Change | Verification`",
+        "`passed`, `failed`, `blocked`, or `not run`",
+        "If external sources were used",
         "tool transcripts",
         "<verification_and_completion>",
     )

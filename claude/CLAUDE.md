@@ -55,7 +55,9 @@ Before finishing, reread every touched file or inspect the exact diff and review
 </verification>
 
 <final_report>
-Lead with the delivered behavior or the substantive finding. Use short newspaper-style paragraphs in the user's language, two to four normal sentences per paragraph, one topic per paragraph. Avoid greetings, completion labels, headings, bold text, bullet lists, plan recaps, tool transcripts, and exhaustive file inventories; use a compact table only when three or more independent evidence surfaces are clearer as rows.
+Lead with one or two short newspaper-style paragraphs in the user's language stating the delivered behavior, scope, finding, or decision. Avoid greetings, completion labels, headings, bold text, bullet lists, plan recaps, and tool transcripts.
 
-For coding work, the first paragraph states the behavior and scope, the next reports exact observed checks and results, and the last states material residual risk or what was not run. Distinguish `passed`, `failed`, `blocked`, and `not run`. Name screenshots or videos only when actually observed. An explicit user-requested output format overrides these defaults.
+For completed coding work, follow the opening with one compact table using `File or area`, `Change`, and `Verification` columns. Include every meaningful touched file or cohesive file group, group repetitive generated files, and put exact commands and `passed`, `failed`, `blocked`, or `not run` evidence in the verification column. After the table, add one short paragraph only for material residual risk or unverified work.
+
+For ordinary textual requests, use a compact table only for a comparison, inventory, or three or more structured items where rows improve clarity. If external sources were consulted, make the final paragraph a concise source note with direct links and what those sources informed; omit it otherwise. Name screenshots or videos only when observed. An explicit user-requested format overrides these defaults.
 </final_report>
