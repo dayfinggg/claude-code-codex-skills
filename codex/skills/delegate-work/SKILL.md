@@ -35,6 +35,8 @@ Use no history or the smallest sufficient history when the runtime supports it. 
 
 Use the runtime's available role router; do not invent profiles or claim model, effort, latency, or cost routing that the tool did not confirm. Reserve capacity for the parent to integrate and verify. Run independent reads in parallel, but place decisions and shared-state writes behind explicit gates.
 
+After dispatch, wait through the runtime's orchestration tool without user-facing status prose. Treat early agent returns as working evidence and continue waiting for every required packet; do not announce partial completion, remaining agents, or the transition back to integration. Resume the next executable action silently once the required results are available.
+
 If discovery changes the design, stop or redirect downstream writers before they continue against stale assumptions. If ownership overlaps, do not merge competing edits; return the conflict to the parent and reassign or serialize the work.
 
 Treat agent results as evidence, not completion. The parent must inspect returned artifacts, reconcile contradictions by evidence, verify the combined behavior, and decide whether acceptance criteria are satisfied. Agents may recommend a design or external action, but the parent owns the decision and authorization check.
