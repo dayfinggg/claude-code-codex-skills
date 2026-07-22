@@ -22,7 +22,6 @@
     "defaultMode": "bypassPermissions",
     "skipDangerousModePermissionPrompt": true
   },
-  "model": "claude-fable-5[1m]",
   "outputStyle": "operating-policy",
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
