@@ -236,6 +236,7 @@ def check_model_instructions() -> None:
         "<skills_and_tools>",
         "smallest cohesive production-ready change",
         "Do not invent facts",
+        "keep waiting for every required task",
         "<response_contract>",
         "`File or area | Change | Verification`",
         "`passed`, `failed`, `blocked`, or `not run`",
