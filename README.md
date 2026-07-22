@@ -66,7 +66,7 @@ The five Codex and Claude agents are intentionally narrow: `bulk-scanner` perfor
 
 The global policy keeps authorization, scope preservation, production-ready implementation, verification, and response evidence at the top level. It does not repeat language, architecture, testing, and security checklists already owned by narrower skills.
 
-Claude's pure Bash hook runs only at `SessionStart` and `SubagentStart` and returns short, model-agnostic `additionalContext`; it is not a stop hook and does not block tool calls. The selected model remains a runtime choice, so monthly model changes do not require editing the hook.
+Claude's pure Bash hook runs only at `SessionStart` and `SubagentStart` and returns short, model-agnostic `additionalContext`; it is not a stop hook and does not block tool calls. Static behavior stays in `CLAUDE.md` instead of being injected again on every submitted prompt.
 
 Final coding reports lead with delivered behavior and scope, then name observed commands and results, and end with material residual risk or checks that were not run. Work remains silent until that report unless a genuinely blocking question or required permission warning is necessary.
 
