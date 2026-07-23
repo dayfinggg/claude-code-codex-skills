@@ -1,0 +1,7 @@
+interface:
+  display_name: "Migrate Contracts Safely"
+  short_description: "Stage live contract changes without breaking consumers"
+  default_prompt: "Use $migrate-contracts-safely to evolve this live contract through compatible expand, migrate, and contract stages."
+
+policy:
+  allow_implicit_invocation: true

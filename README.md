@@ -12,7 +12,7 @@ The Codex setup contains:
 
 - one portable `model-instructions.md`
 - five narrow custom agents
-- twelve composable engineering skills
+- seventeen composable engineering skills
 - a minimal `config.toml` with a relative instruction path
 
 System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Codex installs and updates them separately.
@@ -23,6 +23,8 @@ System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Cod
 | --- | --- |
 | Planning and continuity | `plan-task`, `prototype`, `to-spec`, `to-tickets`, `handoff` |
 | Engineering | `diagnosing-bugs`, `tdd`, `code-review`, `codebase-design`, `resolving-merge-conflicts` |
+| Architecture and change safety | `improve-codebase-architecture`, `migrate-contracts-safely`, `change-dependencies` |
+| Production reliability | `review-production-readiness`, `incident-postmortem` |
 | Evidence | `research` |
 | Product interface | `design-interface` |
 
@@ -89,7 +91,7 @@ codex/
   agents/                 five specialist agents
   config.toml             portable minimal template
   model-instructions.md   global operating policy
-  skills/                 twelve focused Codex skills
+  skills/                 seventeen focused Codex skills
 ```
 
 ## License
