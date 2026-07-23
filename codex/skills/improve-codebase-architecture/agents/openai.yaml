@@ -1,0 +1,7 @@
+interface:
+  display_name: "Improve Codebase Architecture"
+  short_description: "Find evidence-backed architecture improvements"
+  default_prompt: "Use $improve-codebase-architecture to assess this codebase and rank concrete architecture improvements."
+
+policy:
+  allow_implicit_invocation: true

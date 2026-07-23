@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Production Readiness"
+  short_description: "Decide whether a change is ready for production"
+  default_prompt: "Use $review-production-readiness to evaluate this change for safe production rollout and operation."
+
+policy:
+  allow_implicit_invocation: true

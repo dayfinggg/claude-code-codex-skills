@@ -1,0 +1,7 @@
+interface:
+  display_name: "Incident Postmortem"
+  short_description: "Review stabilized incidents for durable prevention"
+  default_prompt: "Use $incident-postmortem to reconstruct this stabilized incident and produce evidence-backed corrective actions."
+
+policy:
+  allow_implicit_invocation: true

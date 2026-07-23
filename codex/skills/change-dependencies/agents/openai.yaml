@@ -1,0 +1,7 @@
+interface:
+  display_name: "Change Dependencies"
+  short_description: "Change dependencies with bounded verified risk"
+  default_prompt: "Use $change-dependencies to add, update, replace, or remove this dependency from primary evidence and verify the result."
+
+policy:
+  allow_implicit_invocation: true
