@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prototype"
+  short_description: "Build a throwaway experiment to answer one question"
+  default_prompt: "Use $prototype to build a disposable experiment that resolves this design question."

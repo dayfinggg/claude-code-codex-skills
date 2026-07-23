@@ -1,4 +1,0 @@
-interface:
-  display_name: "UI/UX Design"
-  short_description: "Design and verify accessible visual interfaces"
-  default_prompt: "Use $ui-ux-design to design or reproduce this interface and verify its visual and accessibility behavior."

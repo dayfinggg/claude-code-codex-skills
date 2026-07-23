@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Tickets"
+  short_description: "Split a spec into verifiable dependency-aware tasks"
+  default_prompt: "Use $to-tickets to turn this approved plan or specification into verifiable dependency-aware tickets."

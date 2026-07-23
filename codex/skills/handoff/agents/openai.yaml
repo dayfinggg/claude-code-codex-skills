@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Handoff"
+  short_description: "Preserve live context for the next Codex task"
+  default_prompt: "Use $handoff to create a concise, secret-safe continuation brief for the next Codex task."

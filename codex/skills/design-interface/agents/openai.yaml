@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Interface"
+  short_description: "Create distinctive, accessible interfaces"
+  default_prompt: "Use $design-interface to design, implement, and visually verify a distinctive interface for this product."

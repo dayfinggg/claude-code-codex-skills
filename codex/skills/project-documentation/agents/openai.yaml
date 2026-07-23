@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Documentation"
-  short_description: "Create lean, owned, evidence-based project docs"
-  default_prompt: "Use $project-documentation to create or update the smallest durable document from repository evidence."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "PowerShell Semantics"
-  short_description: "Own cmdlets, pipelines, quoting, paths, and errors"
-  default_prompt: "Use $powershell for this PowerShell command, script, cmdlet, pipeline, quoting, path, module, or native-invocation task; do not use it for generic Windows or another shell."

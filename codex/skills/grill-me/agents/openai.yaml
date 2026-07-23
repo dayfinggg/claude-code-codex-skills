@@ -1,7 +1,0 @@
-interface:
-  display_name: "Grill Me"
-  short_description: "Resolve hard decisions one question at a time"
-  default_prompt: "Use $grill-me to interview me on the unresolved decisions before planning or implementation."
-
-policy:
-  allow_implicit_invocation: false

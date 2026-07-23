@@ -1,4 +1,0 @@
-interface:
-  display_name: "Systematic Debugging"
-  short_description: "Reproduce and prove concrete software failures"
-  default_prompt: "Use $systematic-debugging to build a deterministic repro, test ranked hypotheses, and verify the root-cause fix."

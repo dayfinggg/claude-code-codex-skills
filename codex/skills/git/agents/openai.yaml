@@ -1,4 +1,0 @@
-interface:
-  display_name: "Git"
-  short_description: "Operate Git repositories safely"
-  default_prompt: "Use $git to inspect the repository and perform the requested Git workflow without losing work."

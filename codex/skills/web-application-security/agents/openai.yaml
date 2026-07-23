@@ -1,4 +1,0 @@
-interface:
-  display_name: "Web Trust-Boundary Security"
-  short_description: "Secure web identity and untrusted boundaries"
-  default_prompt: "Use $web-application-security to threat-model and secure this material web trust-boundary change with focused negative verification."

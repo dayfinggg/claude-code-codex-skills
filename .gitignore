@@ -9,3 +9,6 @@ Thumbs.db
 node_modules/
 codex/checks/reports/
 codex/checks/.eval-tmp/
+codex/.tmp/
+codex/skills/.system/
+codex/installation_id

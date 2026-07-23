@@ -1,7 +1,0 @@
-interface:
-  display_name: "Web Research"
-  short_description: "Research current claims with traceable evidence"
-  default_prompt: "Use $web-research to answer this question from current authoritative sources with concise citations."
-
-policy:
-  allow_implicit_invocation: true
