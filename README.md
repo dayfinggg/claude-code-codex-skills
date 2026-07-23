@@ -44,7 +44,7 @@ The main agent keeps requirements, decisions, integration, and final accountabil
 
 ### Behavior
 
-The model instructions prioritize direct execution, scope control, repository evidence, complete production code, verification proportional to risk, and compact human writing. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision. Material implementation work ends with an evidence-based report.
+The model instructions prioritize direct execution, scope control, repository evidence, complete production code, verification proportional to risk, and compact human writing. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision. Material implementation work ends with an evidence-based report.
 
 ## Installation
 
