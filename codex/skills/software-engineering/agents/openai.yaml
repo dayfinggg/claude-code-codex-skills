@@ -1,4 +1,0 @@
-interface:
-  display_name: "Software Engineering"
-  short_description: "Cross-language production engineering baseline"
-  default_prompt: "Use $software-engineering for repository-wide production engineering invariants and evidence."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "SQL Engineering"
-  short_description: "Engineer relational schemas, queries, and migrations"
-  default_prompt: "Use $sql to design, query, migrate, or troubleshoot this relational or warehouse database with exact dialect semantics."

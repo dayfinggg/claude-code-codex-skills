@@ -1,4 +1,0 @@
-interface:
-  display_name: "Full-Stack Testing"
-  short_description: "Risk-based testing and delivery evidence"
-  default_prompt: "Use $full-stack-testing to design and verify risk-based test and delivery evidence."

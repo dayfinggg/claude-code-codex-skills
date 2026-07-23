@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Task"
+  short_description: "Create grounded, execution-ready task plans"
+  default_prompt: "Use $plan-task to inspect this task and produce an execution-ready implementation plan."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Planning"
-  short_description: "Plan complex work from repository evidence"
-  default_prompt: "Use $planning to create a proportional, evidence-backed execution plan with vertical tracer slices."

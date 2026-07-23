@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Review a diff against standards and intent"
+  default_prompt: "Use $code-review to inspect this diff against repository standards and the originating requirements."

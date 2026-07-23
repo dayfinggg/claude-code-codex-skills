@@ -1,16 +1,17 @@
 model = "gpt-5.6-sol"
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
-model_reasoning_summary = "none"
-model_verbosity = "medium"
+model_reasoning_summary = "auto"
+model_verbosity = "low"
 model_instructions_file = "model-instructions.md"
 web_search = "cached"
 
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
+allow_login_shell = true
 project_doc_max_bytes = 32768
 
 [agents]
-max_threads = 4
-max_depth = 1
+enabled = true
+max_concurrent_threads_per_session = 4
 interrupt_message = false

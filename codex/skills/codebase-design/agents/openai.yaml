@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codebase Design"
+  short_description: "Design deep modules with small stable interfaces"
+  default_prompt: "Use $codebase-design to design this module boundary and compare the smallest viable interfaces."

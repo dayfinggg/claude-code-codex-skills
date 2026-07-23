@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Specification"
+  short_description: "Turn settled requirements into a durable spec"
+  default_prompt: "Use $to-spec to synthesize the settled task context into an implementation-independent specification."

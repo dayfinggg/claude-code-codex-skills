@@ -1,0 +1,4 @@
+interface:
+  display_name: "Technical Research"
+  short_description: "Research technical questions from primary sources"
+  default_prompt: "Use $research to investigate this technical question using current primary sources and cited evidence."

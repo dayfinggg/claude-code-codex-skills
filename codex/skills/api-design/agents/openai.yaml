@@ -1,4 +1,0 @@
-interface:
-  display_name: "API Contract Design"
-  short_description: "Design and evolve external protocol contracts"
-  default_prompt: "Use $api-design to design or review this externally consumed API or integration contract and its lifecycle semantics."

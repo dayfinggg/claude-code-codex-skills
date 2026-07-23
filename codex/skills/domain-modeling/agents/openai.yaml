@@ -1,7 +1,0 @@
-interface:
-  display_name: "Domain Modeling"
-  short_description: "Model domain language, states, and invariants"
-  default_prompt: "Use $domain-modeling to clarify this domain through vocabulary, invariants, state transitions, examples, and acceptance cases."
-
-policy:
-  allow_implicit_invocation: false

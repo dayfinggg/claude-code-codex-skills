@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose Bugs"
+  short_description: "Reproduce, isolate, and fix difficult defects"
+  default_prompt: "Use $diagnosing-bugs to reproduce this defect, identify its root cause, and verify the fix."
