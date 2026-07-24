@@ -2,22 +2,9 @@
 
 Personal agent instructions, focused skills, and specialist subagents for Claude Code and OpenAI Codex.
 
-The Claude and Codex catalogs are intentionally independent. Claude keeps the broader language and framework catalog, while Codex uses a smaller set of reusable engineering workflows and relies on repository evidence for project-specific conventions.
+Both tools run the same engineering setup: a compact operating policy, seventeen composable engineering skills, and five narrow specialist agents. The two catalogs hold the same skills and agents, adapted to each tool's conventions rather than kept as separate skill sets. Both rely on repository evidence for project-specific conventions.
 
-[See the Claude catalog examples](https://dayfinggg.github.io/claude-code-codex-skills/).
-
-## Codex
-
-The Codex setup contains:
-
-- one portable `model-instructions.md`
-- five narrow custom agents
-- seventeen composable engineering skills
-- a minimal `config.toml` with a relative instruction path
-
-System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Codex installs and updates them separately.
-
-### Skills
+## Skills
 
 | Area | Skills |
 | --- | --- |
@@ -28,35 +15,47 @@ System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Cod
 | Evidence | `research` |
 | Product interface | `design-interface` |
 
-Skills are invoked only when their trigger contract matches the task. They provide a focused workflow rather than a universal checklist for every request.
+Each skill is invoked only when its trigger contract matches the task, and provides a focused workflow rather than a universal checklist for every request.
 
-### Agents
+## Agents
 
-| Agent | Responsibility |
-| --- | --- |
-| `docs_researcher` | Current primary documentation, standards, releases, and compatibility |
-| `quality_reviewer` | Correctness, regressions, contract violations, and missing tests |
-| `security_auditor` | Concrete trust-boundary, authorization, injection, secret, and abuse risks |
-| `delivery_verifier` | Acceptance criteria, tests, builds, migrations, and delivery readiness |
-| `interface_reviewer` | Rendered UI quality, responsive behavior, accessibility, and product fidelity |
+| Claude agent | Codex agent | Responsibility |
+| --- | --- | --- |
+| `docs-researcher` | `docs_researcher` | Current primary documentation, standards, releases, and compatibility |
+| `quality-reviewer` | `quality_reviewer` | Correctness, regressions, contract violations, and missing tests |
+| `security-auditor` | `security_auditor` | Concrete trust-boundary, authorization, injection, secret, and abuse risks |
+| `delivery-verifier` | `delivery_verifier` | Acceptance criteria, tests, builds, migrations, and delivery readiness |
+| `interface-reviewer` | `interface_reviewer` | Rendered UI quality, responsive behavior, accessibility, and product fidelity |
 
-The main agent keeps requirements, decisions, integration, and final accountability. It delegates only bounded independent work, prefers read-heavy parallel tasks, and avoids overlapping writes. Codex's built-in `explorer` and `worker` roles remain available and are not duplicated here.
+The main agent keeps requirements, decisions, integration, and final accountability. It delegates only bounded independent work, prefers read-heavy parallel tasks, and avoids overlapping writes.
 
-### Behavior
+## Behavior
 
-The model instructions prioritize direct execution, scope control, repository evidence, complete production code, verification proportional to risk, and compact human writing. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision. Material implementation work ends with an evidence-based report.
+The instructions prioritize direct execution, scope control, repository evidence, complete production code without placeholders or explanatory comments, verification proportional to risk, and compact human writing. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision. Material implementation work ends with an evidence-based report.
 
-## Installation
+On Claude Code this splits across two files: `model-instructions.md` (engineering quality, code style, tools) loaded through `CLAUDE.md`, and the `Focused Engineer` output style (communication, autonomy, verification). On Codex a single `model-instructions.md` carries all of it.
 
-Back up the existing configuration first. When upgrading the Codex catalog, replace the old `skills`, `agents`, and `model-instructions.md` rather than copying over them, otherwise retired entries remain discoverable.
+## Claude
+
+```text
+claude/
+  CLAUDE.md               imports model-instructions.md
+  model-instructions.md   engineering quality, code style, tools
+  output-styles/          Focused Engineer: communication, autonomy, verification
+  agents/                 five specialist agents
+  skills/                 seventeen engineering skills
+  settings.json           example; statusline and hooks are machine-specific
+```
+
+Back up the existing configuration first. Replace `skills`, `agents`, and `output-styles` rather than copying over them, otherwise retired entries remain discoverable.
 
 ### macOS / Linux
 
 ```bash
 git clone https://github.com/dayfinggg/claude-code-codex-skills.git
 cd claude-code-codex-skills
-cp -R codex/agents codex/skills "$HOME/.codex/"
-cp codex/model-instructions.md "$HOME/.codex/model-instructions.md"
+cp -R claude/skills claude/agents claude/output-styles "$HOME/.claude/"
+cp claude/CLAUDE.md claude/model-instructions.md "$HOME/.claude/"
 ```
 
 ### Windows PowerShell
@@ -64,6 +63,34 @@ cp codex/model-instructions.md "$HOME/.codex/model-instructions.md"
 ```powershell
 git clone https://github.com/dayfinggg/claude-code-codex-skills.git
 Set-Location claude-code-codex-skills
+Copy-Item -Recurse -Force .\claude\skills, .\claude\agents, .\claude\output-styles "$HOME\.claude\"
+Copy-Item -Force .\claude\CLAUDE.md, .\claude\model-instructions.md "$HOME\.claude\"
+```
+
+Enable the output style with `"outputStyle": "Focused Engineer"` in `settings.json`, then restart Claude Code so it rediscovers skills and agents. The bundled `settings.json` is an example only: its statusline and hooks point to a local integration and should be adapted, not copied verbatim.
+
+## Codex
+
+```text
+codex/
+  agents/                 five specialist agents
+  config.toml             portable minimal template
+  model-instructions.md   global operating policy
+  skills/                 seventeen focused Codex skills
+```
+
+System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Codex installs and updates them separately.
+
+### macOS / Linux
+
+```bash
+cp -R codex/agents codex/skills "$HOME/.codex/"
+cp codex/model-instructions.md "$HOME/.codex/model-instructions.md"
+```
+
+### Windows PowerShell
+
+```powershell
 Copy-Item -Recurse -Force .\codex\agents, .\codex\skills "$HOME\.codex\"
 Copy-Item -Force .\codex\model-instructions.md "$HOME\.codex\model-instructions.md"
 ```
@@ -75,24 +102,6 @@ model_instructions_file = "model-instructions.md"
 ```
 
 Restart Codex after installation so it rediscovers agents and skills.
-
-## Layout
-
-```text
-claude/
-  CLAUDE.md
-  agents/
-  hooks/
-  output-styles/
-  settings.json
-  skills/
-
-codex/
-  agents/                 five specialist agents
-  config.toml             portable minimal template
-  model-instructions.md   global operating policy
-  skills/                 seventeen focused Codex skills
-```
 
 ## License
 

@@ -1,36 +1,27 @@
 {
-  "cleanupPeriodDays": 30,
-  "env": {
-    "BASH_DEFAULT_TIMEOUT_MS": "600000",
-    "BASH_MAX_TIMEOUT_MS": "1200000",
-    "BASH_MAX_OUTPUT_LENGTH": "30000",
-    "MAX_MCP_OUTPUT_TOKENS": "25000",
-    "ENABLE_TOOL_SEARCH": "true",
-    "MCP_TIMEOUT": "60000",
-    "MCP_TOOL_TIMEOUT": "300000",
-    "API_TIMEOUT_MS": "600000",
-    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000",
-    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1"
+  "outputStyle": "Focused Engineer",
+  "permissions": {
+    "defaultMode": "bypassPermissions"
   },
+  "showClearContextOnPlanAccept": true,
   "attribution": {
     "commit": "",
-    "pr": "",
-    "sessionUrl": false
+    "pr": ""
   },
   "includeCoAuthoredBy": false,
-  "permissions": {
-    "defaultMode": "bypassPermissions",
-    "skipDangerousModePermissionPrompt": true
+  "env": {
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "MAX_THINKING_TOKENS": "31999",
+    "MAX_MCP_OUTPUT_TOKENS": "50000",
+    "BASH_DEFAULT_TIMEOUT_MS": "300000",
+    "BASH_MAX_TIMEOUT_MS": "600000"
   },
-  "outputStyle": "operating-policy",
-  "spinnerTipsEnabled": false,
-  "effortLevel": "high",
-  "showClearContextOnPlanAccept": true,
-  "tui": "fullscreen",
+  "cleanupPeriodDays": 90,
+  "autoCompactEnabled": true,
+  "fileCheckpointingEnabled": true,
   "autoMemoryEnabled": false,
-  "skipDangerousModePermissionPrompt": true,
-  "skipWorkflowUsageWarning": true,
-  "showTurnDuration": false,
-  "terminalProgressBarEnabled": false,
-  "useAutoModeDuringPlan": true
+  "autoDreamEnabled": false,
+  "skipWorkflowUsageWarning": true
 }
