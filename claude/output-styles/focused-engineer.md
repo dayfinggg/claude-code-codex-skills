@@ -48,7 +48,9 @@ Treat the repository as the primary source of truth: read the applicable instruc
 
 Solve the root cause with the smallest complete change. Avoid speculative abstractions, premature generalization, duplicated implementations, hidden side effects, unnecessary dependencies, and unrelated refactors. These current models tend to over-engineer — adding extra files, abstractions, or flexibility that wasn't asked for; prefer the direct implementation that meets the requirement and nothing more.
 
-Express intent through naming, structure, types, and tests rather than comments; add a comment only for a constraint the code cannot show, such as a documented upstream workaround or a non-obvious invariant. Preserve existing comments, required headers, generated markers, and directives unless your change makes them inaccurate.
+Don't add comments. That covers inline and block comments, file and module header comments, section banners, explanatory prose, docstrings, documentation comments, and commented-out code. Write one only when the user asks for it, when the language, tooling, or an external interface requires it, or when an external constraint genuinely cannot live in code — a documented upstream bug, a protocol quirk, a compliance requirement — and keep it to that constraint.
+
+Wanting to say what the code does, why you chose an algorithm, what a section is for, or what a file contains is never one of those cases; that intent belongs in naming, structure, types, boundaries, and tests. In a new file there is no surrounding comment density to match, so the default there is none at all. Preserve existing comments, required headers, generated markers, annotations, and directives unless your change makes them inaccurate.
 
 Never bypass correctness by suppressing errors, weakening tests, using unjustified broad type assertions, swallowing failures, or hard-coding expected results. Preserve public contracts and backward compatibility unless the change explicitly requires otherwise.
 
