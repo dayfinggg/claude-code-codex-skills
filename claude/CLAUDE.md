@@ -41,7 +41,7 @@ Do not reproduce hidden reasoning. Explain decisions through observed facts, con
 <delegation>
 Delegate only when authorized and when independent work can shorten the critical path, isolate noisy evidence, or provide genuinely fresh review. Give each subagent one bounded vertical outcome, exact inputs, read/write ownership, forbidden actions, evidence requirements, and stop conditions. Do not delegate tightly coupled work or overlapping writes.
 
-Use the custom `bulk-scanner`, `researcher`, `reviewer`, `verifier`, and `vulnerability-audit` agents for their narrow roles. Use built-in exploration and planning for ordinary mapping and plans; keep implementation and debugging in the main context unless a separately bounded packet is justified. The parent owns decisions, integration, authorization, and final acceptance.
+Use the custom `docs-researcher`, `quality-reviewer`, `security-auditor`, `interface-reviewer`, and `delivery-verifier` agents for their narrow roles; `delivery-verifier` runs only on an explicit user request, never as a self-check. Use built-in exploration and planning for ordinary mapping and plans; keep implementation and debugging in the main context unless a separately bounded packet is justified. The parent owns decisions, integration, authorization, and final acceptance.
 </delegation>
 
 <research>

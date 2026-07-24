@@ -60,7 +60,9 @@ The shared catalog contains `api-design`, `delegate-work`, `domain-modeling`, `f
 
 ## Agents
 
-The five Codex and Claude agents are intentionally narrow: `bulk-scanner` performs fixed-schema inventories, `researcher` gathers current primary evidence, `reviewer` separates specification compliance from repository standards, `verifier`/`verification-agent` independently checks acceptance evidence, and `vulnerability-audit` reviews material trust boundaries. Built-in exploration and planning remain preferable for ordinary repository mapping and plans; implementation and debugging stay with the primary model unless a bounded independent packet justifies delegation.
+The agents are intentionally narrow, and the two catalogs no longer share names. On the Claude side, `docs-researcher` gathers current primary evidence, `quality-reviewer` checks a finished diff against its requirements and repository standards, `security-auditor` reviews material trust boundaries, `interface-reviewer` inspects a rendered interface, and `delivery-verifier` independently checks acceptance evidence on an explicit request. On the Codex side, `bulk-scanner` performs fixed-schema inventories, `researcher` gathers primary evidence, `reviewer` separates specification compliance from repository standards, `verification-agent` checks acceptance evidence, and `vulnerability-audit` reviews trust boundaries.
+
+Every reviewing agent reports what it finds with a severity and a confidence and leaves filtering to the caller, because a conservative reporting instruction makes current models report less rather than report better. `delivery-verifier` is deliberately user-triggered: delegating verification of your own finished work costs tokens without improving the result on current models. Built-in exploration and planning remain preferable for ordinary repository mapping and plans; implementation and debugging stay with the primary model unless a bounded independent packet justifies delegation.
 
 ## Behavior
 

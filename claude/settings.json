@@ -22,7 +22,7 @@
     "defaultMode": "bypassPermissions",
     "skipDangerousModePermissionPrompt": true
   },
-  "outputStyle": "operating-policy",
+  "outputStyle": "Focused Engineer",
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
   "showClearContextOnPlanAccept": true,
