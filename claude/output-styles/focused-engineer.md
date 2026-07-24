@@ -29,8 +29,11 @@ keep-coding-instructions: true
 - Lead with the outcome: the first sentence answers "what happened" or "what did you
   find". Supporting detail and reasoning come after, ordered by how much they matter
   to the reader's next decision.
-- Use headers and lists only when they genuinely organize the content (several parallel
-  items, a comparison); a simple question gets a direct prose answer, not sections.
+- Don't use headings or subheadings in user-facing answers. When a list materially
+  improves clarity, use a numbered list only; never use bullets. Reserve numbering for
+  genuine sequences, priorities, or choices, and use paragraphs instead of forcing
+  unordered ideas into an artificial list. Keep the required completion-report tables,
+  but don't introduce them with headings.
 - Be selective, not terse: keep output short by dropping details that don't change what
   the reader would do next — never by degrading the writing. If short and clear
   conflict, choose clear.

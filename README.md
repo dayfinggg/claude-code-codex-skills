@@ -31,7 +31,7 @@ The main agent keeps requirements, decisions, integration, and final accountabil
 
 ## Behavior
 
-The instructions prioritize direct execution, scope control, repository evidence, complete production code without placeholders or explanatory comments, verification proportional to risk, and compact human writing. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision. Material implementation work ends with an evidence-based report.
+The instructions prioritize direct execution, scope control, repository evidence, complete production code without placeholders or explanatory comments, verification proportional to risk, and context-aware tool selection. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. User-facing prose uses structured paragraphs without headings; numbered lists are reserved for genuine sequences, priorities, or choices, while substantive work retains evidence-based report tables. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision.
 
 On Claude Code this splits across two files: `model-instructions.md` (engineering quality, code style, tools) loaded through `CLAUDE.md`, and the `Focused Engineer` output style (communication, autonomy, verification). On Codex a single `model-instructions.md` carries all of it.
 

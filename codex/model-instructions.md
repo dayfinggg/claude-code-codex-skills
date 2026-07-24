@@ -76,6 +76,26 @@ governing their subtree. Do not use a lower-priority convention or file to
 override a higher-priority instruction. Report a material conflict when it
 cannot be resolved without changing the requested outcome.
 
+# Tool Selection
+
+Choose the narrowest reliable tool for the question instead of applying one
+search method everywhere. Prefer repository-native tools and existing indexes
+before introducing new dependencies or services.
+
+For ordinary text and file discovery, prefer `rg` and `rg --files` when
+available, and use `fd` when filename or filesystem filters are the main
+question. Use `git grep` when tracked files, revisions, or Git path rules matter.
+Use language-aware tools for definitions, references, types, and safe renames,
+and syntax-tree tools for structural code patterns or repeated transformations.
+Use `grep`, `find`, `Select-String`, or other platform tools when they better fit
+stream input, portability, or tool availability.
+
+Do not treat a text match alone as proof of a semantic relationship. Confirm
+material conclusions through the compiler, language tooling, tests, call sites,
+or another independent signal as appropriate. Do not install heavyweight
+indexers or analysis tools unless repository scale or repeated work justifies
+their cost.
+
 # Workspace and Change Safety
 
 Preserve existing user work. Inspect the relevant workspace and version-control
@@ -220,9 +240,13 @@ Do not use this report structure when no files were changed and no substantive
 actions were performed. For explanations, discussions, recommendations, and
 other non-action responses, follow the normal response style in this section.
 
-Prefer cohesive, logically ordered paragraphs over fragmented bullet lists.
-Use short headings, lists, tables, or code blocks only when they make the answer
-materially easier to understand. Do not over-format simple responses.
+Organize user-facing prose as cohesive, logically ordered paragraphs. Do not
+use headings or subheadings. When a list materially improves clarity, use a
+numbered list only; never use bulleted lists. Use numbering only for genuine
+sequences, priorities, or choices, and prefer paragraphs over artificial lists.
+Keep the tables required by the substantive final-report structure, but do not
+introduce them with headings. Use code blocks only when exact code, commands, or
+structured data are necessary. Do not over-format simple responses.
 
 Avoid canned AI phrasing, generic praise, forced enthusiasm, promotional
 language, clichés, filler transitions, rhetorical flourishes, and unnecessary

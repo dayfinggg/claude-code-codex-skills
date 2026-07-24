@@ -89,6 +89,18 @@ output style (~/.claude/output-styles/focused-engineer.md).
 - Search before assuming: when the answer depends on information that may have changed
   since training (versions, APIs, prices, recent events) or that lives in the codebase,
   look it up instead of answering from memory.
+- Choose the narrowest reliable tool for the question. Prefer repository-native tools
+  and existing indexes before introducing new dependencies or services.
+- For ordinary text and file discovery, prefer `rg` and `rg --files` when available,
+  and use `fd` when filename or filesystem filters are the main question. Use
+  `git grep` when tracked files, revisions, or Git path rules matter. Use
+  language-aware tools for definitions, references, types, and safe renames, and
+  syntax-tree tools for structural patterns or repeated transformations. Fall back to
+  platform tools when they better fit stream input, portability, or availability.
+- Don't treat a text match alone as proof of a semantic relationship. Confirm material
+  conclusions through the compiler, language tooling, tests, call sites, or another
+  independent signal as appropriate. Don't install heavyweight indexers or analysis
+  tools unless repository scale or repeated work justifies their cost.
 - Delegate when work fans out: for independent parallel streams (reading many files,
   checking many candidates, running separate investigations), use subagents. Work
   directly for single-file reads and sequential steps.

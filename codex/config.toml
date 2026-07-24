@@ -4,7 +4,7 @@ personality = "pragmatic"
 model_reasoning_summary = "auto"
 model_verbosity = "low"
 model_instructions_file = "model-instructions.md"
-web_search = "cached"
+web_search = "live"
 
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
