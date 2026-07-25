@@ -2,8 +2,7 @@
 
 Global working rules for every session. These define *how* to work; project-specific
 knowledge (commands, stack, conventions) lives in each project's own CLAUDE.md.
-Communication style, autonomy, and verification rules live in the "Focused Engineer"
-output style (~/.claude/output-styles/focused-engineer.md).
+Communication style and response shape are left to Claude Code's own defaults.
 
 ## 1. Engineering Quality: Simple, Precise, Fast
 

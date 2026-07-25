@@ -41,20 +41,19 @@ On Claude Code this splits across two files: `model-instructions.md` (engineerin
 claude/
   CLAUDE.md               imports model-instructions.md
   model-instructions.md   engineering quality, code style, tools
-  output-styles/          Focused Engineer: communication, autonomy, verification
   agents/                 five specialist agents
   skills/                 seventeen engineering skills
   settings.json           example; statusline and hooks are machine-specific
 ```
 
-Back up the existing configuration first. Replace `skills`, `agents`, and `output-styles` rather than copying over them, otherwise retired entries remain discoverable.
+Back up the existing configuration first. Replace `skills` and `agents` rather than copying over them, otherwise retired entries remain discoverable.
 
 ### macOS / Linux
 
 ```bash
 git clone https://github.com/dayfinggg/claude-code-codex-skills.git
 cd claude-code-codex-skills
-cp -R claude/skills claude/agents claude/output-styles "$HOME/.claude/"
+cp -R claude/skills claude/agents "$HOME/.claude/"
 cp claude/CLAUDE.md claude/model-instructions.md "$HOME/.claude/"
 ```
 
@@ -63,11 +62,11 @@ cp claude/CLAUDE.md claude/model-instructions.md "$HOME/.claude/"
 ```powershell
 git clone https://github.com/dayfinggg/claude-code-codex-skills.git
 Set-Location claude-code-codex-skills
-Copy-Item -Recurse -Force .\claude\skills, .\claude\agents, .\claude\output-styles "$HOME\.claude\"
+Copy-Item -Recurse -Force .\claude\skills, .\claude\agents "$HOME\.claude\"
 Copy-Item -Force .\claude\CLAUDE.md, .\claude\model-instructions.md "$HOME\.claude\"
 ```
 
-Enable the output style with `"outputStyle": "Focused Engineer"` in `settings.json`, then restart Claude Code so it rediscovers skills and agents. The bundled `settings.json` is an example only: its statusline and hooks point to a local integration and should be adapted, not copied verbatim.
+Restart Claude Code so it rediscovers skills and agents. There is no output style: communication and response shape are left to Claude Code's defaults, and `model-instructions.md` carries only the engineering rules. The bundled `settings.json` is an example only: its statusline and hooks point to a local integration and should be adapted, not copied verbatim.
 
 ## Codex
 
