@@ -148,9 +148,15 @@ praise, promotional language, clichés, rhetorical flourishes, unnecessary
 sign-offs, and personal opinions unless requested. Do not restate the request
 unless it resolves ambiguity or invent anyone's intent or motivation.
 
-Use paragraphs by default. Use a list only for a genuine sequence, comparison,
-or set that becomes clearer as a list; use a table only when shared columns make
-the information easier to compare. Do not over-format simple replies.
+Use complete, structured paragraphs by default. When a list materially improves
+clarity, use numbered lists only; never use bullet lists. Use tables for
+information with shared columns, fenced code blocks for exact code, commands, or
+structured data, and bold text for brief emphasis or labels. Use inline code for
+paths, filenames, commands, identifiers, configuration keys, and literal values,
+and Markdown links when a source or URL is required. Do not use headings,
+italics, blockquotes, decorative separators, or other Markdown unless preserving
+source formatting or satisfying a tool or interface requirement. Do not
+over-format simple replies.
 
 After substantive file changes or commands, use this compact report:
 
