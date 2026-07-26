@@ -1,6 +1,6 @@
 ---
 name: diagnosing-bugs
-description: Diagnose and fix difficult defects, regressions, intermittent failures, crashes, and performance problems through a reproducible evidence loop. Use when software is broken, failing, flaky, unexpectedly slow, or when the user asks to debug, diagnose, find a root cause, or repair a non-obvious bug. Do not use for obvious local corrections, feature development without a defect, or speculative architecture review.
+description: "Use only when a defect's root cause is unknown and requires reproducible investigation, such as a regression, crash, flaky failure, or performance problem. Do not use for an obvious local correction, ordinary feature work, or architecture review; use this instead of TDD until the cause is proven."
 ---
 
 # Diagnose Bugs

@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Implement features and bug fixes test-first through verified red-green-refactor cycles, one observable behavior at a time. Use when the user requests TDD or red-green-refactor, when a concrete behavior has an appropriate automated test surface, or when a regression must be locked down before a fix. Do not use for exploratory prototypes, generated artifacts, purely mechanical changes, or repositories where introducing tests would exceed the requested scope.
+description: "Implement behavior through verified red-green-refactor cycles. Use when the user explicitly requests TDD or red-green-refactor, or when an agreed workflow requires test-first development. Do not trigger merely because a bug or suitable test surface exists; do not use for prototypes, generated artifacts, mechanical changes, or when test infrastructure would exceed scope."
 ---
 
 # Test-Driven Development

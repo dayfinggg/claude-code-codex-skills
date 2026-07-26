@@ -1,6 +1,6 @@
 ---
 name: change-dependencies
-description: Add, upgrade, downgrade, replace, or remove external libraries, frameworks, SDKs, runtimes, compilers, build tools, or transitive dependencies with bounded scope and verified compatibility. Use when an authorized repository change modifies an external dependency or version, including CVE remediation and framework or runtime migration. Do not use for internal module imports, dependency inventory or upgrade advice without an authorized change, or replacing the whole technology stack.
+description: "Change external libraries, frameworks, SDKs, runtimes, compilers, or build tools with verified compatibility and bounded scope. Use when an authorized change adds, upgrades, downgrades, replaces, or removes a dependency, including CVE remediation. Do not use for internal imports, inventory or advice only, or wholesale stack replacement."
 ---
 
 # Change Dependencies

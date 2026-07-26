@@ -1,6 +1,6 @@
 ---
 name: plan-task
-description: Create evidence-grounded, decision-complete implementation plans for complex coding and technical tasks. Use when the user asks to plan, scope, design an approach, break down a multi-step change, prepare an implementation plan, or when material ambiguity and dependencies should be resolved before coding. Do not use for simple single-step work, ordinary explanations, or execution of an already approved and complete plan.
+description: "Create an evidence-grounded, decision-complete implementation plan. Use when the user explicitly asks to plan, scope, or break down a complex change, or when unresolved product or architectural choices must be settled before coding. Do not use for simple work, ordinary explanations, or execution of an already approved plan."
 ---
 
 # Plan Task

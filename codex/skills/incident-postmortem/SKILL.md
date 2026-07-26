@@ -1,6 +1,6 @@
 ---
 name: incident-postmortem
-description: Create an evidence-backed, blameless postmortem after a production incident has stabilized. Use when the user asks to review a stabilized outage or degradation, data loss, incident-driven emergency rollback or manual intervention, or a material monitoring failure that affected detection or response. Do not implicitly invoke during active response or for routine failed deployments or alert tests; during an active incident, preserve evidence only when explicitly requested, and do not operate production or coordinate response.
+description: "Create an evidence-backed, blameless postmortem after a production incident has stabilized. Use for material outages, degradation, data loss, emergency rollback, manual intervention, or monitoring failure. Do not use during active response or for routine failed deployments; do not operate production unless separately authorized."
 ---
 
 # Incident Postmortem

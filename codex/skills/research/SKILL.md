@@ -1,6 +1,6 @@
 ---
 name: research
-description: Research technical questions, APIs, libraries, standards, security guidance, compatibility, and current product behavior using authoritative primary sources and explicit evidence. Use when a task depends on external, niche, disputed, version-sensitive, or recently changed facts, or when the user asks to research, compare, verify, or cite technical information. Do not use when the answer is established entirely by the local repository or a simple stable fact.
+description: "Research external, niche, disputed, version-sensitive, or recently changed technical facts using authoritative primary sources and explicit evidence. Use when the user asks to research, compare, verify, or cite, or when an implementation materially depends on current external behavior. Do not use when the repository or a stable fact fully answers the question."
 ---
 
 # Technical Research

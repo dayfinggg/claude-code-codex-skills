@@ -1,6 +1,6 @@
 ---
 name: migrate-contracts-safely
-description: Evolve a live external or persisted contract, such as an API, database schema, event or message format, stored or configuration format, externally consumed interface, or production provider boundary, without breaking consumers or data. Use to design or implement a staged compatibility migration when old and new states must coexist, a schema or format migration transforms production data, or producers and consumers cannot change atomically. Do not use for private atomic refactors, greenfield contracts, one-off data repairs, go or no-go rollout reviews, or destructive production execution without explicit authorization.
+description: "Evolve a live API, database schema, event, stored format, configuration format, or provider contract while old and new states must coexist. Use for staged compatibility or production-data migrations. Do not use for private atomic refactors, greenfield contracts, one-off repairs, readiness review, or destructive execution without explicit authorization."
 ---
 
 # Migrate Contracts Safely

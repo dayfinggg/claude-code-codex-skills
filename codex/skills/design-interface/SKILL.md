@@ -1,6 +1,6 @@
 ---
 name: design-interface
-description: Design, implement, redesign, or visually review distinctive production-quality digital interfaces. Use for websites, landing pages, web or mobile apps, dashboards, product surfaces, components, and other UI work where visual direction, usability, responsive behavior, accessibility, interaction states, or design-system quality materially affect the result. Do not use for backend-only work, purely mechanical styling changes, or non-interface artifacts with their own dedicated skill.
+description: "Design, implement, redesign, or visually review production-quality websites, apps, dashboards, and UI components. Use when visual direction, usability, responsive behavior, accessibility, interaction states, or design-system quality materially affect the result. Do not use for backend-only work, mechanical styling, or non-interface artifacts."
 ---
 
 # Design Interface
