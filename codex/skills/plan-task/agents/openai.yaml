@@ -1,4 +1,4 @@
 interface:
   display_name: "Plan Task"
-  short_description: "Create grounded, execution-ready task plans"
-  default_prompt: "Use $plan-task to inspect this task and produce an execution-ready implementation plan."
+  short_description: "Create a lean, decision-complete implementation plan"
+  default_prompt: "Use $plan-task to choose the smallest useful plan level, resolve material decisions, map dependencies, and define observable verification."

@@ -85,15 +85,15 @@ footer{border-top:1px solid var(--border);margin-top:64px;padding:24px 16px;colo
 </section>
 
 <section id="planning">
-  <h2>planning <span class="tag">plan before code</span></h2>
-  <p>Complex work starts with acceptance criteria and a validation strategy, not with the first edit.</p>
-  <pre class="diff"><span class="d">- *starts rewriting the auth module in message one*</span><span class="a">+ Done means: existing sessions survive the deploy, login p95 &lt; 300ms,</span><span class="a">+ `test_auth.py` green. Steps: extract token store → dual-read window →</span><span class="a">+ switch writes → remove legacy. Rollback: flip AUTH_STORE env back.</span></pre>
+  <h2>planning <span class="tag">smallest useful plan</span></h2>
+  <p>Planning scales from no formal plan, to a live three-to-seven-step tracker, to a self-contained execution plan. Every step names an outcome, dependency, and proof; live status updates before the next step starts.</p>
+  <pre class="diff"><span class="d">- *starts rewriting the auth module or leaves five stale tasks “in progress”*</span><span class="a">+ Done means: existing sessions survive the deploy and `test_auth.py` is green.</span><span class="a">+ Current: dual-read parser verified ✓ → switch writes in progress → remove legacy.</span></pre>
 </section>
 
 <section id="delegate-work">
-  <h2>delegate-work <span class="tag">bounded independent packets</span></h2>
-  <p>Delegation is used only when independent work justifies coordination; the parent keeps decisions, integration, and acceptance.</p>
-  <pre class="diff"><span class="d">- one context delegates every phase and loses the live constraints</span><span class="a">+ researcher returns versioned primary evidence (read-only)</span><span class="a">+ reviewer independently checks the finished diff</span><span class="a">+ parent integrates, verifies, and reports the result</span></pre>
+  <h2>delegate-work <span class="tag">authority, ownership, evidence</span></h2>
+  <p>Delegation activates only when it is explicitly authorized and independent work repays its coordination cost. The parent chooses the smallest team and keeps decisions, integration, and acceptance.</p>
+  <pre class="diff"><span class="d">- “help with this” → three agents scan the same files and two overwrite each other</span><span class="a">+ explorer: read-only caller trace with paths and symbols</span><span class="a">+ worker: exclusive module ownership and focused checks</span><span class="a">+ verifier: independent acceptance after integration</span></pre>
 </section>
 
 <section id="project-documentation">

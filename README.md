@@ -2,13 +2,13 @@
 
 Personal agent instructions, focused skills, and specialist subagents for Claude Code and OpenAI Codex.
 
-Both tools run the same engineering setup: a compact operating policy, seventeen composable engineering skills, and five narrow specialist agents. The two catalogs hold the same skills and agents, adapted to each tool's conventions rather than kept as separate skill sets. Both rely on repository evidence for project-specific conventions.
+Both tools run the same engineering setup: a compact operating policy, eighteen composable engineering skills, and five narrow specialist agents. The two catalogs hold the same skills and agents, adapted to each tool's conventions rather than kept as separate skill sets. Both rely on repository evidence for project-specific conventions.
 
 ## Skills
 
 | Area | Skills |
 | --- | --- |
-| Planning and continuity | `plan-task`, `prototype`, `to-spec`, `to-tickets`, `handoff` |
+| Planning, delegation, and continuity | `plan-task`, `delegate-work`, `prototype`, `to-spec`, `to-tickets`, `handoff` |
 | Engineering | `diagnosing-bugs`, `tdd`, `change-review` (`code-review` on Codex), `codebase-design`, `resolving-merge-conflicts` |
 | Architecture and change safety | `improve-codebase-architecture`, `migrate-contracts-safely`, `change-dependencies` |
 | Production reliability | `review-production-readiness`, `incident-postmortem` |
@@ -17,7 +17,9 @@ Both tools run the same engineering setup: a compact operating policy, seventeen
 
 Each skill is invoked only when its trigger contract matches the task, and provides a focused workflow rather than a universal checklist for every request.
 
-`design-interface` uses progressive reference files for existing-product fit, visual foundations, interaction patterns, and accessibility verification. Its core workflow stays compact while detailed guidance loads only when the task needs it.
+The skills use progressive reference files so evidence, templates, and uncommon edge cases load only when the task needs them. `design-interface`, `plan-task`, and `delegate-work` keep their larger domain guidance split by decision surface; the remaining skills keep compact evidence maps beside their core workflows.
+
+This structure follows current [OpenAI GPT-5.6 model guidance](https://developers.openai.com/api/docs/guides/latest-model): state an instruction once, expose only task-relevant tools and guidance, and validate prompt reductions on representative work. OpenAI reports a directional internal sample in which leaner coding-agent prompts improved evaluation scores by about 10–15% while reducing total tokens by 41–66% and cost by 33–67%; these ranges are not treated as guarantees for this catalog.
 
 ## Agents
 
@@ -29,7 +31,7 @@ Each skill is invoked only when its trigger contract matches the task, and provi
 | `delivery-verifier` | `delivery_verifier` | Acceptance criteria, tests, builds, migrations, and delivery readiness |
 | `interface-reviewer` | `interface_reviewer` | Rendered UI quality, responsive behavior, accessibility, and product fidelity |
 
-The main agent keeps requirements, decisions, integration, and final accountability. It delegates only bounded independent work, prefers read-heavy parallel tasks, and avoids overlapping writes.
+The main agent keeps requirements, decisions, integration, and final accountability. `delegate-work` activates only after explicit delegation authority, chooses the smallest useful team, prefers read-heavy parallel lanes, defines evidence and stopping contracts, and prohibits overlapping writes.
 
 ## Behavior
 
@@ -44,7 +46,7 @@ claude/
   CLAUDE.md               working rules: scope, evidence, change safety, quality, verification
   output-styles/          the Engineering voice style: cadence, language, response shape
   agents/                 five specialist agents
-  skills/                 seventeen engineering skills
+  skills/                 eighteen engineering skills
   settings.json           reference values to merge into your own settings
 ```
 
@@ -90,7 +92,7 @@ codex/
   agents/                 five specialist agents
   config.toml             portable minimal template
   model-instructions.md   global operating policy
-  skills/                 seventeen focused Codex skills
+  skills/                 eighteen focused Codex skills
 ```
 
 System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Codex installs and updates them separately.

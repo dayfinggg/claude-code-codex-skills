@@ -9,6 +9,8 @@ This skill is the two-axis review (standards and specification). For a fast bug-
 
 Review the exact change against two independent questions: whether it is built correctly and whether it builds the requested thing.
 
+Read `references/evidence.md` when calibrating scope, finding usefulness, or severity. If delegation is explicitly authorized, apply `delegate-work` and assign only distinct review axes such as correctness, security, external compatibility, or rendered interface quality; keep synthesis and deduplication in the main session.
+
 ## Respect the Review Contract
 
 - Treat a review-only request as read-only. Do not modify code, resolve findings, or change repository state.

@@ -142,6 +142,8 @@ Do not judge interface quality from source alone.
 
 Use screenshots or browser tools when available. For redesigns, preserve before-and-after evidence when useful. Never claim visual or responsive quality was verified without rendering the result.
 
+If delegation is explicitly authorized, apply `delegate-work` and use an interface reviewer only after a runnable surface exists. Give it exact routes, viewports, states, comparison surfaces, and required screenshot or accessibility evidence; keep implementation and final acceptance in the main task.
+
 ## Reject Common Failure Modes
 
 Reject:

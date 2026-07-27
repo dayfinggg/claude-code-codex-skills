@@ -7,6 +7,8 @@ description: "Resolve conflicts in an active Git merge, rebase, cherry-pick, or 
 
 Resolve each conflict from verified intent and current repository behavior. Do not choose a side mechanically or invent a third behavior without evidence.
 
+Read `references/evidence.md` for nontrivial Git state or ambiguous base, ours, and theirs semantics. Keep conflict resolution under one write owner; if delegation is explicitly authorized, use `delegate-work` only for read-only intent reconstruction or independent verification.
+
 ## Respect the Operation Contract
 
 - Work only on the active Git operation and its resulting conflicts.

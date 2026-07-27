@@ -7,6 +7,8 @@ description: "Implement behavior through verified red-green-refactor cycles. Use
 
 Build one thin, observable behavior at a time. Require each test to prove that it can detect the missing or broken behavior before relying on it.
 
+Read `references/evidence.md` when deciding whether strict TDD fits the task or when making claims about its effects. If delegation is explicitly authorized, use `delegate-work` only for disjoint vertical slices; never run concurrent red-green cycles against overlapping production code or shared tests.
+
 ## Establish the Test Contract
 
 - Identify the requested behavior, completion criteria, and stable public seam.

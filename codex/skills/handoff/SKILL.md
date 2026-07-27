@@ -7,6 +7,8 @@ description: "Create a compact, secret-safe continuation brief for another Codex
 
 Preserve the live, resumable core of the work. Reference durable sources of truth instead of copying them.
 
+Read `references/evidence.md` when deciding what state must be externalized for a fresh task. Do not delegate handoff authorship: one owner must reconcile the current workspace, decisions, and verification into a single source of continuation truth.
+
 ## Respect the Handoff Contract
 
 - Create a handoff only on explicit request.

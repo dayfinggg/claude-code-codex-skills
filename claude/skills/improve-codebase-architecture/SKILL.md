@@ -8,6 +8,8 @@ description: "Audit a codebase for evidence-backed architectural friction and ra
 Find the smallest architectural changes that would make important future work
 safer and cheaper. Diagnose before designing and stop before implementation.
 
+Read `references/evidence.md` when choosing signals or ranking candidates.
+
 ## Respect the Assessment Contract
 
 - Work read-only unless the user explicitly asks to implement a selected change.
@@ -43,11 +45,11 @@ Read applicable instructions, architecture records, domain documentation,
 tests, public interfaces, callers, dependencies, and recent relevant changes.
 Trace representative behavior end to end.
 
-For a broad codebase, delegate independent read-only areas to `Explore`
-subagents when parallel investigation will reduce context noise. Give each one a
-non-overlapping scope and require file-level evidence. Do not ask several
-subagents to repeat the same scan, and do not delegate a scan you can finish in
-a handful of tool calls.
+If delegation is explicitly authorized, apply `delegate-work` and assign
+independent read-only areas to `Explore` subagents only when parallel
+investigation will reduce context noise. Give each one a non-overlapping scope
+and require file-level evidence. Do not ask several subagents to repeat the same
+scan, and do not delegate a scan you can finish in a handful of tool calls.
 
 Look for concrete friction:
 

@@ -7,6 +7,8 @@ description: "Research external, niche, disputed, version-sensitive, or recently
 
 Produce the smallest body of evidence needed to answer the question or support a decision. Prefer verified primary sources over familiarity, popularity, or plausible recollection.
 
+Read `references/evidence.md` for broad synthesis, conflicting studies, or high-cost decisions. If delegation is explicitly authorized, apply `delegate-work` to independent research questions with distinct source scopes and require each lane to return applicability, primary citations, counterevidence, and gaps; resolve conflicts in the main task.
+
 ## Respect the Research Contract
 
 - Work read-only unless the user explicitly asks for implementation or a saved research artifact.

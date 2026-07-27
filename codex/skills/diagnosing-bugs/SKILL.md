@@ -7,6 +7,8 @@ description: "Use only when a defect's root cause is unknown and requires reprod
 
 Find and prove the root cause before changing production behavior. Drive the investigation with the fastest reliable signal that exercises the reported symptom.
 
+Read `references/evidence.md` for difficult reproduction, minimization, bisection, or causal isolation. If delegation is explicitly authorized, apply `delegate-work` only after establishing one shared reproduction signal; assign distinct hypotheses or boundaries, never parallel speculative fixes to the same code.
+
 ## Respect the Diagnostic Contract
 
 - For a diagnosis-only request, work read-only apart from temporary diagnostic artifacts and report the proven cause without implementing a fix.

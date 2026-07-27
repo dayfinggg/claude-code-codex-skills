@@ -8,6 +8,9 @@ description: "Assess and improve go-live readiness for a service, API, worker, m
 Determine whether the changed system can be deployed, observed, operated,
 recovered, and owned safely in its real production environment.
 
+Read `references/evidence.md` when selecting go-live criteria, rollout, or
+recovery evidence.
+
 ## Respect the Delivery Contract
 
 - For a readiness review, work read-only and report evidence and blockers.
@@ -102,10 +105,10 @@ Confirm the release path includes the narrowest suitable safeguards:
 - post-deployment verification of user-visible behavior;
 - cleanup and follow-up conditions after stabilization.
 
-Review security-sensitive trust boundaries with a security specialist and use
-an independent delivery verifier when delegation materially improves
-confidence. Keep scopes non-overlapping and synthesize evidence in the main
-task.
+If delegation is explicitly authorized, apply `delegate-work`: route concrete
+trust boundaries to a security specialist and use an independent delivery
+verifier only when the distinct evidence justifies the cost. Keep scopes
+non-overlapping and synthesize evidence in the main task.
 
 ## Produce the Decision
 

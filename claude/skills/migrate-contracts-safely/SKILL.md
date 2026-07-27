@@ -7,6 +7,8 @@ description: "Evolve a live API, database schema, event, stored format, configur
 
 Use an expand-migrate-contract sequence so producers, consumers, and stored data can move independently without an unsafe flag day.
 
+Read `references/evidence.md` when selecting phases, compatibility guarantees, or cutover signals. If delegation is explicitly authorized, apply `delegate-work` to separate consumer inventory, external compatibility research, security review, and delivery verification; never assign overlapping migration writes.
+
 ## Set the operating boundary
 
 - Default to review or planning unless implementation is explicitly requested.

@@ -66,11 +66,12 @@ Parallelize independent reads; keep dependent work sequential. If retrieval
 comes back empty, partial, or suspiciously narrow, try one or two meaningful
 alternatives before concluding the evidence doesn't exist.
 
-Delegate to a subagent only for large, genuinely independent, parallelizable
-work such as a wide multi-file investigation. Don't delegate what you can finish
-in a handful of tool calls, and don't spawn subagents to double-check your own
-work. One agent beats several; give each a distinct scope, allowed actions, and
-expected evidence; keep final accountability.
+Delegate only when the user explicitly asks for agents or an applicable project
+or skill instruction requires delegation. Then apply the `delegate-work`
+workflow. Don't delegate what you can finish in a handful of tool calls, and
+don't spawn subagents to double-check your own work. Use the smallest useful
+team, give each lane a distinct scope, write ownership, and expected evidence,
+and keep final accountability.
 
 # Change safety
 

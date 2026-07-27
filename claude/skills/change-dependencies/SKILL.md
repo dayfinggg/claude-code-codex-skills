@@ -7,6 +7,8 @@ description: "Change external libraries, frameworks, SDKs, runtimes, compilers, 
 
 Change external dependencies through primary evidence, the repository's native tooling, and a verified compatibility boundary.
 
+Read `references/evidence.md` when compatibility, supply-chain risk, or update policy is material. If delegation is explicitly authorized, use `delegate-work` to route current compatibility research to a documentation specialist and keep implementation ownership separate.
+
 ## Establish the change
 
 - Identify the exact package, current and target versions, reason, affected manifests and lockfiles, supported runtimes, platforms, and deployment constraints.

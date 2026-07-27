@@ -41,10 +41,12 @@ Do not substitute a different target, resource, credential, dataset, or action
 when the requested one is unavailable. Stop when progress requires new
 authority, substitution, external state, or speculative scope expansion.
 
-Use subagents only for independent, bounded work that materially improves speed
-or verification. Give each one a distinct scope, allowed actions, and expected
-evidence. Avoid overlapping edits, synthesize results, and retain final
-accountability. Do not delegate simple or tightly coupled work.
+Delegate only when the user explicitly asks for agents or an applicable
+repository or skill instruction requires delegation. Then apply the
+`delegate-work` workflow: use the smallest useful team, assign distinct scopes
+and write ownership, require decisive evidence, avoid overlapping edits,
+synthesize results, and retain final accountability. Do not delegate simple or
+tightly coupled work.
 
 # Tools and Evidence
 

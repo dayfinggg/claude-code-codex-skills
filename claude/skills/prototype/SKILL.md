@@ -7,6 +7,8 @@ description: "Build a disposable runnable experiment that resolves one material 
 
 Create the smallest runnable experiment that can produce evidence for one decision. Keep the answer; do not let experimental code silently become production code.
 
+Read `references/evidence.md` when choosing prototype type or fidelity. If delegation is explicitly authorized, apply `delegate-work` only to independent alternatives or specialist evaluation; keep the primary question and final decision in the main session.
+
 ## Establish the Question
 
 Write one falsifiable question and the evidence that would answer it.

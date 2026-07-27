@@ -7,6 +7,8 @@ description: "Break an approved plan, specification, or settled conversation int
 
 Turn settled intent into the smallest set of independently executable tasks that can remain green as work progresses.
 
+Read `references/evidence.md` when selecting task shape, dependencies, or tracker fields. If delegation is explicitly authorized, apply `delegate-work` only after the dependency graph is settled; use the initial unblocked frontier for assignments and preserve exclusive write ownership.
+
 ## Respect the Ticket Contract
 
 - Draft tickets in the response by default.

@@ -1,151 +1,103 @@
 ---
 name: plan-task
-description: "Create an evidence-grounded, decision-complete implementation plan. Use when the user explicitly asks to plan, scope, or break down a complex change, or when unresolved product or architectural choices must be settled before coding. Do not use for simple work, ordinary explanations, or execution of an already approved plan."
+description: "Create an evidence-grounded, decision-complete implementation plan at the smallest useful level of detail. Use when the user explicitly asks to plan, scope, or break down a complex change, or when unresolved product or architecture decisions block safe implementation. Do not use for obvious one-step work, ordinary explanations, execution of an approved plan, or multi-session ticket creation."
 ---
 
 # Plan Task
 
-Produce the smallest plan that another capable engineer or agent can execute without rediscovering important context or inventing missing decisions.
+Produce the smallest plan that lets a capable implementer begin without rediscovering material context or inventing decisions.
 
 ## Respect the Planning Contract
 
-- When the requested deliverable is only a plan, analysis, or design, work read-only. Do not edit source files, run mutating commands, or implement the change.
-- If planning is an internal stage of an implementation request, prepare the plan and continue execution without requesting approval unless a material decision requires the user.
-- Do not save a plan file unless the user asks for one or the repository has an established, authorized convention for persistent plans.
-- Skip formal planning when the task is obvious, local, low-risk, and verifiable in one or two actions.
-- Scale the plan to the work: use a short checklist for bounded changes and milestones with dependencies for large or cross-cutting work.
-- Do not narrate routine inspection. Report only findings that affect the plan or require a decision.
+For a plan-only request, work read-only and do not implement. For an implementation request, plan only enough to coordinate dependent work, then continue without ceremonial approval unless a material decision requires the user.
 
-## Build the Plan
+Do not save a plan artifact unless the user requests it or the repository has an authorized convention. Do not convert the plan into tickets unless the user requests independently scheduled work units.
 
-### 1. Establish the Outcome
+## Choose the Plan Level
 
-Determine:
+Use exactly one level:
 
-- the user-visible or operational outcome;
-- the completion criteria;
-- the constraints and explicit exclusions;
-- whether the user wants only a plan or expects implementation afterward.
+1. **No formal plan:** the work is obvious, local, low-risk, and verifiable in one or two actions.
+2. **Working plan:** three to seven outcome-oriented steps for a bounded task. Track it in the available plan tool when coordination benefits from visible state.
+3. **Execution plan:** durable, self-contained milestones for multi-hour, multi-session, risky, or cross-system work. Use only when requested or required by repository convention.
 
-Restate the outcome only when doing so removes ambiguity. Do not turn the request into a larger project.
+Read `references/plan-levels.md` before creating an execution plan. Do not impose its ceremony on ordinary work.
 
-### 2. Inspect Before Asking
+When tracking a working plan, keep exactly one step `in_progress`. Mark a completed step immediately after its evidence is available and before starting the next step. Split or revise a step as soon as reality invalidates it; never batch stale status updates at the end.
 
-Gather enough evidence to understand the current system:
+## Establish Outcome and Evidence
 
-- read the applicable instruction hierarchy and repository documentation;
-- inspect relevant code, tests, configuration, schemas, interfaces, and recent history;
-- trace the current behavior and the data or control flow that must change;
-- identify existing patterns, abstractions, and verification commands;
-- record exact file paths and symbols that anchor the plan;
-- consult authoritative external documentation only when behavior is version-dependent, unfamiliar, or not established locally.
+Identify:
 
-Prefer repository evidence over memory. Distinguish confirmed facts from assumptions and proposals.
-Apply the active research workflow when external evidence materially affects the design.
+1. the observable user or operational outcome;
+2. completion criteria;
+3. constraints and explicit exclusions;
+4. whether the deliverable is only a plan or includes later implementation.
 
-### 3. Resolve Uncertainty
+Inspect before asking. Read applicable instructions, relevant code, tests, configuration, contracts, history, and verified commands. Trace the current behavior and the path that must change. Use authoritative external sources only for material current or version-sensitive facts.
 
-Classify each important unknown:
+Distinguish confirmed facts, safe assumptions, proposals, and open decisions.
 
-- **Discoverable:** investigate it with available read-only tools.
-- **Safe and reversible:** choose the least surprising default and state the assumption if it affects execution.
-- **Material:** ask the user when the answer changes product behavior, architecture, security, data compatibility, cost, or another hard-to-reverse outcome.
+## Resolve Only Material Uncertainty
 
-When planning is an internal stage of an implementation request, ask only questions that block a sound plan. Choose safe defaults and continue autonomously.
+Classify each unknown:
 
-When the user explicitly requests Plan mode or asks only for a plan, interview them until both sides share a decision-complete understanding:
+1. **Discoverable:** investigate it with available read-only evidence.
+2. **Safe and reversible:** choose the least surprising default and disclose it only when it affects execution.
+3. **Material:** ask when the answer changes product behavior, architecture, security, compatibility, data, cost, or another hard-to-reverse outcome.
 
-- walk the design tree from the desired outcome through every material dependent decision;
-- surface unstated choices about behavior, scope, interfaces, compatibility, failure handling, and acceptance criteria;
-- resolve parent decisions before following the branches they create;
-- pursue newly exposed questions after each answer instead of stopping at the first plausible design;
-- challenge contradictions and vague requirements with concrete evidence from the workspace;
-- ask focused questions one decision at a time, or in a small group only when their answers are independent;
-- include the relevant evidence and recommend a default when possible;
-- stop only when the remaining unknowns are discoverable implementation details, safe reversible choices, explicit exclusions, or decisions the user has deliberately delegated.
+In explicit Plan mode or a plan-only request, continue until the material decision tree is closed. Resolve parent decisions before their dependent branches. Ask focused questions with evidence and a recommended default. Stop when only discoverable implementation details, reversible choices, explicit exclusions, or intentionally delegated decisions remain.
 
-Never ask the user for information that can be found in the workspace. Do not produce the final plan merely because a plausible approach exists; produce it when the material design tree has been resolved.
+Do not ask for facts available in the workspace. Do not confuse a plausible approach with a decision-complete plan.
 
-### 4. Choose the Smallest Complete Design
+## Select the Smallest Complete Approach
 
-Define an approach that:
+Choose an approach that:
 
-- satisfies every completion criterion;
-- follows the existing architecture and conventions;
-- reuses proven components before adding abstractions;
-- preserves compatibility unless a deliberate break is required;
-- accounts for relevant data, API, security, performance, migration, and rollback concerns;
-- excludes speculative improvements unrelated to the requested outcome.
+1. covers every completion criterion;
+2. fits the existing architecture and vocabulary;
+3. reuses proven components before adding abstractions;
+4. preserves compatibility unless a deliberate break is settled;
+5. addresses only relevant data, security, performance, migration, rollout, and recovery risks;
+6. excludes unrelated cleanup and speculative future work.
 
-Mention alternatives only when the trade-off is material. State why the selected approach fits the evidence and constraints.
-Apply the active codebase-design workflow when the plan introduces or materially changes a module interface or seam.
+Compare alternatives only when the choice is consequential or hard to reverse. Record the deciding trade-off rather than a catalog of options.
 
-### 5. Decompose by Verifiable Outcomes
+## Build the Dependency Graph
 
-Create ordered steps that each describe:
+Decompose by independently verifiable outcomes, not by files or technical layers. Each step must state:
 
-1. the observable outcome of the step;
-2. the exact files, symbols, or components involved;
-3. the required change and its reason;
-4. the verification that proves the step works;
-5. any dependency on an earlier step.
+1. the observable result;
+2. verified components, paths, or interfaces involved;
+3. the necessary change and why;
+4. the evidence that proves completion;
+5. genuine blockers or dependencies.
 
-Prefer vertical slices that deliver coherent behavior over layers of generic activity. Place uncertainty-reducing work early. Mark independent steps as parallelizable only when they do not modify overlapping state or depend on each other's results.
+Place uncertainty-reducing work first. Prefer vertical slices that leave the system in a coherent, verifiable state. Use expand-migrate-contract stages when a wide compatibility change cannot remain green as one slice.
 
-For work too large for one focused execution:
+Mark work parallelizable only when its evidence or writes are independent. Planning may identify lanes and ownership boundaries, but agent selection and orchestration belong to `delegate-work` when delegation is explicitly authorized.
 
-- group steps into meaningful milestones;
-- identify dependency and decision checkpoints;
-- specify what must be true before the next milestone starts;
-- recommend a persistent execution plan only when continuity across sessions materially helps.
+## Design Verification with the Work
 
-### 6. Design Verification with the Change
+Map every completion criterion to at least one observed check. Prefer repository-native tests, types, lint, builds, schema validation, runtime paths, visual checks, benchmarks, or migration rehearsals according to the risk.
 
-Include proportionate verification:
+Verify existing commands and paths before naming them. Mark proposed artifacts clearly. State expected evidence rather than “test as needed.”
 
-- establish a baseline when existing behavior or failures matter;
-- map each completion criterion to at least one check;
-- prefer the repository's real tests, linters, type checks, builds, and runtime checks;
-- add targeted manual or integration checks when automation cannot prove the behavior;
-- include failure paths, boundary cases, compatibility, security, or performance checks only when relevant;
-- state expected evidence, not merely “test the change.”
+## Audit and Present
 
-Do not claim that a command, path, dependency, or test exists unless it was verified. Label proposed new files and commands clearly.
+Before presenting, verify that:
 
-### 7. Audit the Plan
+1. every requirement and material risk is covered;
+2. every step produces useful evidence;
+3. ordering follows real dependencies;
+4. referenced existing locations and commands are verified;
+5. assumptions, exclusions, and unresolved decisions are visible;
+6. no scope expansion, placeholder decision, or invented estimate remains.
 
-Before presenting the plan, confirm:
+For an ordinary response, start with one concise paragraph and use a numbered list for the plan. Use a compact table only when several steps need the same columns for locations, verification, or dependencies. Do not add headings, subheadings, empty sections, or status narration.
 
-- every requirement is covered by a step and a verification;
-- every step supports a requirement or necessary risk reduction;
-- the order respects dependencies;
-- referenced existing paths and symbols were verified;
-- required work is separated from optional follow-up;
-- assumptions and unresolved decisions are visible;
-- the plan contains no hidden scope expansion, placeholder decisions, or vague steps such as “update as needed”;
-- a fresh implementer could begin without repeating the investigation.
-
-Revise the plan until these checks pass.
-
-## Present the Result
-
-Start with one concise paragraph stating the target outcome and selected approach.
-
-For a bounded task, use a numbered plan. For a task with several exact mappings or dependencies, use this compact table:
-
-| Step | Outcome and change | Location | Verification | Depends on |
-|---|---|---|---|---|
-
-Add only the sections that contain useful information:
-
-- **Scope:** boundaries and explicit exclusions.
-- **Evidence:** decisive repository or documentation findings.
-- **Decisions and assumptions:** choices the implementer must preserve.
-- **Risks:** material failure modes and mitigations.
-- **Open decision:** a genuinely blocking user choice.
-
-Keep the result concise but decision-complete. Do not include implementation code, generic advice, empty sections, invented estimates, or status prose.
+For a persistent execution plan, follow the repository template or `references/plan-levels.md`.
 
 ## Completion Standard
 
-Finish only when the plan is grounded in inspected evidence, ordered by dependencies, explicit about material decisions, and paired with checks that can demonstrate completion.
+Finish only when the selected plan level matches the task, material decisions are settled, dependencies and verification are explicit, and tracked status can remain accurate throughout execution.

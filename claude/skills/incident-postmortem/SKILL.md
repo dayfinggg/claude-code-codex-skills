@@ -7,6 +7,8 @@ description: "Create an evidence-backed, blameless postmortem after a production
 
 Turn incident evidence into shared understanding and corrective actions that reduce recurrence, detection time, and recovery time.
 
+Read `references/evidence.md` when reconstructing causes or defining corrective actions. If delegation is explicitly authorized, apply `delegate-work` to gather independent evidence lanes such as telemetry, deployment history, or response timeline; keep impact, causal synthesis, and the final narrative under one owner.
+
 ## Confirm the boundary
 
 - Verify that the incident is stabilized before conducting the full review.

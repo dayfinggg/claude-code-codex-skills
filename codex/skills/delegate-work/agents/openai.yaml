@@ -1,0 +1,4 @@
+interface:
+  display_name: "Delegate Work"
+  short_description: "Route bounded work to the right agents without wasted context"
+  default_prompt: "Use $delegate-work to delegate only valuable independent lanes, define ownership and evidence, then integrate and verify every required result."

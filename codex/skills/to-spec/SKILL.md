@@ -7,6 +7,8 @@ description: "Turn settled requirements, an approved plan, a prototype result, o
 
 Preserve what must be built and why without freezing volatile implementation details. Synthesize settled decisions; do not reopen them or invent missing requirements.
 
+Read `references/evidence.md` when assessing requirement quality, traceability, or acceptance criteria. Keep one owner for the specification; if delegation is explicitly authorized, use `delegate-work` only to collect independent repository or external evidence, then reconcile it before writing.
+
 ## Respect the Specification Contract
 
 - Work read-only except for the requested specification artifact.

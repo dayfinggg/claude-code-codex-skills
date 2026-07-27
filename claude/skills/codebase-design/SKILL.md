@@ -7,6 +7,8 @@ description: "Design or improve a known module boundary, interface, seam, depend
 
 Concentrate related complexity behind the smallest stable interface that fully serves real callers. Optimize for correctness, locality, leverage, testability, and consistency with the existing repository.
 
+Read `references/evidence.md` when a boundary or abstraction decision is consequential. If delegation is explicitly authorized, use `delegate-work` for non-overlapping read-only traces or an independent review, not for competing writers on the same interface.
+
 ## Use Repository Evidence First
 
 - Read applicable instructions, architecture records, nearby code, tests, callers, and supported versions.
