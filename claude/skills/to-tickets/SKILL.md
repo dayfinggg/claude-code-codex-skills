@@ -1,6 +1,6 @@
 ---
 name: to-tickets
-description: Break an approved plan, specification, or substantial conversation into independently verifiable vertical-slice tasks with acceptance criteria and explicit blocking dependencies. Use when the user asks to create tickets, issues, implementation tasks, a dependency-aware backlog, or work units for multiple sessions or agents. Do not use before requirements are settled, for a simple single-session change, or to publish or modify an external tracker without explicit authorization.
+description: "Break an approved plan, specification, or settled conversation into independently verifiable vertical-slice tasks with acceptance criteria and blocking dependencies. Use when the user asks for tickets, issues, a backlog, or work units for multiple sessions or agents. Do not use before requirements are settled, for simple single-session work, or to publish externally without authorization."
 ---
 
 # Create Tickets
@@ -57,8 +57,6 @@ When a mechanical or contract change has a broad blast radius and no vertical sl
 3. **Contract:** remove the old form only after all callers are migrated and verified.
 
 Use a shared integration point only when individual migration batches genuinely cannot remain valid alone. State where the system is expected to be green.
-
-For a live external or persisted contract (API, database schema, event or message format), use the migrate-contracts-safely skill for the full staged procedure; this section covers only how to slice such work into tickets.
 
 ## Build the Dependency Graph
 

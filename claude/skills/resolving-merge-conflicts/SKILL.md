@@ -1,6 +1,6 @@
 ---
 name: resolving-merge-conflicts
-description: Resolve conflicts in an in-progress Git merge, rebase, cherry-pick, or revert by reconstructing the intent of both sides and preserving compatible behavior. Use when Git reports unmerged paths or the user asks to inspect or resolve merge conflicts. Do not use for ordinary branch comparison, starting a new integration operation, rewriting history without conflicts, or aborting an operation unless the user explicitly requests it.
+description: "Resolve conflicts in an active Git merge, rebase, cherry-pick, or revert by preserving compatible intent from both sides. Use when Git reports unmerged paths or the user asks to resolve current conflicts. Do not use for ordinary branch comparison, starting integration, rewriting history without conflicts, or aborting unless explicitly requested."
 ---
 
 # Resolve Merge Conflicts

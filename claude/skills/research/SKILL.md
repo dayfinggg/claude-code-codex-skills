@@ -1,6 +1,6 @@
 ---
 name: research
-description: Research technical questions, APIs, libraries, standards, security guidance, compatibility, and current product behavior using authoritative primary sources and explicit evidence. Use when a task depends on external, niche, disputed, version-sensitive, or recently changed facts, or when the user asks to research, compare, verify, or cite technical information. Do not use when the answer is established entirely by the local repository or a simple stable fact.
+description: "Research external, niche, disputed, version-sensitive, or recently changed technical facts using authoritative primary sources and explicit evidence. Use when the user asks to research, compare, verify, or cite, or when an implementation materially depends on current external behavior. Do not use when the repository or a stable fact fully answers the question."
 ---
 
 # Technical Research
@@ -85,7 +85,7 @@ Lead with the answer or recommendation. Then include only what helps the user ev
 
 Use a comparison table only when several options share the same decision criteria.
 
-Save a cited Markdown artifact only when the user requests it or persistent repository knowledge is an established part of the authorized workflow. Otherwise answer in the current task.
+Save a cited Markdown artifact only when the user requests it or persistent repository knowledge is an established part of the authorized workflow. Otherwise answer in the current session.
 
 ## Completion Standard
 

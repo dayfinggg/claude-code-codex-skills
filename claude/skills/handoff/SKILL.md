@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Create a compact, secret-safe continuation brief that lets a fresh Claude task or another engineer resume work without reopening settled decisions. Use only when the user explicitly asks to hand off, compact, transfer, pause and resume, or continue substantial work in a new task or session. Do not use for ordinary final reports, short tasks, or automatic progress updates.
+description: "Create a compact, secret-safe continuation brief for another Claude Code session or engineer. Use only when the user explicitly asks to hand off, compact, transfer, pause and resume, or continue substantial work elsewhere. Do not use for normal final reports, short tasks, or automatic status updates."
 ---
 
 # Create Handoff
@@ -54,9 +54,9 @@ Do not copy:
 - settled detail available in a cited source;
 - long command output or conversation history;
 - obsolete attempts with no effect on the next action;
-- generic project information a fresh task can discover normally.
+- generic project information a fresh session can discover normally.
 
-Preserve rationale for consequential decisions so the next task does not relitigate them.
+Preserve rationale for consequential decisions so the next session does not relitigate them.
 
 ## Protect Sensitive Information
 
@@ -81,7 +81,7 @@ Use only applicable sections:
 ## References
 ```
 
-Keep the brief concise enough for a fresh task to read fully before acting. Use absolute local paths and direct external URLs where appropriate.
+Keep the brief concise enough for a fresh session to read fully before acting. Use absolute local paths and direct external URLs where appropriate.
 
 ## Write and Verify
 
@@ -91,10 +91,10 @@ When creating a file:
 - write it to the resolved temporary or user-specified location;
 - reread it to confirm completeness and path accuracy;
 - scan it for obvious secret patterns and remove sensitive content;
-- report the final path and a one-sentence prompt the user can give the next task.
+- report the final path and a one-sentence prompt the user can give the next session.
 
 Do not claim the handoff is complete if the workspace state or verification results could not be inspected; state the missing evidence.
 
 ## Completion Standard
 
-Finish only when a capable fresh task can identify what is being done, why current decisions were made, what is already complete, what remains, and the exact next action without reading the full prior conversation.
+Finish only when a capable fresh session can identify what is being done, why current decisions were made, what is already complete, what remains, and the exact next action without reading the full prior conversation.

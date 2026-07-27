@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: Build a disposable, runnable experiment that answers one material design question about behavior, state, integration feasibility, or user interface. Use when the user explicitly requests a prototype, spike, proof of concept, or UI alternatives, or when an authorized implementation task contains an important question that inspection cannot resolve safely. Do not use during plan-only work without explicit permission, for production delivery, or when documentation and existing code already establish the answer.
+description: "Build a disposable runnable experiment that resolves one material uncertainty about behavior, state, integration, or interface design. Use when the user requests a prototype, spike, proof of concept, or alternatives, or explicitly authorizes an experiment needed for a decision. Do not use for production delivery, plan-only work, or questions established by existing evidence."
 ---
 
 # Prototype

@@ -1,6 +1,6 @@
 ---
 name: improve-codebase-architecture
-description: Assess a codebase for evidence-backed architectural improvements and rank bounded candidates before implementation. Use for an architecture audit or health review, to locate structural bottlenecks, or when repeated change friction spans multiple modules and the boundary to change has not yet been chosen. Do not use for a known interface or seam, an ordinary diff review, or planning or implementing an already selected refactor.
+description: "Audit a codebase for evidence-backed architectural friction and rank bounded improvement candidates before implementation. Use when the user requests an architecture health review or repeated change difficulty spans modules and the boundary is not yet known. Do not use when the interface or refactor is already selected; use codebase-design instead."
 ---
 
 # Improve Codebase Architecture
@@ -15,8 +15,8 @@ safer and cheaper. Diagnose before designing and stop before implementation.
   refactor, create architecture documents, or rewrite domain terminology.
 - Keep the main agent responsible for scope, synthesis, and the final
   recommendation.
-- Use the codebase-design skill after a specific module boundary or interface is chosen.
-- Use the plan-task skill when the selected change needs an execution-ready migration
+- Use `codebase-design` after a specific module boundary or interface is chosen.
+- Use `plan-task` when the selected change needs an execution-ready migration
   plan.
 
 ## Choose the Review Surface
@@ -43,10 +43,11 @@ Read applicable instructions, architecture records, domain documentation,
 tests, public interfaces, callers, dependencies, and recent relevant changes.
 Trace representative behavior end to end.
 
-For a broad codebase, delegate independent read-only areas to explorers when
-parallel investigation will reduce context noise. Give each explorer a
-non-overlapping scope and require file-level evidence. Do not ask several agents
-to repeat the same scan.
+For a broad codebase, delegate independent read-only areas to `Explore`
+subagents when parallel investigation will reduce context noise. Give each one a
+non-overlapping scope and require file-level evidence. Do not ask several
+subagents to repeat the same scan, and do not delegate a scan you can finish in
+a handful of tool calls.
 
 Look for concrete friction:
 
@@ -104,5 +105,5 @@ unbounded interview.
 
 Finish only when every candidate is tied to repository evidence, speculative
 ideas are labeled or removed, the top recommendation is explicit, and the next
-step can proceed through the codebase-design or plan-task skills without rescanning the
+step can proceed through `codebase-design` or `plan-task` without rescanning the
 entire codebase.

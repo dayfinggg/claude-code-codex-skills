@@ -9,7 +9,7 @@ Both tools run the same engineering setup: a compact operating policy, seventeen
 | Area | Skills |
 | --- | --- |
 | Planning and continuity | `plan-task`, `prototype`, `to-spec`, `to-tickets`, `handoff` |
-| Engineering | `diagnosing-bugs`, `tdd`, `code-review`, `codebase-design`, `resolving-merge-conflicts` |
+| Engineering | `diagnosing-bugs`, `tdd`, `change-review` (`code-review` on Codex), `codebase-design`, `resolving-merge-conflicts` |
 | Architecture and change safety | `improve-codebase-architecture`, `migrate-contracts-safely`, `change-dependencies` |
 | Production reliability | `review-production-readiness`, `incident-postmortem` |
 | Evidence | `research` |
@@ -33,17 +33,17 @@ The main agent keeps requirements, decisions, integration, and final accountabil
 
 The instructions prioritize direct execution, scope control, repository evidence, complete production code without placeholders or explanatory comments, verification proportional to risk, and context-aware tool selection. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. User-facing prose uses structured paragraphs without headings; numbered lists are reserved for genuine sequences, priorities, or choices, while substantive work retains evidence-based report tables. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision.
 
-On Claude Code this splits across two files: `model-instructions.md` (engineering quality, code style, tools) loaded through `CLAUDE.md`, and the `Focused Engineer` output style (communication, autonomy, verification). On Codex a single `model-instructions.md` carries all of it.
+On Claude Code the rules live in two places, split by what each channel does best. `CLAUDE.md` holds the working rules: scope, evidence, change safety, implementation quality, verification. The `Engineering voice` output style holds everything about how Claude talks: turn cadence, language, response shape, formatting, and the report tables. An output style edits the system prompt, so it is the stronger place for behavior that has to hold on every turn. On Codex a single `model-instructions.md` carries all of it.
 
 ## Claude
 
 ```text
 claude/
-  CLAUDE.md               imports model-instructions.md
-  model-instructions.md   engineering quality, code style, tools
+  CLAUDE.md               working rules: scope, evidence, change safety, quality, verification
+  output-styles/          the Engineering voice style: cadence, language, response shape
   agents/                 five specialist agents
   skills/                 seventeen engineering skills
-  settings.json           example; statusline and hooks are machine-specific
+  settings.json           reference values to merge into your own settings
 ```
 
 Back up the existing configuration first. Replace `skills` and `agents` rather than copying over them, otherwise retired entries remain discoverable.
@@ -53,8 +53,8 @@ Back up the existing configuration first. Replace `skills` and `agents` rather t
 ```bash
 git clone https://github.com/dayfinggg/claude-code-codex-skills.git
 cd claude-code-codex-skills
-cp -R claude/skills claude/agents "$HOME/.claude/"
-cp claude/CLAUDE.md claude/model-instructions.md "$HOME/.claude/"
+cp -R claude/skills claude/agents claude/output-styles "$HOME/.claude/"
+cp claude/CLAUDE.md "$HOME/.claude/"
 ```
 
 ### Windows PowerShell
@@ -62,11 +62,24 @@ cp claude/CLAUDE.md claude/model-instructions.md "$HOME/.claude/"
 ```powershell
 git clone https://github.com/dayfinggg/claude-code-codex-skills.git
 Set-Location claude-code-codex-skills
-Copy-Item -Recurse -Force .\claude\skills, .\claude\agents "$HOME\.claude\"
-Copy-Item -Force .\claude\CLAUDE.md, .\claude\model-instructions.md "$HOME\.claude\"
+Copy-Item -Recurse -Force .\claude\skills, .\claude\agents, .\claude\output-styles "$HOME\.claude\"
+Copy-Item -Force .\claude\CLAUDE.md "$HOME\.claude\"
 ```
 
-Restart Claude Code so it rediscovers skills and agents. There is no output style: communication and response shape are left to Claude Code's defaults, and `model-instructions.md` carries only the engineering rules. The bundled `settings.json` is an example only: its statusline and hooks point to a local integration and should be adapted, not copied verbatim.
+Turn the output style on: set `"outputStyle": "Engineering voice"` in `~/.claude/settings.json`, or pick it under **Output style** in `/config`. It applies from the next session. The style keeps Claude Code's built-in software engineering instructions through `keep-coding-instructions: true`, so it changes how Claude communicates, not how it codes.
+
+Restart Claude Code so it picks up the skills, agents, and style.
+
+`claude/settings.json` is a reference file: copy the keys you want into your own `~/.claude/settings.json` instead of replacing it. The ones that matter for this setup:
+
+```json
+{
+  "outputStyle": "Engineering voice",
+  "effortLevel": "high"
+}
+```
+
+Keep `hooks`, `statusLine`, MCP servers, and anything else tied to your machine in your own settings file — the reference file carries none of them.
 
 ## Codex
 

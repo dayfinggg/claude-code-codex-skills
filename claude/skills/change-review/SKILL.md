@@ -1,9 +1,11 @@
 ---
-name: code-review
-description: Review a branch, pull request, commit range, or working-tree diff for correctness, regressions, security, performance, repository standards, and fidelity to the originating requirements. Use when the user asks for code review, diff review, PR review, pre-merge inspection, validation of changes since a fixed point, or after a substantive implementation needs its final quality gate. Do not use when there is no code change to inspect or when the request is only to implement an already reviewed fix.
+name: change-review
+description: "Review a branch, pull request, commit range, or working-tree diff on two axes: repository standards and the originating requirements. Use for explicit code or PR review, independent pre-merge quality gates, and checking an implementation against its specification. Do not use when there is no change set to inspect or the task is only to implement a known fix."
 ---
 
-# Code Review
+# Change Review
+
+This skill is the two-axis review (standards and specification). For a fast bug-focused pass over the working diff, the bundled `/code-review` command is the lighter option; use this skill when the change must also be checked against its stated requirements.
 
 Review the exact change against two independent questions: whether it is built correctly and whether it builds the requested thing.
 
@@ -30,7 +32,7 @@ Read the full relevant diff and enough surrounding code to understand runtime be
 
 Collect the instruction and convention sources that govern the changed files:
 
-- applicable `CLAUDE.md`, `AGENTS.md`, and override files;
+- applicable `CLAUDE.md` files and skill instructions;
 - contribution, architecture, security, and style guidance;
 - formatter, linter, compiler, test, and build configuration;
 - established patterns in nearby maintained code;
@@ -64,7 +66,7 @@ Look for actionable defects in:
 - compliance with applicable repository instructions.
 
 Treat code smells as prompts for investigation, not automatic violations. Do not report personal style preferences.
-Apply the codebase-design skill's vocabulary only when the diff creates concrete boundary, locality, or test-surface problems.
+Apply the `codebase-design` vocabulary only when the diff creates concrete boundary, locality, or test-surface problems.
 
 ## Review the Specification Axis
 

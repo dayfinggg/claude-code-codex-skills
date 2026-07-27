@@ -1,6 +1,6 @@
 ---
 name: review-production-readiness
-description: Review and improve the operational readiness of a service, API, worker, migration, infrastructure change, or release for production rollout. Use when the user asks for a go-live or readiness decision, or when delivering a new production service, public launch, deployment-path change, high-risk data migration, or change that materially affects capacity, external-service failure modes, observability, or recovery. Do not use for local-only libraries, routine implementation or code review without a rollout-readiness objective, contract-migration design, or active incident response.
+description: "Assess and improve go-live readiness for a service, API, worker, migration, infrastructure change, or release. Use for explicit readiness decisions or changes that materially affect capacity, external failures, observability, recovery, deployment, or production data. Do not use for routine implementation, local libraries, ordinary code review, or active incident response."
 ---
 
 # Review Production Readiness
@@ -102,8 +102,8 @@ Confirm the release path includes the narrowest suitable safeguards:
 - post-deployment verification of user-visible behavior;
 - cleanup and follow-up conditions after stabilization.
 
-Review security-sensitive trust boundaries with the security-auditor agent and
-use the delivery-verifier agent when delegation materially improves
+Review security-sensitive trust boundaries with a security specialist and use
+an independent delivery verifier when delegation materially improves
 confidence. Keep scopes non-overlapping and synthesize evidence in the main
 task.
 

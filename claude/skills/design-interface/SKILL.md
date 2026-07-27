@@ -1,6 +1,6 @@
 ---
 name: design-interface
-description: Design, implement, redesign, or visually review distinctive production-quality digital interfaces. Use for websites, landing pages, web or mobile apps, dashboards, product surfaces, components, and other UI work where visual direction, usability, responsive behavior, accessibility, interaction states, or design-system quality materially affect the result. Do not use for backend-only work, purely mechanical styling changes, or non-interface artifacts with their own dedicated skill.
+description: "Design, implement, redesign, or visually review production-quality websites, apps, dashboards, and UI components. Use when visual direction, usability, responsive behavior, accessibility, interaction states, or design-system quality materially affect the result. Do not use for backend-only work, mechanical styling, or non-interface artifacts."
 ---
 
 # Design Interface
@@ -34,8 +34,6 @@ Define internally:
 Choose a direction because it fits the audience and task, not because it is fashionable. Distinctive does not mean loud. A restrained operational tool may need density, calm surfaces, and precise typography; an editorial or brand experience may justify stronger imagery, composition, and motion.
 
 Keep one dominant idea per view or section. Remove elements that do not improve meaning, action, orientation, trust, or atmosphere.
-
-When producing and comparing materially different directions is itself the deliverable rather than a step toward one chosen design, use the prototype skill instead.
 
 ## Design from Content and Tasks
 
@@ -85,7 +83,7 @@ Create or extend a small, explicit system rather than styling each element indep
 - Choose imagery that carries narrative or product meaning and crops well across viewports.
 - Use a coherent icon family with accessible labels where meaning is not universal.
 - Do not use emoji as interface icons unless the product language explicitly calls for them.
-- Use image generation only when a custom raster asset materially improves the result; do not generate text-heavy UI screenshots or substitute imagery for working interface code.
+- Generate or source a custom raster asset only when it materially improves the result; never substitute imagery for working interface code, and never ship a generated screenshot in place of a real view.
 
 ## Design Behavior, Not Just Screens
 
@@ -136,7 +134,7 @@ When implementation is requested:
 - avoid placeholders, dead controls, unsupported claims, and decorative functionality;
 - match implementation complexity to the design: restraint requires precision, not extra machinery.
 
-Apply the codebase-design skill's vocabulary when component boundaries or interfaces are unclear. Do not replace a coherent existing design system with a personal aesthetic. Extend it through its documented mechanisms.
+Do not replace a coherent existing design system with a personal aesthetic. Extend it through its documented mechanisms.
 
 ## Verify in the Rendered Interface
 

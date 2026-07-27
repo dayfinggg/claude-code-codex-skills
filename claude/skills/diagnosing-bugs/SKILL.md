@@ -1,6 +1,6 @@
 ---
 name: diagnosing-bugs
-description: Diagnose and fix difficult defects, regressions, intermittent failures, crashes, and performance problems through a reproducible evidence loop. Use when software is broken, failing, flaky, unexpectedly slow, or when the user asks to debug, diagnose, find a root cause, or repair a non-obvious bug. Do not use for obvious local corrections, feature development without a defect, or speculative architecture review.
+description: "Use only when a defect's root cause is unknown and requires reproducible investigation, such as a regression, crash, flaky failure, or performance problem. Do not use for an obvious local correction, ordinary feature work, or architecture review; use this instead of TDD until the cause is proven."
 ---
 
 # Diagnose Bugs
@@ -90,7 +90,7 @@ When practical, demonstrate that controlling the causal condition predictably tu
 - Preserve public behavior and compatibility outside the requested correction.
 - Avoid retries, sleeps, broad exception handling, weakened assertions, or raised limits unless evidence shows they are the correct design.
 - Add or update a regression test that fails before the fix and passes after it when the repository has an appropriate test surface.
-- Apply the tdd skill for the regression cycle when available.
+- Apply the `tdd` skill for the regression cycle when available.
 - Keep cleanup and unrelated architectural improvements out of the fix.
 
 For a performance defect, compare equivalent workloads with repeated measurements, account for warm-up and variance, and report both baseline and corrected results.
@@ -118,7 +118,7 @@ For diagnosis-only work, report:
 - the smallest recommended correction;
 - remaining uncertainty or unavailable verification.
 
-For completed fixes, follow the active final-report instructions and include the reproduction and verification evidence.
+For completed fixes, follow the report format from the output style and include the reproduction and verification evidence.
 
 ## Completion Standard
 

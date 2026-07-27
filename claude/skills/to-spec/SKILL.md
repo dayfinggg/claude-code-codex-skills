@@ -1,6 +1,6 @@
 ---
 name: to-spec
-description: Turn an agreed conversation, plan, prototype result, or issue into a durable, implementation-independent specification with testable requirements and explicit scope. Use when the user asks for a specification, spec, PRD, requirements document, acceptance criteria, or a stable artifact for multi-session implementation. Do not use while material product decisions remain unresolved, for a simple one-step change, or to publish externally without explicit authorization.
+description: "Turn settled requirements, an approved plan, a prototype result, or an issue into a durable implementation-independent specification with testable acceptance criteria and explicit scope. Use when the user asks for a specification, PRD, requirements document, or stable multi-session artifact. Do not use while material product decisions remain unresolved or for simple one-step work."
 ---
 
 # Write Specification
@@ -27,7 +27,7 @@ Read:
 
 Verify important claims against the repository when possible. Preserve the user's language unless the project has a more precise established term.
 
-If a material product, architecture, or compatibility decision remains open, return to the plan-task skill before finalizing the specification.
+If a material product, architecture, or compatibility decision remains open, return to the `plan-task` skill before finalizing the specification.
 
 ## Separate Requirements from Implementation
 
