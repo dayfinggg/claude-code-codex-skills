@@ -17,6 +17,8 @@ Both tools run the same engineering setup: a compact operating policy, seventeen
 
 Each skill is invoked only when its trigger contract matches the task, and provides a focused workflow rather than a universal checklist for every request.
 
+`design-interface` uses progressive reference files for existing-product fit, visual foundations, interaction patterns, and accessibility verification. Its core workflow stays compact while detailed guidance loads only when the task needs it.
+
 ## Agents
 
 | Claude agent | Codex agent | Responsibility |
@@ -31,7 +33,7 @@ The main agent keeps requirements, decisions, integration, and final accountabil
 
 ## Behavior
 
-The instructions prioritize direct execution, scope control, repository evidence, complete production code without placeholders or explanatory comments, verification proportional to risk, and context-aware tool selection. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. User-facing prose uses structured paragraphs without headings; numbered lists are reserved for genuine sequences, priorities, or choices, while substantive work retains evidence-based report tables. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision.
+The instructions prioritize direct execution, scope control, repository evidence, complete production code without placeholders or explanatory comments, verification proportional to risk, and context-aware tool selection. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. User-facing prose uses structured paragraphs without headings; numbered lists are reserved for genuine sequences, priorities, or choices, and tables are used only when shared columns materially improve comparison. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision.
 
 On Claude Code the rules live in two places, split by what each channel does best. `CLAUDE.md` holds the working rules: scope, evidence, change safety, implementation quality, verification. The `Engineering voice` output style holds everything about how Claude talks: turn cadence, language, response shape, formatting, and the report tables. An output style edits the system prompt, so it is the stronger place for behavior that has to hold on every turn. On Codex a single `model-instructions.md` carries all of it.
 
