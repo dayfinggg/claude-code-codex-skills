@@ -119,6 +119,51 @@ model_instructions_file = "model-instructions.md"
 
 Restart Codex after installation so it rediscovers agents and skills.
 
+## Update without Git
+
+The update scripts download the latest `main` archive, compare it with the
+previously installed revision, and apply only files changed upstream. Local
+edits to files unchanged upstream are preserved. When both the upstream and
+local copies changed, the local copy is backed up before replacement. Files
+retired upstream are removed only when their installed copy was not modified
+locally. `config.toml` and `settings.json` are never overwritten.
+
+By default, the scripts update existing `~/.codex` and `~/.claude`
+installations. Pass a target when you want to update or create only one of them.
+
+### macOS / Linux
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dayfinggg/claude-code-codex-skills/main/scripts/update.sh | sh
+```
+
+To keep a reusable local command:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dayfinggg/claude-code-codex-skills/main/scripts/update.sh -o "$HOME/update-agent-skills.sh"
+chmod +x "$HOME/update-agent-skills.sh"
+"$HOME/update-agent-skills.sh" --codex
+```
+
+Available targets are `--auto`, `--codex`, `--claude`, and `--all`.
+
+### Windows PowerShell
+
+```powershell
+Invoke-RestMethod https://raw.githubusercontent.com/dayfinggg/claude-code-codex-skills/main/scripts/update.ps1 |
+    Invoke-Expression
+```
+
+To keep a reusable local command:
+
+```powershell
+Invoke-WebRequest https://raw.githubusercontent.com/dayfinggg/claude-code-codex-skills/main/scripts/update.ps1 `
+    -OutFile "$HOME\update-agent-skills.ps1"
+& "$HOME\update-agent-skills.ps1" -Target Codex
+```
+
+Available targets are `Auto`, `Codex`, `Claude`, and `All`.
+
 ## License
 
 MIT
