@@ -11,9 +11,10 @@ $TemporaryDirectory = Join-Path ([System.IO.Path]::GetTempPath()) ("claude-code-
 try {
     New-Item -ItemType Directory -Path $TemporaryDirectory | Out-Null
     try {
+        $Nonce = [DateTime]::UtcNow.Ticks
         $Commit = (Invoke-RestMethod `
-            -Headers @{ Accept = "application/vnd.github+json"; "User-Agent" = "claude-code-codex-skills-updater" } `
-            -Uri "https://api.github.com/repos/$Repository/commits/$Branch").sha
+            -Headers @{ Accept = "application/vnd.github+json"; "Cache-Control" = "no-cache"; "User-Agent" = "claude-code-codex-skills-updater" } `
+            -Uri "https://api.github.com/repos/$Repository/commits/$Branch`?update=$Nonce").sha
     }
     catch {
         $Commit = $Branch

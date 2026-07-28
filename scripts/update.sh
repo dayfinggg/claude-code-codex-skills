@@ -23,11 +23,13 @@ command -v tar >/dev/null 2>&1 || {
 
 tmp="$(mktemp -d "${TMPDIR:-/tmp}/claude-code-codex-skills.XXXXXX")"
 trap 'rm -rf "$tmp"' EXIT HUP INT TERM
+nonce="$(date +%s)"
 
 commit="$(
   curl -fsSL -H 'Accept: application/vnd.github+json' \
+    -H 'Cache-Control: no-cache' \
     -H 'User-Agent: claude-code-codex-skills-updater' \
-    "https://api.github.com/repos/$repo/commits/$branch" 2>/dev/null |
+    "https://api.github.com/repos/$repo/commits/$branch?update=$nonce" 2>/dev/null |
     tr '{,' '\n\n' |
     sed -n 's/^[[:space:]]*"sha"[[:space:]]*:[[:space:]]*"\([0-9a-f]\{40\}\)".*$/\1/p' |
     head -n 1
