@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Research external, niche, disputed, version-sensitive, or recently changed technical facts using authoritative primary sources and explicit evidence. Use when the user asks to research, compare, verify, or cite, or when an implementation materially depends on current external behavior. Do not use when the repository or a stable fact fully answers the question."
+description: "Research external, niche, disputed, version-sensitive, or recently changed technical facts using authoritative primary sources, claim verification, and explicit evidence. Use when the user asks to research, compare, verify, or cite, or when an implementation materially depends on current external behavior. Do not use when the repository or a stable fact fully answers the question."
 ---
 
 # Technical Research
@@ -8,6 +8,10 @@ description: "Research external, niche, disputed, version-sensitive, or recently
 Produce the smallest body of evidence needed to answer the question or support a decision. Prefer verified primary sources over familiarity, popularity, or plausible recollection.
 
 Read `references/evidence.md` for broad synthesis, conflicting studies, or high-cost decisions. If delegation is explicitly authorized, apply `delegate-work` to independent research questions with distinct source scopes and require each lane to return applicability, primary citations, counterevidence, and gaps; resolve conflicts in the main task.
+
+Read `references/claim-verification.md` for long factual syntheses, citation
+audits, conflicting sources, or claims whose unsupported wording could
+materially affect a decision.
 
 ## Respect the Research Contract
 
@@ -48,6 +52,8 @@ For current or version-sensitive claims, verify publication dates, release versi
 - Read the exact sections that support or contradict the claim.
 - Follow references to the primary source rather than citing an aggregator.
 - Record the source, date or version, applicable scope, and decisive evidence.
+- Map each material claim to evidence and verify that the cited passage entails
+  the wording rather than merely discussing the same topic.
 - Search for disconfirming evidence when the claim affects architecture, security, compatibility, money, or substantial effort.
 - Stop when additional sources no longer change confidence or the decision.
 
@@ -74,6 +80,8 @@ Classify material statements as:
 - **Unknown:** not established by the available sources.
 
 Use calibrated language. Do not invent precision, consensus, benchmarks, capabilities, quotations, or citations.
+In ordinary prose, express these levels as complete sentences rather than
+label-value fragments or semicolon-separated chains.
 
 ## Produce the Result
 
@@ -84,8 +92,6 @@ Lead with the answer or recommendation. Then include only what helps the user ev
 - material alternatives and trade-offs;
 - explicit inferences;
 - unresolved gaps and their practical effect.
-
-Use a comparison table only when several options share the same decision criteria.
 
 Save a cited Markdown artifact only when the user requests it or persistent repository knowledge is an established part of the authorized workflow. Otherwise answer in the current task.
 

@@ -1,6 +1,6 @@
 ---
 name: testing-practices
-description: "Select, design, implement, review, and verify software tests across languages and systems, including unit, integration, contract, database, migration, property, fuzz, mutation, performance, security, accessibility, visual, smoke, acceptance, and end-to-end tests. Use for test strategy, coverage gaps, regression tests, flaky tests, or substantial test work. Use the TDD skill instead when the user explicitly requests red-green-refactor."
+description: "Select, design, implement, review, and verify software tests across languages and systems, including unit, integration, contract, database, migration, property, fuzz, mutation, performance, security, accessibility, visual, smoke, acceptance, end-to-end, and model or agent evaluations. Use for test strategy, coverage gaps, regression tests, flaky tests, or substantial test work. Use the TDD skill instead when the user explicitly requests red-green-refactor."
 ---
 
 # Software Testing Practices
@@ -12,6 +12,9 @@ configuration, or user outcome.
 Read `references/evidence.md` when choosing an unfamiliar test type, deciding
 whether TDD fits, evaluating suite shape, or making claims about test
 effectiveness.
+
+Read `references/llm-evals.md` when testing prompts, nondeterministic model
+behavior, tool-using agents, skill routing, graders, or multi-step traces.
 
 ## Establish the Test Contract
 
@@ -64,6 +67,11 @@ Use security tests from an explicit threat or secure-coding requirement. Use
 accessibility automation for detectable issues and targeted human evaluation
 for behavior tools cannot judge. Use visual regression only for stable,
 reviewed rendering surfaces and retain functional assertions.
+
+For model and agent behavior, hold the model, configuration, harness, and task
+set constant while comparing one change at a time. Check deterministic outcomes
+and safety boundaries before subjective quality, and use repeated trials where
+nondeterminism can change the conclusion.
 
 Treat the test pyramid as a heuristic, not a ratio. Avoid suites dominated by
 slow broad tests and suites with a missing integration layer.
