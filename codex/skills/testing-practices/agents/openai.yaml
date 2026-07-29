@@ -1,0 +1,4 @@
+interface:
+  display_name: "Software Testing Practices"
+  short_description: "Design and verify risk-based software tests"
+  default_prompt: "Use $testing-practices to design and implement the smallest test strategy that proves this behavior."

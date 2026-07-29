@@ -2,14 +2,14 @@
 
 Personal agent instructions, focused skills, and specialist subagents for Claude Code and OpenAI Codex.
 
-Both tools run the same engineering setup: a compact operating policy, eighteen composable engineering skills, and five narrow specialist agents. The two catalogs hold the same skills and agents, adapted to each tool's conventions rather than kept as separate skill sets. Both rely on repository evidence for project-specific conventions.
+Both tools run a compact engineering setup with five narrow specialist agents and focused skills adapted to each tool's conventions. Claude Code carries eighteen skills. Codex carries the same core catalog plus `coding-practices` and `testing-practices` for language-agnostic implementation and risk-based testing. Both rely on repository evidence for project-specific conventions.
 
 ## Skills
 
 | Area | Skills |
 | --- | --- |
 | Planning, delegation, and continuity | `plan-task`, `delegate-work`, `prototype`, `to-spec`, `to-tickets`, `handoff` |
-| Engineering | `diagnosing-bugs`, `tdd`, `change-review` (`code-review` on Codex), `codebase-design`, `resolving-merge-conflicts` |
+| Engineering | `diagnosing-bugs`, `tdd`, `change-review` (`code-review` on Codex), `codebase-design`, `resolving-merge-conflicts`; Codex also includes `coding-practices` and `testing-practices` |
 | Architecture and change safety | `improve-codebase-architecture`, `migrate-contracts-safely`, `change-dependencies` |
 | Production reliability | `review-production-readiness`, `incident-postmortem` |
 | Evidence | `research` |
@@ -92,7 +92,7 @@ codex/
   agents/                 five specialist agents
   config.toml             portable minimal template
   model-instructions.md   global operating policy
-  skills/                 eighteen focused Codex skills
+  skills/                 twenty focused Codex skills
 ```
 
 System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Codex installs and updates them separately.

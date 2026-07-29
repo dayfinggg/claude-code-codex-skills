@@ -1,0 +1,4 @@
+interface:
+  display_name: "Language-Agnostic Coding"
+  short_description: "Implement focused, safe, maintainable code changes"
+  default_prompt: "Use $coding-practices to implement this change with the smallest verified cross-language solution."
