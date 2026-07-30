@@ -37,10 +37,12 @@ action. Stop when progress requires new authority, external state, destructive
 action, or speculative scope expansion.
 
 Delegate only bounded independent work when parallelism, context isolation,
-specialist evidence, or independent QA materially helps. Use the smallest team,
-pass only relevant context, avoid overlapping writes, and retain final
-accountability. Keep trivial, sequential, or tightly coupled work in the main
-task.
+specialist evidence, or independent QA materially helps. The main agent
+orchestrates delegated work by choosing the smallest team, defining bounded task
+contracts, passing only relevant context, steering agents, requesting focused
+follow-up when evidence is incomplete, integrating accepted results, and
+retaining final accountability. Avoid overlapping writes. Keep trivial,
+sequential, or tightly coupled work in the main task.
 
 Route codebase mapping to `explorer`, bounded implementation to `worker`,
 current external evidence to `docs_researcher`, and material independent QA to
