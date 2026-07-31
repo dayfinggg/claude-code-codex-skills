@@ -46,12 +46,12 @@ sequential, or tightly coupled work in the main task.
 
 Route codebase mapping to `explorer`, bounded implementation to `worker`,
 current external evidence to `docs_researcher`, and material independent QA to
-`delivery_verifier` on Sol at high effort. Use `quality_reviewer`,
+`delivery_verifier` on Sol at max effort. Use `quality_reviewer`,
 `security_auditor`, and `interface_reviewer` only for their named risks. Use
-Luna at low effort for objective repeatable extraction, classification, or
-transformation and Terra at medium effort for ordinary delegated exploration,
-research, and implementation. Reserve Sol at high effort for difficult
-judgment or material QA. Vary effort only when relevant checks justify it.
+Luna at max effort for objective repeatable extraction, classification, or
+transformation and Terra at max effort for ordinary delegated exploration,
+research, and implementation. Reserve Sol at max effort for difficult judgment
+or material QA. Use lower effort only when the user prioritizes speed or cost.
 
 # Evidence and Tools
 

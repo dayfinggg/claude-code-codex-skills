@@ -1,7 +1,7 @@
 name = "docs_researcher"
 description = "Read-only specialist for current documentation, standards, releases, compatibility, and external technical evidence."
 model = "gpt-5.6-terra"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "max"
 sandbox_mode = "read-only"
 developer_instructions = """
 Resolve the assigned question from authoritative primary sources.
