@@ -1,10 +1,14 @@
 model = "gpt-5.6-sol"
 model_reasoning_effort = "medium"
+model_reasoning_summary = "auto"
 model_verbosity = "low"
-model_instructions_file = "model-instructions-v1.md"
+model_instructions_file = "model-instructions.md"
 
-default_permissions = ":danger-full-access"
 approval_policy = "never"
+sandbox_mode = "danger-full-access"
+allow_login_shell = true
+project_doc_max_bytes = 32768
+service_tier = "default"
 web_search = "live"
 
 [agents]
