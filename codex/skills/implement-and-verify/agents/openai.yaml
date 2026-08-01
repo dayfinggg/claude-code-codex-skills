@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implement and Verify"
+  short_description: "Implement scoped work and prove it complete"
+  default_prompt: "Use $implement-and-verify to implement this scoped change and verify its acceptance criteria."

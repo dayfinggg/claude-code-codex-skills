@@ -1,4 +1,0 @@
-interface:
-  display_name: "Design Interface"
-  short_description: "Design accessible interfaces that fit the product"
-  default_prompt: "Use $design-interface to design, implement, and visually verify this interface while preserving the product's established visual language."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn from History"
+  short_description: "Derive reviewed skills from successful sessions"
+  default_prompt: "Use $learn-from-history to derive evidence-backed skill candidates from these session histories."

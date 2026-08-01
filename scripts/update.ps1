@@ -149,7 +149,7 @@ try {
             -Name "Codex" `
             -Source (Join-Path $SourceRoot.FullName "codex") `
             -Destination (Join-Path $HOME ".codex") `
-            -ManagedPaths @("model-instructions.md", "agents", "skills")
+            -ManagedPaths @("config.toml", "model-instructions-v1.md", "agents", "skills")
     }
     if ($RunClaude) {
         Update-Target `
@@ -159,7 +159,7 @@ try {
             -ManagedPaths @("CLAUDE.md", "agents", "skills", "output-styles")
     }
 
-    Write-Host "Local config.toml and settings.json were not changed. Restart the updated application."
+    Write-Host "Managed Codex config.toml is backed up before replacement. Claude settings.json is unchanged. Restart the updated application."
 }
 finally {
     if (Test-Path -LiteralPath $TemporaryDirectory) {

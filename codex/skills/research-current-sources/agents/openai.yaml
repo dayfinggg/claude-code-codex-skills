@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Current Sources"
+  short_description: "Verify current facts with primary sources"
+  default_prompt: "Use $research-current-sources to research this question using current primary sources."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Plan Task"
-  short_description: "Create a lean, decision-complete implementation plan"
-  default_prompt: "Use $plan-task to choose the smallest useful plan level, resolve material decisions, map dependencies, and define observable verification."

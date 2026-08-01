@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Changes"
+  short_description: "Review code changes for material defects"
+  default_prompt: "Use $review-changes to review these changes for correctness and material risks."

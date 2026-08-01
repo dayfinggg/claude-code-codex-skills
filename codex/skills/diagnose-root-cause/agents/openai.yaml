@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose Root Cause"
+  short_description: "Reproduce failures and isolate their cause"
+  default_prompt: "Use $diagnose-root-cause to reproduce this failure and identify its root cause."

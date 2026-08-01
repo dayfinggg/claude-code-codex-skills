@@ -1,4 +1,0 @@
-interface:
-  display_name: "Verify Code Work"
-  short_description: "Prove AI-made code works as requested"
-  default_prompt: "Use $verify-code-work to verify this implementation against its requirements and report only observed evidence."

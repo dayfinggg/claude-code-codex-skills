@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Architecture"
+  short_description: "Design clear, evolvable project architecture"
+  default_prompt: "Use $design-project-architecture to design or improve this project architecture with clear boundaries and responsibilities."

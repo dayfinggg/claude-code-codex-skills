@@ -1,4 +1,0 @@
-interface:
-  display_name: "Software Testing Practices"
-  short_description: "Design risk-based tests and model evaluations"
-  default_prompt: "Use $testing-practices to design and verify the smallest risk-based test or evaluation strategy that proves this behavior."

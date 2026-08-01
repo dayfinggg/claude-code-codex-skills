@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implementation Planning"
+  short_description: "Create evidence-backed executable plans"
+  default_prompt: "Use $spec-to-tasks to create a scoped, dependency-aware implementation plan with acceptance evidence."

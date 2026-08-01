@@ -166,11 +166,11 @@ fi
 
 if [ "$run_codex" = true ]; then
   update_target Codex "$source_root/codex" "$HOME/.codex" \
-    model-instructions.md agents skills
+    config.toml model-instructions-v1.md agents skills
 fi
 if [ "$run_claude" = true ]; then
   update_target Claude "$source_root/claude" "$HOME/.claude" \
     CLAUDE.md agents skills output-styles
 fi
 
-printf 'Local config.toml and settings.json were not changed. Restart the updated application.\n'
+printf 'Managed Codex config.toml is backed up before replacement. Claude settings.json is unchanged. Restart the updated application.\n'

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clarify and Specify"
+  short_description: "Turn ambiguous work into an approved spec"
+  default_prompt: "Use $clarify-and-specify to turn this request into a clear, approved specification."

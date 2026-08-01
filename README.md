@@ -2,22 +2,22 @@
 
 Personal agent instructions, focused skills, and specialist subagents for Claude Code and OpenAI Codex.
 
-Both tools run a compact engineering setup with five narrow specialist agents and focused skills adapted to each tool's conventions. Claude Code carries eighteen skills. Codex carries the same core catalog plus `coding-practices`, `testing-practices`, and `verify-code-work` for language-agnostic implementation, risk-based testing, and evidence-backed delivery verification. Both rely on repository evidence for project-specific conventions.
+The Codex setup contains a compact global policy, five specialist agents, and twelve focused skills. It uses automatic skill discovery, so no agent or skill file contains a machine-specific installation path.
 
 ## Skills
 
 | Area | Skills |
 | --- | --- |
-| Planning, delegation, and continuity | `plan-task`, `delegate-work`, `prototype`, `to-spec`, `to-tickets`, `handoff` |
-| Engineering | `diagnosing-bugs`, `tdd`, `change-review` (`code-review` on Codex), `codebase-design`, `resolving-merge-conflicts`; Codex also includes `coding-practices`, `testing-practices`, and `verify-code-work` |
-| Architecture and change safety | `improve-codebase-architecture`, `migrate-contracts-safely`, `change-dependencies` |
-| Production reliability | `review-production-readiness`, `incident-postmortem` |
-| Evidence | `research` |
-| Product interface | `design-interface` |
+| Specification and planning | `clarify-and-specify`, `spec-to-tasks` |
+| Architecture and domain | `design-project-architecture`, `domain-modeling` |
+| Implementation quality | `production-code-quality`, `tdd`, `implement-and-verify` |
+| Diagnosis and review | `diagnose-root-cause`, `review-changes` |
+| Evidence | `research-current-sources` |
+| Skill governance | `audit-agent-skills`, `learn-from-history` |
 
 Each skill is invoked only when its trigger contract matches the task, and provides a focused workflow rather than a universal checklist for every request.
 
-The skills use progressive reference files so evidence, templates, and uncommon edge cases load only when the task needs them. `design-interface`, `plan-task`, and `delegate-work` keep their larger domain guidance split by decision surface; the remaining skills keep compact evidence maps beside their core workflows.
+The skills use progressive reference files so language rules, architecture guidance, planning evidence, and uncommon branches load only when the task needs them.
 
 This structure follows current [OpenAI GPT-5.6 model guidance](https://developers.openai.com/api/docs/guides/latest-model): state an instruction once, expose only task-relevant tools and guidance, and validate prompt reductions on representative work. OpenAI reports a directional internal sample in which leaner coding-agent prompts improved evaluation scores by about 10–15% while reducing total tokens by 41–66% and cost by 33–67%; these ranges are not treated as guarantees for this catalog.
 
@@ -25,19 +25,19 @@ This structure follows current [OpenAI GPT-5.6 model guidance](https://developer
 
 | Claude agent | Codex agent | Responsibility |
 | --- | --- | --- |
-| `docs-researcher` | `docs_researcher` | Current primary documentation, standards, releases, and compatibility |
-| `quality-reviewer` | `quality_reviewer` | Correctness, regressions, contract violations, and missing tests |
-| `security-auditor` | `security_auditor` | Concrete trust-boundary, authorization, injection, secret, and abuse risks |
-| `delivery-verifier` | `delivery_verifier` | Acceptance criteria, tests, builds, migrations, and delivery readiness |
-| `interface-reviewer` | `interface_reviewer` | Rendered UI quality, responsive behavior, accessibility, and product fidelity |
+| — | `routine_executor` | Clear, bounded, repeatable implementation and focused validation |
+| — | `complex_executor` | Ambiguous, architectural, domain-rich, or multi-stage implementation |
+| — | `research_strategist` | Current, rare, disputed, or poorly indexed information |
+| — | `quality_reviewer` | Independent correctness, security, compatibility, and quality review |
+| — | `skill_curator` | Skill safety, precision, trigger quality, and evidence-based evolution |
 
-The main agent keeps requirements, decisions, integration, and final accountability. `delegate-work` activates only after explicit delegation authority, chooses the smallest useful team, prefers read-heavy parallel lanes, defines evidence and stopping contracts, and prohibits overlapping writes.
+GPT-5.6 Sol remains the orchestrator. GPT-5.6 Luna Max handles routine execution, while GPT-5.6 Terra Max handles complex execution, research, independent review, and skill curation. The orchestrator keeps requirements, task state, integration, and final accountability.
 
 ## Behavior
 
-The instructions prioritize direct execution, scope control, repository evidence, complete production code without placeholders or explanatory comments, verification proportional to risk, and context-aware tool selection. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. User-facing prose uses structured paragraphs without headings; numbered lists are reserved for genuine sequences, priorities, or choices, and tables are used only when shared columns materially improve comparison. Intermediate narration is suppressed unless the user asks for it or the work needs a blocking decision.
+The instructions prioritize minimal sufficient solutions, scope control, repository evidence, complete production code without placeholders or explanatory comments, and verification proportional to risk. Commands that build artifacts, start servers or watchers, install dependencies, run migrations, or perform deployment and other persistent operations require explicit user confirmation. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. User-facing prose uses structured paragraphs without headings; lists and tables are reserved for cases where they materially improve clarity. Intermediate narration is suppressed unless the work needs a blocking decision.
 
-On Claude Code the rules live in two places, split by what each channel does best. `CLAUDE.md` holds the working rules: scope, evidence, change safety, implementation quality, verification. The `Engineering voice` output style holds everything about how Claude talks: turn cadence, language, response shape, formatting, and the report tables. An output style edits the system prompt, so it is the stronger place for behavior that has to hold on every turn. On Codex a single `model-instructions.md` carries all of it.
+On Claude Code the rules live in two places, split by what each channel does best. `CLAUDE.md` holds the working rules: scope, evidence, change safety, implementation quality, verification. The `Engineering voice` output style holds everything about how Claude talks: turn cadence, language, response shape, formatting, and the report tables. An output style edits the system prompt, so it is the stronger place for behavior that has to hold on every turn. On Codex a single `model-instructions-v1.md` carries all of it.
 
 ## Claude
 
@@ -91,8 +91,8 @@ Keep `hooks`, `statusLine`, MCP servers, and anything else tied to your machine 
 codex/
   agents/                 five specialist agents
   config.toml             portable minimal template
-  model-instructions.md   global operating policy
-  skills/                 twenty-one focused Codex skills
+  model-instructions-v1.md global operating policy
+  skills/                 twelve focused Codex skills
 ```
 
 System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Codex installs and updates them separately.
@@ -101,20 +101,20 @@ System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Cod
 
 ```bash
 cp -R codex/agents codex/skills "$HOME/.codex/"
-cp codex/model-instructions.md "$HOME/.codex/model-instructions.md"
+cp codex/model-instructions-v1.md codex/config.toml "$HOME/.codex/"
 ```
 
 ### Windows PowerShell
 
 ```powershell
 Copy-Item -Recurse -Force .\codex\agents, .\codex\skills "$HOME\.codex\"
-Copy-Item -Force .\codex\model-instructions.md "$HOME\.codex\model-instructions.md"
+Copy-Item -Force .\codex\model-instructions-v1.md, .\codex\config.toml "$HOME\.codex\"
 ```
 
-Merge `codex/config.toml` into the local configuration instead of overwriting platform-specific MCP servers, plugins, trusted projects, notification commands, or desktop settings. Its instruction setting is portable:
+Back up an existing `config.toml` before a manual installation. The distributed configuration is portable and intentionally replaces local model, permission, agent, web-search, and documentation-server defaults:
 
 ```toml
-model_instructions_file = "model-instructions.md"
+model_instructions_file = "model-instructions-v1.md"
 ```
 
 Restart Codex after installation so it rediscovers agents and skills.
@@ -126,7 +126,8 @@ previously installed revision, and apply only files changed upstream. Local
 edits to files unchanged upstream are preserved. When both the upstream and
 local copies changed, the local copy is backed up before replacement. Files
 retired upstream are removed only when their installed copy was not modified
-locally. `config.toml` and `settings.json` are never overwritten.
+locally. Codex `config.toml` is managed and backed up before replacement;
+Claude `settings.json` is not changed.
 
 By default, the scripts update existing `~/.codex` and `~/.claude`
 installations. Pass a target when you want to update or create only one of them.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Agent Skills"
+  short_description: "Audit skills for triggers, quality, and safety"
+  default_prompt: "Use $audit-agent-skills to audit these agent skills and report actionable findings."
