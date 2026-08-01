@@ -1,6 +1,6 @@
 ---
 name: verify-code-work
-description: "Verify that an AI- or agent-produced code change is correct, complete, scoped, and supported by observed evidence. Use after implementation, before handoff or release, or when asked to validate that a coding task really works against its requirements. Do not use for review-only diff analysis, substantial test design, unknown-cause diagnosis, or production-readiness assessment. Use the corresponding specialized skill instead."
+description: "Verify that an AI- or agent-produced code change is correct, complete, scoped, and supported by observed evidence. Use after implementation or when asked whether coding work really works. Not for diff-only review, unknown-cause diagnosis, or release readiness."
 ---
 
 # Verify Code Work

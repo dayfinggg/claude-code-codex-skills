@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Research external, niche, disputed, version-sensitive, or recently changed technical facts using authoritative primary sources, claim verification, and explicit evidence. Use when the user asks to research, compare, verify, or cite, or when an implementation materially depends on current external behavior. Do not use when the repository or a stable fact fully answers the question."
+description: "Research external, niche, disputed, version-sensitive, or recent technical facts using authoritative primary sources and explicit evidence. Use when asked to research, compare, verify, or cite, or when current external behavior materially affects implementation."
 ---
 
 # Technical Research

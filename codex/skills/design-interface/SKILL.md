@@ -1,6 +1,6 @@
 ---
 name: design-interface
-description: "Design, implement, redesign, or visually review production-quality websites, apps, dashboards, flows, pages, and UI components. Use when visual direction, usability, responsive behavior, accessibility, interaction states, information hierarchy, or design-system fit materially affect the result, especially when extending an existing product without breaking its visual language. Do not use for backend-only work, mechanical CSS edits with no design judgment, or non-interface artifacts."
+description: "Design, implement, redesign, or visually review a production interface where usability, responsive behavior, accessibility, interaction states, hierarchy, or design-system fit matters. Not for backend-only work or mechanical CSS edits."
 ---
 
 # Design Interface

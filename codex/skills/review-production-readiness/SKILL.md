@@ -1,6 +1,6 @@
 ---
 name: review-production-readiness
-description: "Assess and improve go-live readiness for a service, API, worker, migration, infrastructure change, or release. Use for explicit readiness decisions or changes that materially affect capacity, external failures, observability, recovery, deployment, or production data. Do not use for routine implementation, local libraries, ordinary code review, or active incident response."
+description: "Assess or improve go-live readiness where capacity, dependencies, observability, recovery, deployment, or production data materially matters. Use for explicit readiness decisions, not routine implementation, local libraries, code review, or active incidents."
 ---
 
 # Review Production Readiness

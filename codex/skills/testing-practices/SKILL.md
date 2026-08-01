@@ -1,6 +1,6 @@
 ---
 name: testing-practices
-description: "Select, design, implement, review, and verify software tests across languages and systems, including unit, integration, contract, database, migration, property, fuzz, mutation, performance, security, accessibility, visual, smoke, acceptance, end-to-end, and model or agent evaluations. Use for test strategy, coverage gaps, regression tests, flaky tests, or substantial test work. Use the TDD skill instead when the user explicitly requests red-green-refactor."
+description: "Select, design, implement, review, or verify substantial software tests and agent evaluations. Use for test strategy, coverage gaps, regression or flaky tests, and specialized test types. Use tdd instead when red-green-refactor is explicitly required."
 ---
 
 # Software Testing Practices

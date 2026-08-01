@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: "Review a branch, pull request, commit range, or working-tree diff for actionable correctness, regression, security, performance, and test risks. Use for explicit code or PR review and independent pre-merge quality gates. Do not use when there is no change set to inspect or the task is only to implement a known fix."
+description: "Review an existing branch, pull request, commit range, or working-tree diff for actionable correctness, regression, security, performance, and test risks. Use for explicit review or a pre-merge gate, not to implement a known fix."
 ---
 
 # Code Review

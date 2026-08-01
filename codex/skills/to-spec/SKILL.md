@@ -1,6 +1,6 @@
 ---
 name: to-spec
-description: "Turn settled requirements, an approved plan, a prototype result, or an issue into a durable implementation-independent specification with testable acceptance criteria and explicit scope. Use when the user asks for a specification, PRD, requirements document, or stable multi-session artifact. Do not use while material product decisions remain unresolved or for simple one-step work."
+description: "Turn settled requirements, an approved plan, prototype result, or issue into a durable implementation-independent specification with testable acceptance criteria. Use for a requested specification, PRD, or requirements document, not while material decisions remain open."
 ---
 
 # Write Specification

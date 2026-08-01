@@ -1,6 +1,6 @@
 ---
 name: improve-codebase-architecture
-description: "Audit a codebase for evidence-backed architectural friction and rank bounded improvement candidates before implementation. Use when the user requests an architecture health review or repeated change difficulty spans modules and the boundary is not yet known. Do not use when the interface or refactor is already selected; use codebase-design instead."
+description: "Audit a codebase for evidence-backed architectural friction and rank bounded improvements. Use for architecture health reviews or repeated change difficulty with an unknown boundary. If the refactor is already selected, use codebase-design."
 ---
 
 # Improve Codebase Architecture

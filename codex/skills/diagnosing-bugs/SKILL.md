@@ -1,6 +1,6 @@
 ---
 name: diagnosing-bugs
-description: "Use only when a defect's root cause is unknown and requires reproducible investigation, such as a regression, crash, flaky failure, or performance problem. Do not use for an obvious local correction, ordinary feature work, or architecture review; use this instead of TDD until the cause is proven."
+description: "Diagnose a defect whose root cause is unknown through reproducible investigation. Use for regressions, crashes, flaky failures, or performance problems. Not for an obvious local correction, feature work, or architecture review."
 ---
 
 # Diagnose Bugs

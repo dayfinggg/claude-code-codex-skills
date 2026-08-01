@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: "Create a compact, secret-safe continuation brief for another Codex task or engineer. Use only when the user explicitly asks to hand off, compact, transfer, pause and resume, or continue substantial work elsewhere. Do not use for normal final reports, short tasks, or automatic status updates."
+description: "Create a compact, secret-safe continuation brief for another Codex task or engineer. Use only when the user asks to hand off, transfer, pause and resume, or continue substantial work elsewhere. Not for routine final reports."
 ---
 
 # Create Handoff

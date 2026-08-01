@@ -1,6 +1,6 @@
 ---
 name: to-tickets
-description: "Break an approved plan, specification, or settled conversation into independently verifiable vertical-slice tasks with acceptance criteria and blocking dependencies. Use when the user asks for tickets, issues, a backlog, or work units for multiple sessions or agents. Do not use before requirements are settled, for simple single-session work, or to publish externally without authorization."
+description: "Break an approved plan, specification, or settled conversation into independently verifiable vertical-slice tasks with acceptance criteria and blocking dependencies. Use for requested tickets, issues, backlogs, or multi-session work units."
 ---
 
 # Create Tickets

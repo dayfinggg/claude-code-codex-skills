@@ -1,6 +1,6 @@
 ---
 name: coding-practices
-description: "Implement or refactor production code across languages with focused scope, boundary safety, compatibility, and evidence-backed verification. Use for ordinary feature, maintenance, refactoring, or known-root-cause fix work when no narrower skill governs the task. Do not use for unknown-cause diagnosis, explicit TDD, dependency-only changes, contract migrations, or broad architecture audits; use the matching specialized skill instead."
+description: "Implement or refactor production code with focused scope, compatibility, and verification. Use for ordinary features, maintenance, refactoring, or known-root-cause fixes when no narrower skill applies. Not for diagnosis, TDD, dependency changes, or migrations."
 ---
 
 # Language-Agnostic Coding Practices

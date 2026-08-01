@@ -1,6 +1,6 @@
 ---
 name: delegate-work
-description: "Delegate bounded work to Codex subagents and coordinate their results with explicit ownership, evidence, and stopping conditions. Use when the user explicitly asks for agents, subagents, delegation, parallel work, or an agent team, or when an applicable repository instruction explicitly requires delegation. Do not use merely because a task is large; keep tightly coupled, sequential, or overlapping work in the main task."
+description: "Delegate bounded independent work to Codex subagents with explicit ownership, evidence, and stopping conditions. Use only when the user or applicable instructions request agents or parallel delegation. Keep sequential, coupled, or overlapping work in the main task."
 ---
 
 # Delegate Work

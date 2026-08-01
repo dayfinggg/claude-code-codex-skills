@@ -1,6 +1,6 @@
 ---
 name: migrate-contracts-safely
-description: "Evolve a live API, database schema, event, stored format, configuration format, or provider contract while old and new states must coexist. Use for staged compatibility or production-data migrations. Do not use for private atomic refactors, greenfield contracts, one-off repairs, readiness review, or destructive execution without explicit authorization."
+description: "Evolve a live API, schema, event, stored format, configuration, or provider contract while old and new states must coexist. Use for staged compatibility or production-data migrations, not private atomic refactors or greenfield contracts."
 ---
 
 # Migrate Contracts Safely

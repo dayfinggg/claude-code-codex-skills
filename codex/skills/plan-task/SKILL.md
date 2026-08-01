@@ -1,6 +1,6 @@
 ---
 name: plan-task
-description: "Create an evidence-grounded, decision-complete implementation plan at the smallest useful level of detail. Use when the user explicitly asks to plan, scope, or break down a complex change, or when unresolved product or architecture decisions block safe implementation. Do not use for obvious one-step work, ordinary explanations, execution of an approved plan, or multi-session ticket creation."
+description: "Create a decision-complete implementation plan from evidence. Use when the user asks to plan or scope complex work, or when unresolved product or architecture decisions block safe implementation. Not for obvious one-step work or executing an approved plan."
 ---
 
 # Plan Task

@@ -1,6 +1,6 @@
 ---
 name: codebase-design
-description: "Design or improve a known module boundary, interface, seam, dependency, or test surface. Use when implementing a new module, restructuring identified coupling, choosing an interface, or improving concrete testability. Do not use for broad architecture discovery, arbitrary file splitting, formatting, or speculative abstraction."
+description: "Design or improve a known module boundary, interface, seam, dependency, or test surface. Use for a selected structural change or new module. Not for broad architecture discovery, formatting, or speculative abstraction."
 ---
 
 # Codebase Design
