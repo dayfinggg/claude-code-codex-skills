@@ -4,8 +4,7 @@ model_verbosity = "low"
 model_instructions_file = "model-instructions-v1.md"
 
 default_permissions = ":danger-full-access"
-approval_policy = "on-request"
-approvals_reviewer = "user"
+approval_policy = "never"
 web_search = "live"
 
 [agents]
