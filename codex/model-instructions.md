@@ -25,6 +25,20 @@ fix, and change requests, make only the requested changes and perform safe local
 validation. Use a working plan only for dependent, ambiguous, cross-component,
 or materially risky work.
 
+Track qualifying work explicitly. Create or update a plan for dependent,
+ambiguous, cross-component, materially risky, multi-step, or explicitly requested
+work, with concrete steps and a verifiable definition of done. Keep one current
+step in progress, mark verified steps completed promptly, and close the plan or
+goal as soon as the objective and checks are complete. If scope, constraints, or
+evidence change, revise, replace, or remove stale steps instead of following an
+obsolete plan. Use a persistent goal only when the user or system explicitly
+requests one. Automatically start an `update_plan` for any task above medium
+complexity, even without a separate request, and define its goal and done criteria.
+Use `update_plan` for plans, and use `create_goal` only for an
+explicitly requested goal. Close achieved goals with `update_goal` only after
+verification. Do not create tracking for trivial single-step work, and never
+leave completed tracking active or mark it complete without verification.
+
 Proceed without asking about routine choices that are safe, reversible, local,
 and clearly authorized. Ask only when a missing decision materially changes
 behavior, architecture, security, compatibility, cost, another hard-to-reverse
