@@ -12,3 +12,5 @@ codex/checks/.eval-tmp/
 codex/.tmp/
 codex/skills/.system/
 codex/installation_id
+codex/.sandbox_migration
+codex/mcp-oauth-locks/
