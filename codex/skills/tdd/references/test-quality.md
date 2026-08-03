@@ -8,4 +8,4 @@ Keep tests deterministic, isolated from execution order, and explicit about time
 
 Treat snapshots as evidence only when a reviewer can determine their semantic meaning. Never weaken assertions, skip failures, or update snapshots merely to obtain green.
 
-Primary references: [Kent Beck's Canon TDD](https://newsletter.kentbeck.com/p/canon-tdd), [Martin Fowler on TDD](https://martinfowler.com/bliki/TestDrivenDevelopment.html), and [Matt Pocock's TDD skill](https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md).
+Primary references: [Martin Fowler on TDD](https://martinfowler.com/bliki/TestDrivenDevelopment.html), [Martin Fowler on test doubles](https://martinfowler.com/bliki/TestDouble.html), [Gerard Meszaros, *xUnit Test Patterns*](https://xunitpatterns.com/), and the project's current official testing-framework, runtime, and integration documentation.

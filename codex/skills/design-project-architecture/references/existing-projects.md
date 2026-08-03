@@ -1,12 +1,10 @@
 # Existing-project evolution
 
-1. Describe the architecture that exists, including accidental dependencies and operational reality. Do not design from the directory tree alone.
-2. Use change history, defect concentration, dependency cycles, coordinated edits, ownership ambiguity, slow tests, deployment coupling, and incident evidence to locate costly boundaries.
-3. Protect current behavior with the narrowest useful characterization, contract, integration, or end-to-end tests before moving responsibility.
-4. Choose one migration seam. Establish the target boundary, route new behavior through it, move one responsibility and its owned data at a time, and validate after every reversible step.
-5. Isolate incompatible legacy or third-party models behind an adapter or anti-corruption boundary. Avoid allowing a poorly structured area to define contracts for cleaner modules.
-6. Support old and new paths only for a defined transition. Identify consumers, migration order, rollback, data reconciliation, observability, and the condition for deleting the old path.
-7. Improve touched and directly blocking code to the target standard. Do not combine architectural migration with unrelated cleanup, broad renaming, or speculative abstraction.
-8. Remove obsolete paths, bridges, flags, dependencies, data, tests, and documentation only after consumers have migrated and evidence shows the old path is unused.
+1. Describe the implemented architecture, including dependency and data graphs, runtime and deployment behavior, operational evidence, and actual team ownership. Do not infer it from folders alone.
+2. Locate a costly boundary through change history, incidents, coordinated releases, failures, slow feedback, owner ambiguity, or a measurable scenario that the current system misses.
+3. Protect current behavior with the narrowest useful characterization, contract, integration, or end-to-end test. Confirm the source of truth, migration and rollback constraints, and accountable owner before moving data or contracts.
+4. Define one seam and one reversible increment. Route new behavior through it, migrate a bounded responsibility and its owned data, measure the selected scenarios, and validate the rollback path before proceeding.
+5. Treat dual writes, compatibility layers, shared stores, and temporary cross-boundary dependencies as transitions. Give each an owner, consistency strategy, observability, reconciliation plan, removal criterion, and date or event for review.
+6. Remove obsolete code, contracts, flags, data, tests, and documentation only after consumers have migrated and evidence shows the old path is unused.
 
-Prefer frequent, small, reversible improvement over a big-bang rewrite. This follows [AWS evolutionary operational guidance](https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/evolve.html) and Microsoft's current [microservices assessment and incremental decomposition guidance](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/microservices-assessment).
+Pause at an irreversible contract, data, security, availability, deployment, or ownership choice when its driver remains unknown. Prefer an instrumented experiment, adapter, or staged migration until it is known. Follow [architecture validation](architecture-validation.md) for evidence and the data/distributed checklist.

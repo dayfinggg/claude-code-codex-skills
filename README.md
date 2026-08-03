@@ -2,7 +2,7 @@
 
 Personal agent instructions, focused skills, and specialist subagents for Claude Code and OpenAI Codex.
 
-The Codex setup contains a compact global policy, five specialist agents, and thirteen focused skills. It uses automatic skill discovery, so no agent or skill file contains a machine-specific installation path.
+The Codex setup contains a compact global policy, five specialist agents, and thirteen focused skills. Codex discovers the available agents and skills at runtime, so the global policy does not repeat their routing rules or contain machine-specific installation paths.
 
 ## Skills
 
@@ -16,11 +16,11 @@ The Codex setup contains a compact global policy, five specialist agents, and th
 | Skill governance | `audit-agent-skills`, `learn-from-history` |
 | Product interface | `design-ui-ux` |
 
-Each skill is invoked only when its trigger contract matches the task, and provides a focused workflow rather than a universal checklist for every request.
+Each skill has a narrow trigger contract and a focused workflow rather than a universal checklist for every request. Explicit implementation work is not redirected into clarification or planning merely because it is large or has several stages.
 
-The skills use progressive reference files so language rules, architecture guidance, planning evidence, design scenarios, and uncommon branches load only when the task needs them. `design-ui-ux` adds complexity-based workflows, public-web search visibility, performance guidance, and guardrails for AI-generated interfaces.
+The skills use progressive reference files so language rules, architecture guidance, planning evidence, design scenarios, and uncommon branches load only when the task needs them. The architecture skill now covers measurable quality scenarios, data and distributed-system decisions, team boundaries, reversible evolution, and proportionate fitness functions. `design-ui-ux` adds task-scaled workflows, design-system governance, platform fit, WCAG 2.2, public-web search visibility, performance guidance, and separate controls for generated interfaces and AI product features.
 
-This structure follows current [OpenAI GPT-5.6 model guidance](https://developers.openai.com/api/docs/guides/latest-model): state an instruction once, expose only task-relevant tools and guidance, and validate prompt reductions on representative work. OpenAI reports a directional internal sample in which leaner coding-agent prompts improved evaluation scores by about 10–15% while reducing total tokens by 41–66% and cost by 33–67%; these ranges are not treated as guarantees for this catalog.
+This structure follows the current [OpenAI GPT-5.6 prompt guidance](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6): state an instruction once, define the outcome and evidence bar, avoid repeating tool descriptions, and validate prompt reductions on representative work. OpenAI reports a directional internal sample in which leaner coding-agent prompts improved evaluation scores by about 10–15% while reducing total tokens by 41–66% and cost by 33–67%. These ranges are not guarantees for this catalog.
 
 ## Agents
 
@@ -32,11 +32,15 @@ This structure follows current [OpenAI GPT-5.6 model guidance](https://developer
 | — | `quality_reviewer` | Independent correctness, security, compatibility, and quality review |
 | — | `skill_curator` | Skill safety, precision, trigger quality, and evidence-based evolution |
 
-GPT-5.6 Sol remains the orchestrator. GPT-5.6 Luna Max handles routine execution, while GPT-5.6 Terra Max handles complex execution, research, independent review, and skill curation. The orchestrator keeps requirements, task state, integration, and final accountability.
+GPT-5.6 Sol is the primary model in the distributed configuration. GPT-5.6 Terra Max is the compatible default for specialist agents, including routine execution, while the individual agent files keep their own bounded responsibilities. Agent selection remains a runtime concern rather than a duplicated rule in `model-instructions.md`.
 
 ## Behavior
 
-The instructions prioritize minimal sufficient solutions, scope control, repository evidence, complete production code without placeholders or explanatory comments, and verification proportional to risk. Commands that build artifacts, start servers or watchers, install dependencies, run migrations, or perform deployment and other persistent operations require explicit user confirmation. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. Reports lead with the outcome and observed evidence without promotional language. Prose is the default, numbered lists are reserved for genuine sequences or rankings, and headings or tables appear only when they improve a longer answer. Intermediate narration is suppressed unless the work needs a blocking decision.
+The instructions prioritize a minimal complete solution, controlled scope, repository evidence, honest uncertainty, production code without placeholders, and verification proportional to risk. Necessary safe local actions run without another confirmation. A request authorizes the external writes it names, while unrequested destructive, privileged, costly, or material external actions still require permission. The distributed Codex profile intentionally keeps full filesystem access and disables runtime approval prompts; the behavioral permission boundary still applies, but the runtime does not enforce it. Use this profile only on a trusted machine and project. Live web search is enabled.
+
+Ordinary answers use connected, finished prose in the user's language. They prefer familiar local words over avoidable English borrowings and jargon, preserve exact technical identifiers, and avoid promotional conclusions. Unordered and dash-led Markdown lists are not used. Numbered lists remain available for real procedures, rankings, and stable referenced items. Tables carry comparisons and repeated-field summaries. Engineering completion reports contain two short explanatory paragraphs followed by compact tables for changes, commands and observed checks, and sources with the rule taken from each one.
+
+The writing contract combines [Google's paragraph structure](https://developers.google.com/style/paragraph-structure), [Google's heading guidance](https://developers.google.com/style/headings), [Microsoft's simple and human voice](https://learn.microsoft.com/en-us/style-guide/brand-voice-above-all-simple-human), [GOV.UK clear-language guidance](https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-language/), [Gramota.ru punctuation rules](https://gramota.ru/biblioteka/spravochniki/pravila-russkoj-orfografii-i-punktuacii/tochka-s-zapyatoj), and the official [Ukrainian orthography](https://mon.gov.ua/osvita-2/zagalna-serednya-osvita/ukrainskiy-pravopis). The catalog's ban on unordered report lists is a deliberate user-facing format decision, not a claim that those sources prohibit bullets in every kind of document.
 
 On Claude Code the rules live in two places, split by what each channel does best. `CLAUDE.md` holds the working rules: scope, evidence, change safety, implementation quality, verification. The `Engineering voice` output style holds everything about how Claude talks: turn cadence, language, response shape, formatting, and the report tables. An output style edits the system prompt, so it is the stronger place for behavior that has to hold on every turn. On Codex a single `model-instructions.md` carries all of it.
 
@@ -112,7 +116,7 @@ Copy-Item -Recurse -Force .\codex\agents, .\codex\skills "$HOME\.codex\"
 Copy-Item -Force .\codex\model-instructions.md, .\codex\config.toml "$HOME\.codex\"
 ```
 
-Back up an existing `config.toml` before a manual installation. The distributed configuration is portable and intentionally replaces local model, permission, agent, web-search, and documentation-server defaults:
+Back up an existing `config.toml` before a manual installation. The distributed configuration intentionally replaces local model, permission, agent, web-search, and documentation-server defaults. It enables `danger-full-access` with approval prompts disabled as an explicit owner preference. Choose a sandboxed local profile instead when that trust assumption does not hold:
 
 ```toml
 model_instructions_file = "model-instructions.md"

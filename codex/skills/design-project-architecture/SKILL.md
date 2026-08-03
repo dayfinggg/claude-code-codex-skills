@@ -1,18 +1,34 @@
 ---
 name: design-project-architecture
-description: Design, assess, or evolve the structure and architecture of new and existing software projects. Use when creating a project, adding or extracting a subsystem, reorganizing modules or directories, clarifying ownership and dependency boundaries, reducing architectural debt, or making components easier to understand, operate, replace, remove, test, and extend; skip isolated changes that do not affect structure or boundaries.
+description: Assess, design, or evolve module, data, runtime, deployment, or team-ownership boundaries. Use when those boundaries or responsibility contracts are the task; skip isolated code changes, folder cleanup, and refactors that leave boundaries intact.
 ---
 
 # Design Project Architecture
 
-1. Establish the system scope, users, business capabilities, constraints, deployment environment, team ownership, expected change, and measurable quality-attribute scenarios. Read [architecture principles](references/architecture-principles.md).
-2. For an existing project, map entry points, modules, runtime and data flows, public contracts, ownership, dependency direction, cycles, build units, deployment units, tests, and operational boundaries before proposing a target. For a new project, identify the minimum capabilities and irreversible decisions first.
-3. Partition by cohesive responsibility and information hidden from other modules. Give mutable state, business rules, external integrations, and operational concerns explicit owners. Define narrow contracts and permitted dependency directions; prevent cycles, cross-module internals access, shared mutable state, and unowned `common`, `shared`, or `utils` dumping grounds.
-4. Choose the simplest topology that satisfies the drivers. Prefer in-process modules until independent deployment, scaling, isolation, availability, data ownership, regulatory, or team-autonomy requirements justify a distributed boundary. Introduce layers, ports, events, repositories, services, or patterns only for a named force and verified trade-off.
-5. For new systems, follow [new-project design](references/new-projects.md). For legacy or structurally weak systems, follow [existing-project evolution](references/existing-projects.md); preserve behavior while creating better local precedents through small, reversible migrations instead of a big-bang rewrite.
-6. Make each capability discoverable from its entry point, testable through a stable boundary, replaceable behind an owned contract, extensible without modifying unrelated modules, and removable with a bounded dependency and data cleanup path. Keep configuration and dependency assembly explicit at composition roots.
-7. Record only architecture information that helps future decisions: a concise module map, dependency rules, ownership, significant runtime or deployment views, and ADRs for consequential choices. Keep documentation beside the system and update it with the change.
-8. Use `$domain-modeling` for business language, invariants, and bounded contexts; `$production-code-quality` for language-level implementation; `$tdd` for observable behavior; and `$spec-to-tasks` when migration spans dependent stages. Do not duplicate their workflows.
-9. Apply [architecture validation](references/architecture-validation.md), run relevant project checks, and verify affected behavior and operational paths.
+Choose one mode before proposing changes.
 
-Finish when responsibilities, ownership, contracts, dependencies, and change paths are understandable and enforced; the chosen structure is justified by explicit drivers; and remaining architectural debt or unverified assumptions are reported.
+- **Assessment:** map current boundaries, evidence, risks, and gaps against stated drivers.
+- **Design:** compare viable boundary options and define the smallest target that satisfies the drivers.
+- **Evolution:** preserve behavior while moving toward a target through reversible, observable steps.
+
+## Establish the decision
+
+1. State the system scope, stakeholders, constraints, affected boundary types, and decision owner. Turn the relevant concerns into two to five measurable quality-attribute scenarios: source and stimulus, environment, affected asset, required response, metric, and acceptance threshold. Read [architecture principles](references/architecture-principles.md) for the template.
+2. Map only the views needed to answer the decision: module dependencies and contracts; data ownership and flows; runtime calls and failure paths; deployment and operational topology; and team ownership and interactions. For an existing system, use [existing-project evolution](references/existing-projects.md). For a new one, use [new-project design](references/new-projects.md).
+3. Stop before finalizing an irreversible contract, data, security, availability, deployment, or ownership decision if its drivers are unknown. Record the missing business, regulatory, load, failure-tolerance, rollback, operating-capacity, or accountable-owner information; present reversible options or experiments instead of selecting a target.
+
+## Shape boundaries from drivers
+
+Give each responsibility and state transition an explicit owner and contract. Choose cohesion, information hiding, dependency direction, integration style, and operational scope by the change, consistency, performance, security, availability, cost, and team-flow drivers.
+
+Treat dependency cycles, shared mutable state, replacement seams, and deployment splits as trade-offs rather than universal defects or goals. Retain a cycle or shared state only with a named benefit, a bounded scope, an owner, an enforcement mechanism, and an exit condition. Add an adapter or replacement seam only for a credible source of change, isolation, test, or migration value. Split runtime or deployment units only when selected drivers outweigh added latency, failure, observability, release, and consistency costs.
+
+For every data or distributed boundary, resolve or explicitly mark out of scope: source of truth, ownership, schema evolution, transaction and consistency model, derived data, idempotency, retries, reconciliation, retention, and rollback. Account for a team's cognitive load, operational burden, and interaction modes. Time-box collaboration for discovery, define service contracts and support expectations for X-as-a-Service, and define an objective and exit condition for facilitation.
+
+## Verify proportionately
+
+Turn each important scenario into the smallest credible fitness function. Specify its signal, threshold, cadence, owner, and failure action. Use a reviewable manual check for low-risk one-off decisions; use automated import, contract, schema, or deployment checks for recurring risks; use representative load, resilience, security, restore, or reconciliation checks and production signals when the consequence warrants them. Read [architecture validation](references/architecture-validation.md) for examples and evidence expectations.
+
+Record the resulting boundary map, selected scenarios, assumptions, trade-offs, owners, and consequential decisions. Use diagrams and ADRs only when they resolve a stakeholder question. Consult [sources](references/sources.md) for primary guidance or contested choices.
+
+Finish when the applicable boundaries are understandable, the selected option is justified by measurable drivers, the resulting risks have owners and evidence, and unverified assumptions or deferred decisions are explicit.

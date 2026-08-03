@@ -1,57 +1,56 @@
 # Sources
 
-Reviewed 2026-08-03. Prefer the current version of each living standard. Book-derived notes below use official author or publisher material and legally available excerpts; they do not imply access to closed full texts.
+Reviewed 2026-08-03. Prefer the current version of a living standard. Use these links selectively for the decision at hand rather than treating them as a universal design recipe.
 
-## Platform, accessibility, and interaction
+## Platform guidance and design systems
 
-- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) — platform hierarchy, harmony, consistency, components, inputs, and accessibility.
-- [Apple HIG: Layout](https://developer.apple.com/design/human-interface-guidelines/layout) — adaptable hierarchy, safe areas, text scaling, localization, RTL, and device variation.
-- [Apple HIG: Typography](https://developer.apple.com/design/human-interface-guidelines/typography) — semantic text styles, legibility, hierarchy, Dynamic Type, and layout adaptation.
-- [W3C: Web Content Accessibility Guidelines 2.2](https://www.w3.org/TR/WCAG22/) — normative accessibility success criteria.
-- [W3C WAI: Page structure and headings](https://www.w3.org/WAI/tutorials/page-structure/headings/) — semantic heading hierarchy and assistive-technology navigation.
-- [W3C: ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/) — accessible interaction and keyboard patterns for composite widgets.
-- [Material Design 3: Foundations](https://m3.material.io/foundations) — adaptive color, typography, layout, motion, and interaction foundations.
-- [Microsoft Fluent 2: Design principles](https://fluent2.microsoft.design/design-principles) — platform familiarity, adaptability, and native patterns.
-- [Adobe Spectrum: Principles](https://spectrum.adobe.com/page/principles/) — accessibility, honesty, respect for attention, contribution, and coherence.
-- [GOV.UK Government Design Principles](https://www.gov.uk/guidance/government-design-principles) — start with user needs, do less, use data, simplify, iterate, include everyone, and be consistent rather than uniform.
+- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) — Apple’s current platform guidance for hierarchy, harmony, consistency, components, inputs, and accessibility.
+- [Apple HIG: Layout](https://developer.apple.com/design/human-interface-guidelines/layout) and [Typography](https://developer.apple.com/design/human-interface-guidelines/typography) — adaptable hierarchy, safe areas, Dynamic Type, localization, RTL, and device variation.
+- [WWDC25: Get to know the new design system](https://developer.apple.com/videos/play/wwdc2025/356/) — Apple’s 2025 discussion of visual language, structure, components, and continuity across devices, screen sizes, and input modes.
+- [Figma: Design systems 101](https://www.figma.com/blog/design-systems-101-what-is-a-design-system/) — first-party overview that distinguishes a component library from a pattern library.
+- [Figma: Design systems 102](https://www.figma.com/blog/design-systems-102-how-to-build-your-design-system/) — first-party guidance on goals, audits, principles, tokens, design-to-code mappings, and system evolution.
+- [Material Design 3](https://m3.material.io/) and [Material states](https://m3.material.io/foundations/interaction/states/overview) — Google’s current adaptive design system, components, tokens, and interaction-state guidance.
+- [Fluent 2 design principles](https://fluent2.microsoft.design/design-principles) and [Start designing](https://fluent2.microsoft.design/get-started/design) — Microsoft’s platform-fit principles, design/code-aligned kits, source-of-truth styling variables, and component organization.
+- [Carbon Product Development Lifecycle](https://carbondesignsystem.com/contributing/product-development-lifecycle/) and [Component checklist](https://carbondesignsystem.com/contributing/component-checklist/) — evidence-backed contribution phases, asset definitions, lifecycle status, review channels, component quality gates, and a component-versus-pattern distinction.
+- [GOV.UK Design System contribution criteria](https://design-system.service.gov.uk/community/contribution-criteria/) and [development process](https://design-system.service.gov.uk/community/develop-a-component-or-pattern/) — proposal evidence, usability, consistency, versatility, accessibility testing, review, and publication criteria.
+- [DTCG Design Tokens Technical Reports 2025.10](https://www.designtokens.org/tr/2025.10/) and the [Format Module](https://www.designtokens.org/tr/2025.10/format/) — the stable DTCG token-exchange specification. It is a Community Group report, not a W3C Recommendation; use it for interoperable token data, not as a substitute for governance.
 
-## Design systems and AI-assisted design
+## Accessibility and interaction
 
-- [Figma: Design system 102](https://www.figma.com/blog/design-systems-102-how-to-build-your-design-system/) — accessible foundations, tokens, reusable components, and shared language.
-- [Figma: Add guidelines to Figma Make](https://help.figma.com/hc/en-us/articles/33665861260823-Add-guidelines-to-Figma-Make) — concise high-priority guidance, real context, and plan-first iteration.
-- [Figma: Design systems and AI](https://www.figma.com/blog/design-systems-ai-mcp/) — tokens, annotations, component reuse, and design-code context as controls against generic output and drift.
-- [Figma: Bringing Figma into the development workflow](https://www.figma.com/blog/introducing-figma-mcp-server/) — structured design context and code mappings compared with screenshot-only generation.
-- [Apple Machine Learning Research: Improving User Interface Generation Models from Designer Feedback](https://machinelearning.apple.com/research/designer-feedback) — evidence for concrete designer annotations, sketches, and direct edits over simple preference ratings.
-- [Generative AI in UX Design and Research](https://villemakela.me/wp-content/uploads/2024/05/takaffoli-et-al.-2024-genai-in-ux-design-and-research.pdf) — DIS 2024 interviews on using generative AI for drafts and ideation while retaining research and evaluation.
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/) — normative web accessibility success criteria, including Focus Not Obscured, Dragging Movements, Target Size (Minimum), Redundant Entry, and Accessible Authentication.
+- [What’s new in WCAG 2.2](https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/) — WAI summary of the WCAG 2.2 additions and conformance levels.
+- [WAI-ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/) and its [keyboard interface guidance](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/) — patterns and keyboard conventions for widgets that require more than native HTML.
+- [APG modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) and [grid pattern](https://www.w3.org/WAI/ARIA/apg/patterns/grid/) — concrete focus-management and keyboard-interaction guidance for common complex widgets.
 
-## Content, lists, and visual structure
+## AI-assisted and AI product experiences
 
-- [Nielsen Norman Group: F-shaped pattern](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) — evidence about scanning behavior, content hierarchy, and the limits of treating the F-pattern as a universal layout rule.
-- [Nielsen Norman Group: Anatomy of a list entry](https://www.nngroup.com/articles/list-entries/) — consistent information placement for scanning and comparison across repeated items.
-- [Google developer style: Headings and titles](https://developers.google.com/style/headings) — descriptive, task-focused, hierarchical headings and simple punctuation.
-- [Linear: A calmer interface for a product in motion](https://linear.app/now/behind-the-latest-design-refresh) — quiet hierarchy, reduced visual noise, tokens, comparison, and agents used for exploration rather than taste replacement.
+- [Fluent 2 Responsible AI](https://fluent2.microsoft.design/responsible-AI) — first-party UI guidance for transparency, appropriate trust, user agency, and recovery in AI-powered experiences.
+- [Figma: Design systems and AI](https://www.figma.com/blog/design-systems-ai-mcp/) — first-party discussion of structured tokens, components, annotations, and code context as controls against design drift in AI-assisted workflows.
+- [Apple ML Research: Improving User Interface Generation Models from Designer Feedback](https://machinelearning.apple.com/research/designer-feedback) — research on concrete designer annotations, sketches, and direct edits as useful UI-generation feedback.
 
-## Search visibility and performance
+## Public-web discovery and performance
 
-- [Google Search Central: SEO guide for web developers](https://developers.google.com/search/docs/fundamentals/get-started-developers) — rendered DOM content, semantic HTML, titles, links, sitemaps, and inspection.
-- [Google Search Central: SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide) — people-oriented page titles, snippets, organization, links, images, and common SEO myths.
-- [Google Search Central: JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics) — rendering, crawlable routes and links, canonical URLs, and client-side content risks.
-- [Google Search Central: Creating helpful, reliable, people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) — user value and evidence over search-engine-first copy.
-- [web.dev: Web Vitals](https://web.dev/articles/vitals) — current Core Web Vitals definitions, field thresholds, and measurement boundaries.
-- [web.dev: Optimize Largest Contentful Paint](https://web.dev/articles/optimize-lcp), [Optimize Cumulative Layout Shift](https://web.dev/articles/optimize-cls), and [Optimize Interaction to Next Paint](https://web.dev/articles/optimize-inp) — implementation guidance for loading, stability, and responsiveness.
+- [Google Search Central: SEO guide for web developers](https://developers.google.com/search/docs/fundamentals/get-started-developers) — rendered content, semantic HTML, titles, crawlable links, and implementation boundaries.
+- [Google Search Central: JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics) and [people-first content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) — JavaScript rendering constraints and user-value expectations.
+- [web.dev: Web Vitals](https://web.dev/articles/vitals) and [how Core Web Vitals thresholds were defined](https://web.dev/articles/defining-core-web-vitals-thresholds) — current LCP, INP, and CLS measurement framing, field-data thresholds, and measurement boundaries.
 
-## Open-source agent guidance
+## Books and author material
 
-- [Anthropic: frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md) — Apache-2.0 skill emphasizing explicit direction, product-specific choices, usable content, and avoidance of generic generated aesthetics. Repository popularity is discovery evidence, not UX validation.
-- [Vercel: Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines) — MIT-licensed implementation and review checks for links, forms, focus, states, content, performance, typography, and polish.
-- [wshobson/agents: UI design](https://github.com/wshobson/agents/tree/main/plugins/ui-design) — MIT-licensed examples of primitive, semantic, and component token layering. Treat stack-specific examples as optional.
-- [ui-craft](https://github.com/educlopez/ui-craft) — MIT-licensed discovery and constraint-management patterns. Do not inherit its aesthetic presets as universal defaults.
+The entries in this section are limited to official author or publisher pages and publicly available bibliographic descriptions. They establish authorship, edition, and stated scope; they do **not** claim that any closed full text was read in full.
 
-## Books and author materials
+- Jenifer Tidwell, Charles Brewer, and Aynne Valencia, [Designing Interfaces, 3rd Edition](https://www.oreilly.com/library/view/designing-interfaces-3rd/9781492051954/) — O’Reilly’s published outline for screen-based web and mobile interface patterns.
+- Alan Cooper, Robert Reimann, David Cronin, Christopher Noessel, Jason Csizmadi, and Doug LeMoine, [About Face: The Essentials of Interaction Design, 4th Edition](https://www.wiley-vch.de/en?isbn=9781118766576&option=com_eshop&view=product) — Wiley’s publisher information for the fourth edition and its interaction-design scope.
+- Adham Dannaway, [Practical UI](https://www.practical-ui.com/) — the author’s public description, preview, and stated focus on logic-driven UI design and a design-system starter kit.
+- Don Norman, [The Design of Everyday Things](https://jnd.org/books/the-design-of-everyday-things-revised-and-expanded-edition/) and the [MIT Press edition](https://mitpress.mit.edu/9780262525671/the-design-of-everyday-things/) — author and publisher material on affordances, signifiers, mappings, constraints, feedback, and understandable system state.
+- Steve Krug, [Don’t Make Me Think, Revisited](https://www.pearson.com/en-us/subject-catalog/p/don-t-make-me-think-revisited-a-common-sense-approach-to-web-usability/P200000000385/9780321965516) — publisher information on the revised web-usability edition.
+- Abby Covert, [How to Make Sense of Any Mess](https://www.howtomakesenseofanymess.com/) — the author’s legally available online edition on information architecture, shared language, intent, structure, and adjustment.
+- Erika Hall, [Just Enough Research](https://abookapart.com/products/just-enough-research.html) — publisher and author information for the second edition’s research methods and scope.
+- Luke Wroblewski, [Web Form Design](https://rosenfeldmedia.com/books/web-form-design/) — publisher information describing research-led form design for checkout, registration, and data entry.
 
-- Don Norman, [The Design of Everyday Things](https://jnd.org/books/the-design-of-everyday-things-revised-and-expanded-edition/) and [MIT Press edition](https://mitpress.mit.edu/9780262525671/the-design-of-everyday-things/) — discoverable actions, signifiers, mappings, constraints, feedback, and understandable system state.
-- Steve Krug, [Don't Make Me Think, Revisited](https://www.pearson.com/en-us/subject-catalog/p/don-t-make-me-think-revisited-a-common-sense-approach-to-web-usability/P200000000385/9780321965516) — scannable navigation and information design, reduced copy, and focused usability testing.
-- Abby Covert, [How to Make Sense of Any Mess](https://www.howtomakesenseofanymess.com/) — legally available web edition on naming intent, understanding content and reality, choosing structure, testing, and iteration.
-- Erika Hall, [Just Enough Research](https://abookapart.com/products/just-enough-research.html) — match research effort to the consequential question instead of substituting stylistic assumptions for evidence.
-- Luke Wroblewski, [Web Form Design](https://rosenfeldmedia.com/books/web-form-design/) and [author interview](https://rosenfeldmedia.com/luke-wroblewski-on-the-most-common-web-form-mistake/) — forms as a path to user goals, asking only necessary questions, and explaining unexpected fields.
-- Adam Wathan and Steve Schoger, [Refactoring UI](https://refactoringui.com/) — public examples of using spacing, surfaces, and justified elevation before adding borders. Treat this as a contextual heuristic, not a universal ban.
+## Recorded talks
+
+The supplied YouTube links were checked against their public title and creator metadata on 2026-08-03. Treat talks as practitioner perspective and historical context, not as normative standards.
+
+- Don Norman, [The three ways that good design makes you happy](https://www.youtube.com/watch?v=RlQEoJaLQRA) — TED talk on emotional design.
+- Luke Wroblewski, [Mobile First — 5/27/2010](https://www.youtube.com/watch?v=NjE_Or4VIlU) — historical talk; do not treat its title as a mandate to start every design at a phone width.
+- Brad Frost, [Is Atomic Design Dead? — Hatch Conference Berlin 2023](https://www.youtube.com/watch?v=PK_PICNTgAg) — contemporary practitioner discussion of design-system terminology and evolution.

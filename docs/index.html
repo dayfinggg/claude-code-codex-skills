@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Claude Code & Codex Skills — focused workflows for reliable agent work</title>
-  <meta name="description" content="A compact, evidence-led catalog of Claude Code and OpenAI Codex skills for planning, coding, review, research, UI/UX, and production verification.">
+  <title>Claude Code & Codex Skills — focused, evidence-led agent workflows</title>
+  <meta name="description" content="Compact instructions and focused skills for Claude Code and OpenAI Codex: controlled scope, current engineering guidance, clean UI/UX, and observed verification.">
   <link rel="canonical" href="https://dayfinggg.github.io/claude-code-codex-skills/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Claude Code & Codex Skills">
-  <meta property="og:description" content="Focused agent workflows, clear operating rules, and verification that stays tied to evidence.">
+  <meta property="og:description" content="Compact agent instructions, focused engineering and design skills, and verification tied to observed evidence.">
   <meta property="og:url" content="https://dayfinggg.github.io/claude-code-codex-skills/">
   <meta name="theme-color" content="#f4f1e8">
   <style>
@@ -180,6 +180,7 @@
       font-weight: 760;
       line-height: 0.94;
       letter-spacing: -0.067em;
+      text-wrap: balance;
     }
 
     .hero-copy {
@@ -188,6 +189,7 @@
       color: var(--muted);
       font-size: clamp(1.1rem, 1.8vw, 1.35rem);
       line-height: 1.5;
+      text-wrap: pretty;
     }
 
     .actions {
@@ -288,6 +290,7 @@
       font-weight: 740;
       line-height: 1;
       letter-spacing: -0.052em;
+      text-wrap: balance;
     }
 
     .section-intro {
@@ -295,6 +298,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 19px;
+      text-wrap: pretty;
     }
 
     .principles {
@@ -368,6 +372,7 @@
       background: color-mix(in srgb, var(--blue) 8%, transparent);
       color: var(--blue-dark);
       font: 12px/1.5 var(--mono);
+      overflow-wrap: anywhere;
     }
 
     .design-band {
@@ -563,8 +568,8 @@
     <section class="hero shell" aria-labelledby="hero-title">
       <div>
         <p class="eyebrow">Claude Code + OpenAI Codex</p>
-        <h1 id="hero-title">Better defaults for coding agents.</h1>
-        <p class="hero-copy">A compact catalog of focused workflows and operating rules. Agents inspect the real project, make the smallest complete change, and report evidence instead of confidence.</p>
+        <h1 id="hero-title">Coding agents that know what done means.</h1>
+        <p class="hero-copy">Compact instructions and focused skills for Claude Code and Codex. They keep the task bounded, ground decisions in the real project, and tie completion to checks that actually ran.</p>
         <div class="actions">
           <a class="button button-primary" href="#install">Install the catalog <span aria-hidden="true">↓</span></a>
           <a class="button" href="https://github.com/dayfinggg/claude-code-codex-skills">Browse the repository <span aria-hidden="true">↗</span></a>
@@ -575,10 +580,10 @@
         <p class="runbook-label">Default execution flow</p>
         <ol>
           <li><div><strong>Inspect</strong><span>Read the nearest rules and current project state.</span></div></li>
-          <li><div><strong>Decide</strong><span>Choose one focused workflow and a verifiable outcome.</span></div></li>
+          <li><div><strong>Decide</strong><span>Resolve only the uncertainty that can change the result.</span></div></li>
           <li><div><strong>Change</strong><span>Preserve user work and keep the implementation bounded.</span></div></li>
           <li><div><strong>Verify</strong><span>Run the narrowest useful checks, then broaden by risk.</span></div></li>
-          <li><div><strong>Report</strong><span>State the result, evidence, caveats, and next action.</span></div></li>
+          <li><div><strong>Report</strong><span>Explain the result in prose and put technical evidence in tables.</span></div></li>
         </ol>
       </aside>
     </section>
@@ -588,7 +593,7 @@
         <p class="kicker">Operating method</p>
         <div>
           <h2 id="method-title">Less ceremony. More proof.</h2>
-          <p class="section-intro">The catalog does not add a universal checklist to every task. Each skill activates only for the work it owns and keeps completion tied to observable evidence.</p>
+          <p class="section-intro">The catalog avoids a universal process for every request. Each skill has a narrow trigger, loads deeper guidance only when needed, and keeps completion tied to observable evidence.</p>
         </div>
       </div>
 
@@ -611,7 +616,7 @@
         <article class="principle">
           <span class="principle-number">04</span>
           <h3>Human reports</h3>
-          <p>Final answers read as connected prose: the outcome comes first, each paragraph develops one topic, and evidence follows in a logical order. Lists remain an exception for real procedures or independently checkable items, not a default report format.</p>
+          <p>Ordinary answers use connected paragraphs, not note-like bullet lists. Engineering reports explain the outcome and approach in two short paragraphs, then place changes, commands, checks, and sources in compact tables.</p>
         </article>
       </div>
     </section>
@@ -628,21 +633,21 @@
       <div class="catalog">
         <article class="catalog-group">
           <h3>Specify and plan</h3>
-          <p>Resolve consequential ambiguity and turn an approved outcome into dependent, verifiable implementation work.</p>
+          <p>Clarify only decisions that evidence cannot resolve. Build a task plan when planning is requested, without diverting an already authorized implementation.</p>
           <ul class="skill-list">
             <li>clarify-and-specify</li><li>spec-to-tasks</li>
           </ul>
         </article>
         <article class="catalog-group">
           <h3>Model and structure</h3>
-          <p>Clarify domain language, ownership, boundaries, dependencies, and the smallest architecture that satisfies real system forces.</p>
+          <p>Clarify business meaning and design module, data, runtime, deployment, and team boundaries from measurable quality and change drivers.</p>
           <ul class="skill-list">
             <li>design-project-architecture</li><li>domain-modeling</li>
           </ul>
         </article>
         <article class="catalog-group">
           <h3>Build and verify</h3>
-          <p>Find root causes, implement approved changes, test observable behavior, and review retained code against production standards.</p>
+          <p>Separate causes from symptoms, implement approved behavior, use test-first work only when required, and review concrete changes against relevant production risks.</p>
           <ul class="skill-list">
             <li>diagnose-root-cause</li><li>production-code-quality</li><li>tdd</li><li>implement-and-verify</li><li>review-changes</li>
           </ul>
@@ -663,28 +668,28 @@
           <p class="kicker">Codex design-ui-ux</p>
           <div>
             <h2 id="design-title">Designed for a task, not generated for a screenshot.</h2>
-            <p class="section-intro">The UI/UX skill scales from a single setting to role-based workspaces. It preserves platform conventions, real content, accessibility, and public-web discoverability without turning every surface into cards.</p>
+            <p class="section-intro">The UI/UX skill scales from a single setting to a governed design system. It starts with user evidence and platform behavior, preserves accessibility and search visibility where they apply, and rejects decoration without a product reason.</p>
           </div>
         </div>
 
         <div class="design-layout">
-          <p class="design-quote">Clear hierarchy. Real states. Fewer, stronger choices.</p>
+          <p class="design-quote">Clear hierarchy. Real states. Decisions with an owner.</p>
           <div class="design-rules">
             <div class="design-rule">
+              <strong>Evidence comes before style</strong>
+              <p>Product needs and real content lead. Platform guidance and the local design system then constrain layout, interaction, language, and visual expression.</p>
+            </div>
+            <div class="design-rule">
               <strong>Complexity changes the process</strong>
-              <p>Simple views need a clear task and feedback. Complex products also need information architecture, roles, permissions, data responsibilities, and recovery.</p>
+              <p>A local view needs a clear task and feedback. A complex product also needs roles, permissions, data responsibility, recovery, and complete state coverage.</p>
             </div>
             <div class="design-rule">
-              <strong>Containers must carry meaning</strong>
-              <p>Cards are reserved for self-contained objects or interaction boundaries. Tables, lists, canvases, timelines, and plain sections stay available.</p>
+              <strong>A design system needs governance</strong>
+              <p>Tokens and components need an owner, evidence, review, release notes, usage guidance, and a migration path. A component library alone is not a system.</p>
             </div>
             <div class="design-rule">
-              <strong>SEO has a boundary</strong>
-              <p>Search guidance applies only to public pages intended for discovery. Private product screens stay optimized for orientation and action.</p>
-            </div>
-            <div class="design-rule">
-              <strong>Generated UI remains a draft</strong>
-              <p>Structured design context, real content, targeted feedback, rendered verification, and human judgment decide release readiness.</p>
+              <strong>Generated UI remains untrusted</strong>
+              <p>Real data, semantics, states, accessibility, runtime behavior, and human review decide release readiness. A polished screenshot proves none of them.</p>
             </div>
           </div>
         </div>
@@ -696,18 +701,18 @@
         <p class="kicker">Installation</p>
         <div>
           <h2 id="install-title">Start with the files you need.</h2>
-          <p class="section-intro">Clone the repository, copy the matching catalog, and restart the application. Keep machine-specific configuration separate.</p>
+          <p class="section-intro">Clone the repository, back up any existing configuration, copy the matching catalog, and restart the application. The Codex template applies portable model, permission, agent, web, and documentation defaults.</p>
         </div>
       </div>
 
       <div class="install-grid">
         <article class="install-option">
           <h3>OpenAI Codex</h3>
-          <p>Install the operating policy, specialist agents, and the 13-skill Codex catalog.</p>
+          <p>Install the operating policy, specialist agents, and the 13-skill catalog. The included config enables full filesystem access and disables runtime approval prompts, so use it only on a trusted machine and project.</p>
           <pre><code>git clone https://github.com/dayfinggg/claude-code-codex-skills.git
 cd claude-code-codex-skills
 cp -R codex/agents codex/skills "$HOME/.codex/"
-cp codex/model-instructions.md "$HOME/.codex/"</code></pre>
+cp codex/model-instructions.md codex/config.toml "$HOME/.codex/"</code></pre>
         </article>
         <article class="install-option">
           <h3>Claude Code</h3>

@@ -1,27 +1,23 @@
 # Architecture principles
 
-## Drivers and trade-offs
+## Drivers and scenarios
 
-Treat architecture as a response to stakeholder concerns, constraints, and quality attributes rather than a preferred diagram or pattern. Express important attributes as observable scenarios covering a stimulus, environment, response, and measurable outcome. Evaluate security, reliability, modifiability, performance, operability, usability, cost, and delivery independence only to the degree demanded by the system.
+Treat architecture as a response to stakeholder concerns and constraints, not a preferred pattern or diagram. Prioritize only qualities that can change the boundary decision. Write each as:
 
-Choose and document trade-offs explicitly. A structure that improves independent change can increase runtime calls, operational burden, latency, and consistency work. Require evidence before paying those costs.
+`<source> causes <stimulus> in <environment>; <asset> responds <response> measured by <metric> at <threshold>.`
 
-## Boundaries and responsibilities
+For example: `During a weekday traffic spike of 2,000 requests/minute, checkout completes with p95 latency at or below 300 ms and errors below 0.1%.` Name the scenario owner, evidence source, and time horizon. A scenario without a threshold is a concern to clarify, not a decision criterion.
 
-Group behavior that changes for the same reason. Hide volatile decisions, data representation, infrastructure details, and third-party semantics behind an owner-controlled boundary. A module must have a purpose that can be stated without listing its files, an explicit public contract, and a clear policy for allowed callers and dependencies.
+## Boundary choices
 
-Aim for high cohesion and low coupling. Prefer acyclic dependencies toward stable policy. Do not infer good boundaries from folders alone: verify compile-time imports, runtime calls, shared data, coordinated releases, and team ownership.
+Group behavior and data that need the same owner or change cadence, while hiding volatile implementation, representation, and third-party semantics behind an owned contract. Test a proposed boundary against code imports, runtime calls, shared data, coordinated releases, operational dependencies, and the teams that must change it.
 
-## Topology and communication
+Choose dependency direction, cycle tolerance, state sharing, replacement seams, and deployment topology according to the scenarios. Prefer a simpler option when it meets the drivers. Accept added separation only when its benefit exceeds its communication, consistency, tooling, and cognitive-load cost. State the reason, safeguard, owner, and removal condition for each exceptional dependency or temporary bridge.
 
-Modularity is independent of deployment style. A modular monolith can provide clear boundaries without distributed-system cost. Split deployment units only when a concrete quality attribute requires independent lifecycle, scaling, fault isolation, security isolation, data ownership, or team autonomy.
+## Teams and communication
 
-Keep synchronous and asynchronous interactions intentional. Assign ownership for state transitions, failure handling, consistency, retries, timeouts, observability, versioning, and removal.
+Give a stable team enough ownership to build, test, deploy, and operate its responsibility without transferring hidden work. Measure cognitive load by the domains, tools, services, operational duties, and dependencies the team must understand. Reduce unnecessary load before dividing responsibility further.
 
-## Evidence base
+Make cross-team interaction explicit: use time-boxed collaboration to discover a boundary, X-as-a-Service for a consumable capability with an interface and support expectations, and facilitation to transfer a defined capability with an exit condition. Revisit the mode when the team or architecture changes.
 
-- [ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html) defines architecture-description concepts around stakeholder concerns, viewpoints, models, and relationships.
-- [SEI quality-attribute guidance](https://www.sei.cmu.edu/library/reasoning-about-software-quality-attributes/) connects architecture decisions to explicit quality-attribute scenarios and trade-offs.
-- [Parnas, On the Criteria To Be Used in Decomposing Systems into Modules](https://citeseerx.ist.psu.edu/document?doi=5d752e29e29b42cc509417699a98d9dca8212c83&repid=rep1&type=pdf) establishes information hiding as a criterion for comprehensible and changeable modules.
-- [Google Cloud modular design guidance](https://docs.cloud.google.com/architecture/framework/performance-optimization/promote-modular-design) recommends well-defined independent modules and clear interfaces while recognizing performance trade-offs.
-- [Microsoft architecture design principles](https://learn.microsoft.com/en-ie/azure/architecture/guide/design-principles/) emphasize cohesion, loose coupling, domain encapsulation, operations, failure analysis, and evolution from business requirements.
+Read [sources](sources.md) for ISO 42010, SEI scenario methods, modularity, and team-topology guidance.

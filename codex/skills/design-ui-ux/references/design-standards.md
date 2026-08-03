@@ -1,41 +1,53 @@
 # Design standards
 
-Use these as decision criteria, not a universal preset. Product context, user evidence, platform conventions, and an existing design system outrank fashion.
+Use these as decision criteria, not a universal preset. Product context and user evidence outrank fashion. Read only the sections that apply to the work.
 
 ## Contents
 
-1. Evidence and complexity
-2. Direction and anti-slop
-3. Information architecture and flows
-4. Typography and headings
-5. Layout, cards, and repeated items
-6. Systems and platform fit
-7. Content, forms, and states
-8. Public-web search visibility
-9. Performance and motion
-10. Accessibility
-11. Generative UI guardrails
-12. Visual verification
+1. Decision inputs and complexity
+2. Responsive adaptation and platform fit
+3. Direction and anti-slop
+4. Information architecture and flows
+5. Typography and headings
+6. Layout, cards, and repeated items
+7. Systems, tokens, and components
+8. Design-system governance
+9. Content, forms, and states
+10. Public-web search visibility
+11. Performance and motion
+12. Accessibility and consequential actions
+13. AI-assisted generation
+14. AI product features
+15. Visual verification
 
-## Evidence and complexity
+## Decision inputs and complexity
 
-- Begin with purpose, audience, task, content, constraints, and success. Aesthetic novelty without product meaning is decoration.
-- Record consequential assumptions. For each one, identify the decision it changes and the smallest useful validation: inspect existing behavior, review analytics, test representative content, ask a domain owner, or run a focused usability check.
-- Match effort to risk and scope. Do not force a full design-system exercise onto a small local change, and do not treat a multi-role workflow as a collection of independent screens.
+- Establish purpose, audience, task, content, constraints, platform, supported window or device range, and success evidence before selecting a pattern or visual direction.
+- Resolve conflicts in this order: observed product context and user evidence; applicable platform guidance (Apple HIG, Material 3, Fluent, or web standards); then the local design system. Use the local system to implement the decision when it can do so. Record and route any necessary divergence to its owner rather than creating an untracked exception.
+- Record consequential assumptions. For each, name the decision it changes and the smallest useful validation: inspect current behavior, review analytics, test representative content, ask a domain owner, or run a focused usability check.
+- Match effort to risk and scope. Do not force a full system exercise onto a local change, and do not treat a multi-role workflow as independent polished screens.
 - For simple work, require one primary task, representative content, the main action, and material feedback or error states.
 - For medium work, add a screen or flow map, navigation rules, state and event coverage, responsive priorities, and shared patterns.
 - For complex work, add roles and permissions, data ownership, critical end-to-end journeys, concurrency or real-time states, recovery, audit or history needs, and regression coverage.
 - Treat safety-critical, financial, medical, destructive, or irreversible actions as complex even when the screen count is small.
 
+## Responsive adaptation and platform fit
+
+- Start from the viewport, window, device, input mode, content density, and task that are most important and constraining for the product. Begin narrow only when narrow use is primary or truly constrains the supported design; do not use “mobile-first” as a universal rule.
+- Define what preserves hierarchy, interaction reachability, data visibility, navigation, and recovery at each supported range. Let information stack, condense, reflow, or reveal progressively only when the task remains understandable.
+- Test resizable desktop windows, split views, browser zoom, platform text scaling, rotations, safe areas, and external displays when the platform supports them. Do not squeeze a desktop workspace into a phone or inflate a phone layout into an empty desktop canvas.
+- Reuse native navigation, input, selection, text, safe-area, and accessibility behavior on the target platform. Make brand expression feel native rather than replacing familiar behavior with a web imitation.
+- Use Apple HIG, Material 3, Fluent, and browser guidance as relevant to the actual platform; do not blend their visual languages because they are recognizable.
+
 ## Direction and anti-slop
 
-- Define hierarchy, density, type character, palette roles, spatial rhythm, imagery, geometry, and motion instead of a vague mood such as modern or premium.
+- Define hierarchy, density, type character, palette roles, spatial rhythm, imagery, geometry, and motion instead of a vague mood such as “modern” or “premium.”
 - Give one or two details responsibility for identity and keep the rest disciplined. Distinctive does not mean loud.
-- Prefer one strong composition over a collection of independently polished cards. Do not turn every region into a floating rounded container.
-- Avoid default AI signatures unless justified by the brief: purple gradients, cyan glow, glass panels, huge soft radii, floating dashboards, bento grids, gradient text, feature-card triplets, excessive pills, sparkle icons, meaningless charts, and generic aspirational copy.
-- Do not use an aesthetic blacklist as a substitute for product reasoning. A gradient, card, or large type can be correct when it has a clear role in the brief.
+- Use cards, gradients, glass, pills, large type, grids, and motion when they clarify content, interaction, brand, or platform fit. Do not ban a treatment solely because it is popular.
+- Treat stereotyped AI output as a warning signal: purple gradients, cyan glow, glass panels, huge soft radii, floating dashboards, bento grids, gradient text, feature-card triplets, excessive pills, sparkle icons, meaningless charts, and generic aspirational copy require a concrete reason or removal.
+- Do not use an aesthetic blacklist as a substitute for product reasoning. A gradient, card, large type, or expressive motion can be correct when it has a specific role in the brief and works with representative content.
 - Use real content early. Real labels, lengths, states, data shapes, and errors expose problems hidden by placeholders.
-- Check specificity by removing the logo and product name. If the result could belong to any competitor, strengthen content structure, imagery, typography, or a product-specific interaction rather than adding decoration.
+- Check specificity by removing the logo and product name. If the result could belong to any competitor, improve content structure, imagery, typography, or a product-specific interaction before adding decoration.
 
 ## Information architecture and flows
 
@@ -45,7 +57,8 @@ Use these as decision criteria, not a universal preset. Product context, user ev
 - Use familiar navigation for repeated movement. Do not hide primary destinations behind hover, gestures, or unlabeled icons.
 - Preserve user work across validation errors, network failures, authentication changes, and recoverable interruptions.
 - For data-dense work, decide deliberately whether the task needs comparison, scanning, editing, spatial manipulation, or chronology. Keep a table, list, canvas, or timeline when that model fits.
-- Allow two-dimensional scrolling only when the content is genuinely two-dimensional, such as a wide data table, schedule, map, or canvas. Provide orientation and keyboard access.
+- Allow two-dimensional scrolling only when content is genuinely two-dimensional, such as a wide data table, schedule, map, or canvas. Provide orientation and keyboard access.
+- Classify high-consequence decisions before choosing a confirmation. Use review, preview, correction, audit, approval, reversible action, or undo according to the actual harm and recoverability.
 
 ## Typography and headings
 
@@ -67,17 +80,30 @@ Use these as decision criteria, not a universal preset. Product context, user ev
 - Define a mini-information architecture for every repeated item: primary identifier, decision-critical attributes, secondary metadata, status, and next action.
 - Keep corresponding information in the same order, position, and treatment across comparable items. Random badge placement and inconsistent metadata slow comparison.
 - Make the primary destination and secondary actions separate semantic controls. Avoid making a large clickable container compete with nested buttons or links.
-- Prefer plain sections for a single narrative, rows for scanning, tables for column comparison, and full-bleed media for editorial emphasis.
+- Prefer plain sections for a single narrative, rows for scanning, tables for column comparison, timelines for chronology, canvases for spatial work, and full-bleed media for editorial emphasis.
 - Reserve grid complexity for content that benefits from it. Do not use a bento layout when a linear story or working surface is clearer.
 
-## Systems and platform fit
+## Systems, tokens, and components
 
 - Reuse existing tokens, components, interaction patterns, and accessibility semantics before introducing variants.
 - In a new product, define semantic tokens only after the main flow and content hierarchy are clear.
 - Separate primitive, semantic, and component tokens when the product needs all three. Avoid a token layer that merely renames another layer without adding meaning.
 - Keep radii, border weights, icon strokes, shadows, and elevation logic coherent. Use elevation to express stacking or interaction, not to decorate every surface.
-- For native apps, follow safe areas, system navigation, input conventions, Dynamic Type or equivalent text scaling, standard controls, and platform settings.
-- Make brand expression feel native to the platform. Do not replace familiar platform behavior with web conventions or a custom imitation.
+- Map design assets to production code and preserve the same names, states, intent, and status where feasible. Do not let a Figma library and code library silently diverge.
+- Treat a component as a reusable, implementation-backed UI building block with a defined API, states, behavior, accessibility contract, and support boundary. Treat a pattern as reusable guidance for a recurring task or composition; it can combine components and content without becoming a single coded primitive.
+- Use token formats for interoperable exchange when that is a real need. The DTCG 2025.10 format supports exchange; it does not create ownership, governance, or product semantics by itself.
+
+## Design-system governance
+
+- Name an accountable owner or owning group and a decision forum. Publish where consumers request changes, who triages them, what evidence is required, and how decisions are recorded.
+- Declare one canonical source of truth for each class of decision: tokens, design assets, code, guidance, and release status. Link mappings between them. Do not call multiple independent copies authoritative.
+- Require every proposal to state the problem, affected users and products, evidence of repeat need, existing-asset analysis, alternatives, intended platforms, accessibility and state requirements, expected API or composition, documentation, support cost, and migration impact.
+- Review proposals with the disciplines that bear the risk: product, design, engineering, content, accessibility, and representative consumers. Use real usage or prototypes with representative people and content when feasibility or usability is uncertain.
+- Make lifecycle status visible, for example discovery, preview, and stable. Do not present experimental assets as safe production defaults. Associate each status with clear entry and exit criteria.
+- Publish usage, non-usage, variants, states, behavior, accessibility, content guidance, design-to-code mappings, owner, lifecycle status, version, known limits, and change history. Keep docs versioned with the asset and release notes.
+- Version consumer-facing assets predictably. State breaking changes, compatibility implications, adoption timing, and the verification consumers must perform. Use a release process that fits the technology instead of adding version labels without a release contract.
+- Deprecate with a named replacement, reason, support window, migration mapping, examples, automated support where practical, and removal date. Keep compatibility shims only as long as they reduce real migration risk.
+- Measure adoption, exceptions, defects, accessibility regressions, and consumer friction. Revisit ownership and scope when the system no longer serves the products using it.
 
 ## Content, forms, and states
 
@@ -88,6 +114,7 @@ Use these as decision criteria, not a universal preset. Product context, user ev
 - Design default, hover, active, focus, selected, disabled, loading, empty, success, validation, error, offline, permission, and destructive-confirmation states when applicable.
 - Avoid hidden hover-only actions unless the action is discoverable and reachable another way.
 - Do not invent testimonials, metrics, business claims, capabilities, or realistic-looking user data. Label representative or synthetic data when confusion is possible.
+- Keep help consistent across a sequence or repeated pages. Do not make people re-enter information already available in the same process unless security, legal requirements, or another WCAG exception requires it.
 
 ## Public-web search visibility
 
@@ -107,37 +134,46 @@ Use these as decision criteria, not a universal preset. Product context, user ev
 - Keep likely largest-content elements discoverable early. Do not lazy-load the probable LCP image without a measured reason.
 - Use responsive images, deliberate font loading, and the minimum media quality needed for the viewing context.
 - Keep interactions responsive by avoiding long main-thread work and excessive client-side rendering.
-- Use current Core Web Vitals as measurable targets when public-web performance is in scope. At the time of this reference, good field thresholds at the 75th percentile are LCP at or below 2.5 seconds, INP at or below 200 milliseconds, and CLS at or below 0.1; recheck the source before treating these values as current.
-- Use laboratory checks to prevent regressions and field data to understand real users. Do not present a Lighthouse score alone as proof of production performance.
-- Animate only causality, continuity, hierarchy, or status. Keep motion interruptible and avoid scroll hijacking, chained entrances, and decorative loops.
+- Use current Core Web Vitals as measurable targets when public-web performance is in scope. Verify current field thresholds before treating a number as a release target. Use laboratory checks to prevent regressions and field data to understand real users.
+- Animate only causality, continuity, hierarchy, or status. Keep motion interruptible and avoid scroll hijacking, chained entrances, decorative loops, blocked input, and layout instability.
 
-## Accessibility
+## Accessibility and consequential actions
 
-- Target WCAG 2.2 AA for web products. Use semantic HTML before ARIA and established WAI-ARIA patterns for composite widgets.
+- Target WCAG 2.2 AA for web work and include applicable Level A success criteria across complete processes. Use semantic HTML before ARIA and established WAI-ARIA Authoring Practices for composite widgets.
 - Maintain at least 4.5:1 contrast for normal text and 3:1 for large text and meaningful non-text UI where WCAG requires it. Test every theme and state.
-- Make every workflow keyboard-operable with visible, unobscured focus and logical order. Restore focus after dialogs, menus, drawers, and route changes.
+- Make every workflow keyboard-operable with visible focus that is not obscured by sticky headers, fixed actions, dialogs, popovers, or other author-created content. Maintain logical focus order and restore focus after dialogs, menus, drawers, route changes, and destructive actions.
 - Provide accessible names and instructions. Hide decorative imagery from assistive technology and describe meaningful imagery according to its purpose.
-- Meet the WCAG 2.2 AA minimum target-size rule and the larger applicable platform guidance. Do not present a platform recommendation as a universal web requirement.
+- Provide a non-dragging alternative for functionality that requires a dragging movement, such as move controls beside a sortable list. Meet WCAG 2.2 target size minimum (24 by 24 CSS pixels) or a documented exception, and apply larger relevant platform guidance.
+- Avoid authentication that depends solely on recalling, transcribing, or solving a cognitive test. Support paste, password managers, passkeys, or an equivalent accessible route as relevant.
+- Avoid redundant entry during a process when the system already has the information, subject to the criterion's permitted exceptions. Keep repeated help mechanisms in a consistent relative location and make relevant help discoverable.
 - Support text resizing to 200% and page reflow at 400% zoom or an equivalent 320 CSS-pixel viewport without loss of information or functionality, except where two-dimensional layout is essential.
 - Test user-overridden text spacing, reduced motion, increased contrast, forced colors, dark mode, platform text scaling, localization expansion, and RTL where relevant.
 - Do not use color, position, shape, sound, or motion as the only carrier of meaning.
+- For legal commitments, financial transactions, deletion, or material data changes, design a proportionate review, correction, confirmation, reversal, undo, or audit mechanism. Do not use a confirmation dialog merely as decoration, and do not promise undo if a downstream effect cannot be recovered.
 
-## Generative UI guardrails
+## AI-assisted generation
 
-- Treat AI output as a draft, not user research, a design decision, or proof that an interaction works.
+- Treat AI-produced code, visuals, copy, layouts, tokens, and recommendations as drafts, not as user research, product facts, design decisions, or proof that an interaction works.
 - Provide a compact contract: task, user, platform, representative content or data, existing components and tokens, required states, and hard accessibility and responsive constraints.
-- Prefer structured design files, component definitions, variables, code mappings, and annotations to screenshots alone.
-- Classify the artifact as a visual mockup, interaction prototype, or production UI. A static screen cannot prove validation, permissions, data operations, accessibility, or recovery.
-- Use targeted comments, annotations, and direct edits to fix local problems. Do not repeatedly regenerate an entire interface when the direction is already sound.
-- Keep a human responsible for product facts, information architecture, visual direction, hierarchy, accessibility, behavior, and release readiness.
-- Treat designer ratings or taste prompts as weak feedback. Prefer concrete, visually anchored critique tied to a task or acceptance criterion.
+- Prefer structured design files, component definitions, variables, code mappings, and annotations to screenshots alone. Use targeted comments, annotations, and direct edits to fix local problems rather than repeatedly regenerating a complete interface.
+- Verify generated output with real or representative data, semantic structure, every material state, keyboard and assistive-technology behavior, responsive and platform behavior, runtime behavior, and human review before it enters a release candidate.
+- Keep a human responsible for product facts, information architecture, visual direction, hierarchy, accessibility, behavior, and release readiness. Treat taste prompts and aggregate ratings as weak evidence until anchored to an observable task or criterion.
+
+## AI product features
+
+- Treat a feature as an AI product feature when users receive, rely on, or delegate action to model output. Design its trust, control, and recovery path as part of the core flow.
+- Disclose AI involvement before or at the point it matters. Explain material limits, autonomy, data use, and output provenance or sources when users need them to judge the result. Do not create false certainty or invented citations.
+- Let users control activation, scope, inputs, and consequential actions. Provide review, editing, confirmation, stop or cancel, correction, retry, handoff, and recovery appropriate to the feature's impact.
+- Preserve user work and provide an intelligible failure state when generation, retrieval, action execution, safety checks, or connectivity fails. Make automated effects reversible or auditable whenever the domain permits.
+- Make the feature accessible in its loading, generated, error, correction, and handoff states. Do not require visual inspection, drag-only interaction, or inaccessible authentication to verify or control model output.
 
 ## Visual verification
 
 - Render the real interface with representative content. Inspect full pages and close component details.
-- Check narrow mobile, small laptop, and wide desktop widths, plus relevant platform orientations and resizable windows.
-- Compare hierarchy, alignment, wrapping, density, color, typography, iconography, imagery, assets, and states against the brief.
-- Exercise keyboard, pointer, and touch behavior where applicable. Verify focus restoration and every visible or claimed action.
-- Test long and localized text, empty data, large datasets, loading, errors, permissions, offline behavior, overflow, and destructive recovery according to product risk.
+- Check the actual supported windows, including narrow, standard, wide, and resizable contexts as relevant, plus supported themes and orientations.
+- Compare hierarchy, alignment, wrapping, density, color, typography, iconography, imagery, assets, states, and interactions against the brief and established system.
+- Exercise keyboard, pointer, touch, assistive technology, and platform behavior where applicable. Verify focus restoration and every visible or claimed action.
+- Test long and localized text, empty data, large datasets, loading, errors, permissions, offline behavior, overflow, destructive recovery, and concurrency according to product risk.
 - Use automated accessibility checks as a floor. Manually inspect reading order, labels, focus, comprehension, and task completion.
-- Iterate on visible defects. Source-code plausibility and a polished screenshot are not evidence of product quality.
+- Keep review mode read-only. Report material defects, evidence, affected users, severity, untested states, and the smallest credible remediation without making the change.
+- Iterate on visible defects. Source-code plausibility, a polished screenshot, or AI output is not evidence of product quality.
