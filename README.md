@@ -2,7 +2,7 @@
 
 Personal agent instructions, focused skills, and specialist subagents for Claude Code and OpenAI Codex.
 
-The Codex setup contains a compact global policy, five specialist agents, and twelve focused skills. It uses automatic skill discovery, so no agent or skill file contains a machine-specific installation path.
+The Codex setup contains a compact global policy, five specialist agents, and thirteen focused skills. It uses automatic skill discovery, so no agent or skill file contains a machine-specific installation path.
 
 ## Skills
 
@@ -14,10 +14,11 @@ The Codex setup contains a compact global policy, five specialist agents, and tw
 | Diagnosis and review | `diagnose-root-cause`, `review-changes` |
 | Evidence | `research-current-sources` |
 | Skill governance | `audit-agent-skills`, `learn-from-history` |
+| Product interface | `design-ui-ux` |
 
 Each skill is invoked only when its trigger contract matches the task, and provides a focused workflow rather than a universal checklist for every request.
 
-The skills use progressive reference files so language rules, architecture guidance, planning evidence, and uncommon branches load only when the task needs them.
+The skills use progressive reference files so language rules, architecture guidance, planning evidence, design scenarios, and uncommon branches load only when the task needs them. `design-ui-ux` adds complexity-based workflows, public-web search visibility, performance guidance, and guardrails for AI-generated interfaces.
 
 This structure follows current [OpenAI GPT-5.6 model guidance](https://developers.openai.com/api/docs/guides/latest-model): state an instruction once, expose only task-relevant tools and guidance, and validate prompt reductions on representative work. OpenAI reports a directional internal sample in which leaner coding-agent prompts improved evaluation scores by about 10–15% while reducing total tokens by 41–66% and cost by 33–67%; these ranges are not treated as guarantees for this catalog.
 
@@ -35,9 +36,9 @@ GPT-5.6 Sol remains the orchestrator. GPT-5.6 Luna Max handles routine execution
 
 ## Behavior
 
-The instructions prioritize minimal sufficient solutions, scope control, repository evidence, complete production code without placeholders or explanatory comments, and verification proportional to risk. Commands that build artifacts, start servers or watchers, install dependencies, run migrations, or perform deployment and other persistent operations require explicit user confirmation. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. User-facing prose uses structured paragraphs without headings; lists and tables are reserved for cases where they materially improve clarity. Intermediate narration is suppressed unless the work needs a blocking decision.
+The instructions prioritize minimal sufficient solutions, scope control, repository evidence, complete production code without placeholders or explanatory comments, and verification proportional to risk. Commands that build artifacts, start servers or watchers, install dependencies, run migrations, or perform deployment and other persistent operations require explicit user confirmation. Live web search is enabled. Responses use the user's language naturally, prefer familiar local words over avoidable English borrowings and jargon, and preserve exact technical identifiers. Reports lead with the outcome and observed evidence without promotional language. Prose is the default, numbered lists are reserved for genuine sequences or rankings, and headings or tables appear only when they improve a longer answer. Intermediate narration is suppressed unless the work needs a blocking decision.
 
-On Claude Code the rules live in two places, split by what each channel does best. `CLAUDE.md` holds the working rules: scope, evidence, change safety, implementation quality, verification. The `Engineering voice` output style holds everything about how Claude talks: turn cadence, language, response shape, formatting, and the report tables. An output style edits the system prompt, so it is the stronger place for behavior that has to hold on every turn. On Codex a single `model-instructions-v1.md` carries all of it.
+On Claude Code the rules live in two places, split by what each channel does best. `CLAUDE.md` holds the working rules: scope, evidence, change safety, implementation quality, verification. The `Engineering voice` output style holds everything about how Claude talks: turn cadence, language, response shape, formatting, and the report tables. An output style edits the system prompt, so it is the stronger place for behavior that has to hold on every turn. On Codex a single `model-instructions.md` carries all of it.
 
 ## Claude
 
@@ -91,8 +92,8 @@ Keep `hooks`, `statusLine`, MCP servers, and anything else tied to your machine 
 codex/
   agents/                 five specialist agents
   config.toml             portable minimal template
-  model-instructions-v1.md global operating policy
-  skills/                 twelve focused Codex skills
+  model-instructions.md   global operating policy
+  skills/                 thirteen focused Codex skills
 ```
 
 System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Codex installs and updates them separately.
@@ -101,20 +102,20 @@ System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Cod
 
 ```bash
 cp -R codex/agents codex/skills "$HOME/.codex/"
-cp codex/model-instructions-v1.md codex/config.toml "$HOME/.codex/"
+cp codex/model-instructions.md codex/config.toml "$HOME/.codex/"
 ```
 
 ### Windows PowerShell
 
 ```powershell
 Copy-Item -Recurse -Force .\codex\agents, .\codex\skills "$HOME\.codex\"
-Copy-Item -Force .\codex\model-instructions-v1.md, .\codex\config.toml "$HOME\.codex\"
+Copy-Item -Force .\codex\model-instructions.md, .\codex\config.toml "$HOME\.codex\"
 ```
 
 Back up an existing `config.toml` before a manual installation. The distributed configuration is portable and intentionally replaces local model, permission, agent, web-search, and documentation-server defaults:
 
 ```toml
-model_instructions_file = "model-instructions-v1.md"
+model_instructions_file = "model-instructions.md"
 ```
 
 Restart Codex after installation so it rediscovers agents and skills.

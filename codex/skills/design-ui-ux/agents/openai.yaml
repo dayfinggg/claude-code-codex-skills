@@ -1,4 +1,4 @@
 interface:
   display_name: "UI/UX Design"
-  short_description: "Design distinctive, usable modern interfaces"
-  default_prompt: "Use $design-ui-ux to design or improve this interface with clear UX, distinctive visual craft, accessibility, and production-ready validation."
+  short_description: "Design clear, usable, context-specific interfaces"
+  default_prompt: "Use $design-ui-ux to design or improve this interface with clear UX, context-specific visual craft, accessibility, responsive behavior, and SEO only where public discovery requires it."

@@ -1,194 +1,733 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Claude Code Skills — what each skill changes</title>
-<meta name="description" content="Before/after examples of the Claude Code skill catalog and operating policy: engineering, security, testing, Git, TypeScript, Python, SQL and more.">
-<style>
-:root{
-  --bg:#ffffff;--surface:#f6f8fa;--border:#d1d9e0;--text:#1f2328;--muted:#59636e;
-  --accent:#0969da;--add-bg:#dafbe1;--add:#116329;--del-bg:#ffebe9;--del:#82071e;
-  --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,Menlo,monospace;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-main{max-width:860px;margin:0 auto;padding:24px 16px 96px}
-header{border-bottom:1px solid var(--border);padding:48px 16px 32px}
-.head-inner{max-width:860px;margin:0 auto}
-h1{margin:0 0 8px;font-size:28px;line-height:1.2}
-.sub{color:var(--muted);max-width:65ch;margin:0 0 16px}
-a{color:var(--accent)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-nav a{font-size:13px;text-decoration:none;border:1px solid var(--border);border-radius:16px;padding:3px 12px;color:var(--text)}
-nav a:hover{background:var(--surface)}
-section{margin-top:48px;scroll-margin-top:16px}
-h2{font-size:20px;margin:0 0 4px;padding-top:16px;border-top:1px solid var(--border)}
-.tag{font-size:12px;color:var(--muted);font-family:var(--mono)}
-section>p{color:var(--muted);max-width:70ch;margin:8px 0 12px}
-.diff{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 0;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.45;margin:0}
-.diff span{display:block;padding:0 16px;white-space:pre}
-.diff .d{background:var(--del-bg);color:var(--del)}
-.diff .a{background:var(--add-bg);color:var(--add)}
-.diff .h{color:var(--muted)}
-footer{border-top:1px solid var(--border);margin-top:64px;padding:24px 16px;color:var(--muted);font-size:14px;text-align:center}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claude Code & Codex Skills — focused workflows for reliable agent work</title>
+  <meta name="description" content="A compact, evidence-led catalog of Claude Code and OpenAI Codex skills for planning, coding, review, research, UI/UX, and production verification.">
+  <link rel="canonical" href="https://dayfinggg.github.io/claude-code-codex-skills/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Claude Code & Codex Skills">
+  <meta property="og:description" content="Focused agent workflows, clear operating rules, and verification that stays tied to evidence.">
+  <meta property="og:url" content="https://dayfinggg.github.io/claude-code-codex-skills/">
+  <meta name="theme-color" content="#f4f1e8">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f4f1e8;
+      --paper-strong: #fffdf7;
+      --ink: #15161a;
+      --muted: #62636b;
+      --line: #c9c6bc;
+      --blue: #234dff;
+      --blue-dark: #1737bf;
+      --signal: #d8ff57;
+      --code: #11131a;
+      --code-ink: #f2f3f7;
+      --max: 1180px;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #111217;
+        --paper-strong: #17191f;
+        --ink: #f1f0ea;
+        --muted: #a7a8b0;
+        --line: #393b43;
+        --blue: #7592ff;
+        --blue-dark: #9aafff;
+        --signal: #c8ed50;
+        --code: #08090d;
+        --code-ink: #f2f3f7;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 17px/1.6 var(--sans);
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      inset: 12px auto auto 12px;
+      z-index: 10;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: var(--paper);
+      transform: translateY(-180%);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .shell {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-header .shell {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 720;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      right: -4px;
+      bottom: -4px;
+      background: var(--signal);
+      border: 2px solid var(--ink);
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 14px;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 5px;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    .hero {
+      min-height: min(760px, calc(100svh - 74px));
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.6fr);
+      align-items: center;
+      gap: clamp(48px, 7vw, 112px);
+      padding-block: clamp(64px, 10vw, 132px);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 24px;
+      color: var(--blue-dark);
+      font: 700 12px/1.2 var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 28px;
+      font-size: clamp(3.25rem, 7.4vw, 6.6rem);
+      font-weight: 760;
+      line-height: 0.94;
+      letter-spacing: -0.067em;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      margin-bottom: 34px;
+      color: var(--muted);
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 18px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button-primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .button:hover { transform: translateY(-1px); }
+
+    .runbook {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding-block: 24px;
+    }
+
+    .runbook-label {
+      margin-bottom: 18px;
+      color: var(--muted);
+      font: 12px/1.4 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .runbook ol {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: steps;
+    }
+
+    .runbook li {
+      counter-increment: steps;
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 10px;
+      padding: 12px 0;
+      border-top: 1px solid color-mix(in srgb, var(--line) 68%, transparent);
+      font-size: 15px;
+    }
+
+    .runbook li:first-child { border-top: 0; }
+
+    .runbook li::before {
+      content: "0" counter(steps);
+      color: var(--blue-dark);
+      font: 12px/1.8 var(--mono);
+    }
+
+    .runbook strong { display: block; }
+
+    .runbook span { color: var(--muted); }
+
+    .section {
+      padding-block: clamp(72px, 10vw, 128px);
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 24px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.35fr) minmax(0, 0.65fr);
+      gap: 40px;
+      margin-bottom: clamp(48px, 7vw, 82px);
+    }
+
+    .kicker {
+      margin: 5px 0 0;
+      color: var(--blue-dark);
+      font: 700 12px/1.3 var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      max-width: 820px;
+      margin-bottom: 20px;
+      font-size: clamp(2.2rem, 4.8vw, 4.7rem);
+      font-weight: 740;
+      line-height: 1;
+      letter-spacing: -0.052em;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .principles {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .principle {
+      display: grid;
+      grid-template-columns: 70px minmax(180px, 0.42fr) minmax(0, 0.58fr);
+      gap: 28px;
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .principle-number {
+      color: var(--blue-dark);
+      font: 13px/1.5 var(--mono);
+    }
+
+    .principle h3 {
+      margin-bottom: 0;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+    }
+
+    .principle p {
+      max-width: 650px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .catalog-group {
+      min-height: 285px;
+      padding: clamp(26px, 4vw, 42px);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .catalog-group h3 {
+      margin-bottom: 12px;
+      font-size: 21px;
+      letter-spacing: -0.025em;
+    }
+
+    .catalog-group p {
+      max-width: 52ch;
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skill-list li {
+      padding: 3px 8px;
+      background: color-mix(in srgb, var(--blue) 8%, transparent);
+      color: var(--blue-dark);
+      font: 12px/1.5 var(--mono);
+    }
+
+    .design-band {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .design-band .section { border-color: rgba(255, 255, 255, 0.32); }
+    .design-band .kicker { color: var(--signal); }
+    .design-band .section-intro { color: rgba(255, 255, 255, 0.78); }
+
+    .design-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
+      gap: clamp(48px, 8vw, 110px);
+      align-items: start;
+    }
+
+    .design-quote {
+      margin: 0;
+      font-size: clamp(2rem, 4.1vw, 4rem);
+      font-weight: 720;
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+
+    .design-rules {
+      border-top: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .design-rule {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+    }
+
+    .design-rule strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 17px;
+    }
+
+    .design-rule p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 15px;
+    }
+
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .install-option h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .install-option { min-width: 0; }
+
+    .install-option p {
+      min-height: 52px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    pre {
+      max-width: 100%;
+      min-height: 150px;
+      margin: 0;
+      padding: 22px;
+      overflow-x: auto;
+      background: var(--code);
+      color: var(--code-ink);
+      font: 13px/1.65 var(--mono);
+      tab-size: 2;
+    }
+
+    code { font-family: var(--mono); }
+
+    .install-note {
+      max-width: 760px;
+      margin: 30px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding-block: 34px;
+    }
+
+    .site-footer .shell {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .site-footer p { margin: 0; }
+    .site-footer a { color: var(--ink); }
+
+    @media (max-width: 820px) {
+      .hero,
+      .section-heading,
+      .design-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        gap: 54px;
+      }
+
+      h1 { max-width: 690px; }
+
+      .section-heading { gap: 18px; }
+
+      .principle {
+        grid-template-columns: 44px 1fr;
+      }
+
+      .principle p { grid-column: 2; }
+    }
+
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      .shell { width: min(calc(100% - 28px), var(--max)); }
+
+      .site-header .shell {
+        min-height: 64px;
+      }
+
+      nav li:not(:last-child) { display: none; }
+
+      .hero { padding-block: 64px 76px; }
+      h1 { font-size: clamp(3rem, 15vw, 4.6rem); }
+
+      .catalog,
+      .install-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .principle {
+        grid-template-columns: 34px 1fr;
+        gap: 14px;
+      }
+
+      .catalog-group { min-height: 0; }
+      .install-option p { min-height: 0; }
+
+      .site-footer .shell {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button:hover { transform: none; }
+    }
+
+    @media (forced-colors: active) {
+      .button,
+      .skill-list li,
+      .brand-mark,
+      .brand-mark::after { border: 1px solid CanvasText; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="head-inner">
-    <h1>Claude Code Skills</h1>
-    <p class="sub">What changes when Claude Code works with this catalog and operating policy. The current Codex catalog is documented separately in the repository README.</p>
-    <p class="sub"><a href="https://github.com/dayfinggg/claude-code-codex-skills">Get it on GitHub →</a></p>
-    <nav aria-label="Skills">
-      <a href="#software-engineering">software-engineering</a><a href="#domain-modeling">domain-modeling</a><a href="#api-design">api-design</a><a href="#systematic-debugging">systematic-debugging</a><a href="#full-stack-testing">full-stack-testing</a><a href="#grill-me">grill-me</a><a href="#planning">planning</a><a href="#delegate-work">delegate-work</a><a href="#project-documentation">project-documentation</a><a href="#web-research">web-research</a><a href="#web-application-security">web-application-security</a><a href="#git">git</a><a href="#typescript">typescript</a><a href="#javascript">javascript</a><a href="#node-js">node-js</a><a href="#react">react</a><a href="#nextjs">nextjs</a><a href="#python">python</a><a href="#sql">sql</a><a href="#mongodb">mongodb</a><a href="#redis">redis</a><a href="#powershell">powershell</a><a href="#ui-ux-design">ui-ux-design</a>
-    </nav>
-  </div>
-</header>
-<main>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-<section id="software-engineering">
-  <h2>software-engineering <span class="tag">broad or mixed-stack work</span></h2>
-  <p>Root cause over symptom. A retry loop around broken logic preserves the defect — the skill forces finding why it fails.</p>
-  <pre class="diff"><span class="h">  def load_config(path):</span><span class="d">-     for _ in range(3):</span><span class="d">-         try:</span><span class="d">-             return json.loads(open(path).read())</span><span class="d">-         except Exception:</span><span class="d">-             time.sleep(1)</span><span class="a">+     with open(path, encoding="utf-8-sig") as f:</span><span class="a">+         return json.load(f)</span><span class="h">  # the file had a BOM — retrying never helped</span></pre>
-</section>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="./" aria-label="Claude Code and Codex Skills home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Agent Skills</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#method">Method</a></li>
+          <li><a href="#catalog">Catalog</a></li>
+          <li><a href="#design">UI/UX</a></li>
+          <li><a href="#install">Install</a></li>
+          <li><a href="https://github.com/dayfinggg/claude-code-codex-skills">GitHub ↗</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<section id="domain-modeling">
-  <h2>domain-modeling <span class="tag">explicit-only discovery</span></h2>
-  <p>Ambiguous business language becomes a decision record before it becomes a data model or API.</p>
-  <pre class="diff"><span class="d">- status: string  // "active" means several different things</span><span class="a">+ SubscriptionState = Trial | Paid | GracePeriod | Cancelled</span><span class="a">+ Decision: access continues during GracePeriod; billing does not.</span><span class="h">  # invoked only when the user asks to model the domain</span></pre>
-</section>
+  <main id="main-content">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Claude Code + OpenAI Codex</p>
+        <h1 id="hero-title">Better defaults for coding agents.</h1>
+        <p class="hero-copy">A compact catalog of focused workflows and operating rules. Agents inspect the real project, make the smallest complete change, and report evidence instead of confidence.</p>
+        <div class="actions">
+          <a class="button button-primary" href="#install">Install the catalog <span aria-hidden="true">↓</span></a>
+          <a class="button" href="https://github.com/dayfinggg/claude-code-codex-skills">Browse the repository <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
 
-<section id="api-design">
-  <h2>api-design <span class="tag">contracts that survive</span></h2>
-  <p>No more HTTP 200 with an error inside. Status codes and error shapes become part of the contract.</p>
-  <pre class="diff"><span class="d">- return jsonify({"ok": False, "msg": "not found"}), 200</span><span class="a">+ return jsonify({"error": {"code": "user_not_found",</span><span class="a">+                           "message": "No user with id 42"}}), 404</span></pre>
-</section>
+      <aside class="runbook" aria-label="Default execution flow">
+        <p class="runbook-label">Default execution flow</p>
+        <ol>
+          <li><div><strong>Inspect</strong><span>Read the nearest rules and current project state.</span></div></li>
+          <li><div><strong>Decide</strong><span>Choose one focused workflow and a verifiable outcome.</span></div></li>
+          <li><div><strong>Change</strong><span>Preserve user work and keep the implementation bounded.</span></div></li>
+          <li><div><strong>Verify</strong><span>Run the narrowest useful checks, then broaden by risk.</span></div></li>
+          <li><div><strong>Report</strong><span>State the result, evidence, caveats, and next action.</span></div></li>
+        </ol>
+      </aside>
+    </section>
 
-<section id="systematic-debugging">
-  <h2>systematic-debugging <span class="tag">reproduce, hypothesize, falsify</span></h2>
-  <p>Sleeps that hide races are banned. The failure gets reproduced and the ordering fixed.</p>
-  <pre class="diff"><span class="d">- await new Promise(r => setTimeout(r, 500)); // flaky fix</span><span class="d">- expect(cache.get("user")).toBeDefined();</span><span class="a">+ await warmup;                    // the promise the test never awaited</span><span class="a">+ expect(cache.get("user")).toBeDefined();</span></pre>
-</section>
+    <section class="section shell" id="method" aria-labelledby="method-title">
+      <div class="section-heading">
+        <p class="kicker">Operating method</p>
+        <div>
+          <h2 id="method-title">Less ceremony. More proof.</h2>
+          <p class="section-intro">The catalog does not add a universal checklist to every task. Each skill activates only for the work it owns and keeps completion tied to observable evidence.</p>
+        </div>
+      </div>
 
-<section id="full-stack-testing">
-  <h2>full-stack-testing <span class="tag">cross-boundary acceptance evidence</span></h2>
-  <p>One public-contract vertical scenario proves the behavior before coverage expands, and completion claims stay tied to checks that actually ran.</p>
-  <pre class="diff"><span class="d">- Done! The migration should work now.</span><span class="a">+ Migration applied and verified: `alembic upgrade head` succeeded,</span><span class="a">+ `pytest tests/test_orders.py` — 31 passed. Rollback tested with</span><span class="a">+ `alembic downgrade -1` on a copy of the schema.</span></pre>
-</section>
+      <div class="principles">
+        <article class="principle">
+          <span class="principle-number">01</span>
+          <h3>Evidence before edits</h3>
+          <p>Repository rules, nearby patterns, versions, and runtime behavior come before assumptions. Current external facts are checked against primary sources.</p>
+        </article>
+        <article class="principle">
+          <span class="principle-number">02</span>
+          <h3>Smallest complete change</h3>
+          <p>The agent solves the requested problem without speculative abstractions, unrelated cleanup, fake implementations, or hidden scope expansion.</p>
+        </article>
+        <article class="principle">
+          <span class="principle-number">03</span>
+          <h3>Risk-based verification</h3>
+          <p>Checks start close to the changed behavior and expand only when the risk justifies it. A polished diff is not treated as proof.</p>
+        </article>
+        <article class="principle">
+          <span class="principle-number">04</span>
+          <h3>Human reports</h3>
+          <p>Final answers lead with the outcome and observed evidence. No victory language, obligatory headings, mechanical dash lists, or confidence without verification.</p>
+        </article>
+      </div>
+    </section>
 
-<section id="grill-me">
-  <h2>grill-me <span class="tag">explicit-only requirements interview</span></h2>
-  <p>The agent inspects discoverable facts first, then asks one consequential question at a time with a recommended answer and tradeoff.</p>
-  <pre class="diff"><span class="d">- Please answer this generic list of 18 questions.</span><span class="a">+ Decision needed: should expired invitations be reusable?</span><span class="a">+ Recommended: no — rotate the token to prevent replay; this requires</span><span class="a">+ a new invitation record when an administrator retries.</span></pre>
-</section>
+    <section class="section shell" id="catalog" aria-labelledby="catalog-title">
+      <div class="section-heading">
+        <p class="kicker">Focused catalog</p>
+        <div>
+          <h2 id="catalog-title">One skill for the job at hand.</h2>
+          <p class="section-intro">Claude Code includes 18 focused skills. Codex uses a leaner 13-skill catalog built around specification, architecture, implementation, review, research, and skill governance.</p>
+        </div>
+      </div>
 
-<section id="planning">
-  <h2>planning <span class="tag">smallest useful plan</span></h2>
-  <p>Planning scales from no formal plan, to a live three-to-seven-step tracker, to a self-contained execution plan. Every step names an outcome, dependency, and proof; live status updates before the next step starts.</p>
-  <pre class="diff"><span class="d">- *starts rewriting the auth module or leaves five stale tasks “in progress”*</span><span class="a">+ Done means: existing sessions survive the deploy and `test_auth.py` is green.</span><span class="a">+ Current: dual-read parser verified ✓ → switch writes in progress → remove legacy.</span></pre>
-</section>
+      <div class="catalog">
+        <article class="catalog-group">
+          <h3>Specify and plan</h3>
+          <p>Resolve consequential ambiguity and turn an approved outcome into dependent, verifiable implementation work.</p>
+          <ul class="skill-list">
+            <li>clarify-and-specify</li><li>spec-to-tasks</li>
+          </ul>
+        </article>
+        <article class="catalog-group">
+          <h3>Model and structure</h3>
+          <p>Clarify domain language, ownership, boundaries, dependencies, and the smallest architecture that satisfies real system forces.</p>
+          <ul class="skill-list">
+            <li>design-project-architecture</li><li>domain-modeling</li>
+          </ul>
+        </article>
+        <article class="catalog-group">
+          <h3>Build and verify</h3>
+          <p>Find root causes, implement approved changes, test observable behavior, and review retained code against production standards.</p>
+          <ul class="skill-list">
+            <li>diagnose-root-cause</li><li>production-code-quality</li><li>tdd</li><li>implement-and-verify</li><li>review-changes</li>
+          </ul>
+        </article>
+        <article class="catalog-group">
+          <h3>Research and govern</h3>
+          <p>Verify current claims, audit reusable skills, preserve evidence-backed workflows, and design interfaces around user tasks rather than generated decoration.</p>
+          <ul class="skill-list">
+            <li>research-current-sources</li><li>audit-agent-skills</li><li>learn-from-history</li><li>design-ui-ux</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-<section id="delegate-work">
-  <h2>delegate-work <span class="tag">authority, ownership, evidence</span></h2>
-  <p>Delegation activates only when it is explicitly authorized and independent work repays its coordination cost. The parent chooses the smallest team and keeps decisions, integration, and acceptance.</p>
-  <pre class="diff"><span class="d">- “help with this” → three agents scan the same files and two overwrite each other</span><span class="a">+ explorer: read-only caller trace with paths and symbols</span><span class="a">+ worker: exclusive module ownership and focused checks</span><span class="a">+ verifier: independent acceptance after integration</span></pre>
-</section>
+    <div class="design-band" id="design">
+      <section class="section shell" aria-labelledby="design-title">
+        <div class="section-heading">
+          <p class="kicker">Codex design-ui-ux</p>
+          <div>
+            <h2 id="design-title">Designed for a task, not generated for a screenshot.</h2>
+            <p class="section-intro">The UI/UX skill scales from a single setting to role-based workspaces. It preserves platform conventions, real content, accessibility, and public-web discoverability without turning every surface into cards.</p>
+          </div>
+        </div>
 
-<section id="project-documentation">
-  <h2>project-documentation <span class="tag">one source of truth</span></h2>
-  <p>Docs stop duplicating what code already declares — they link to it and stay current.</p>
-  <pre class="diff"><span class="d">- ## All 47 CLI flags explained (copied, stale since v2)</span><span class="a">+ Run `mytool --help` for the full flag list.</span><span class="a">+ Common workflows: [deploy](docs/deploy.md), [rollback](docs/rollback.md)</span></pre>
-</section>
+        <div class="design-layout">
+          <p class="design-quote">Clear hierarchy. Real states. Fewer, stronger choices.</p>
+          <div class="design-rules">
+            <div class="design-rule">
+              <strong>Complexity changes the process</strong>
+              <p>Simple views need a clear task and feedback. Complex products also need information architecture, roles, permissions, data responsibilities, and recovery.</p>
+            </div>
+            <div class="design-rule">
+              <strong>Containers must carry meaning</strong>
+              <p>Cards are reserved for self-contained objects or interaction boundaries. Tables, lists, canvases, timelines, and plain sections stay available.</p>
+            </div>
+            <div class="design-rule">
+              <strong>SEO has a boundary</strong>
+              <p>Search guidance applies only to public pages intended for discovery. Private product screens stay optimized for orientation and action.</p>
+            </div>
+            <div class="design-rule">
+              <strong>Generated UI remains a draft</strong>
+              <p>Structured design context, real content, targeted feedback, rendered verification, and human judgment decide release readiness.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-<section id="web-research">
-  <h2>web-research <span class="tag">verify, don't recall</span></h2>
-  <p>Versioned facts get checked against primary sources, with dates, instead of answered from memory.</p>
-  <pre class="diff"><span class="d">- Next.js supports that config option, I believe it's `swcMinify`.</span><span class="a">+ `swcMinify` was removed in Next.js 15 (SWC is always on) —</span><span class="a">+ confirmed in the v15 upgrade guide, checked 2026-07-19.</span></pre>
-</section>
+    <section class="section shell" id="install" aria-labelledby="install-title">
+      <div class="section-heading">
+        <p class="kicker">Installation</p>
+        <div>
+          <h2 id="install-title">Start with the files you need.</h2>
+          <p class="section-intro">Clone the repository, copy the matching catalog, and restart the application. Keep machine-specific configuration separate.</p>
+        </div>
+      </div>
 
-<section id="web-application-security">
-  <h2>web-application-security <span class="tag">untrusted input stays untrusted</span></h2>
-  <p>String-built SQL, missing ownership checks and leaked secrets get caught at review and at write time.</p>
-  <pre class="diff"><span class="d">- db.query(`SELECT * FROM docs WHERE id = ${req.params.id}`)</span><span class="a">+ db.query("SELECT * FROM docs WHERE id = $1 AND owner_id = $2",</span><span class="a">+          [req.params.id, req.user.id])</span></pre>
-</section>
+      <div class="install-grid">
+        <article class="install-option">
+          <h3>OpenAI Codex</h3>
+          <p>Install the operating policy, specialist agents, and the 13-skill Codex catalog.</p>
+          <pre><code>git clone https://github.com/dayfinggg/claude-code-codex-skills.git
+cd claude-code-codex-skills
+cp -R codex/agents codex/skills "$HOME/.codex/"
+cp codex/model-instructions.md "$HOME/.codex/"</code></pre>
+        </article>
+        <article class="install-option">
+          <h3>Claude Code</h3>
+          <p>Install Claude's working rules, output style, specialist agents, and 18 focused skills.</p>
+          <pre><code>git clone https://github.com/dayfinggg/claude-code-codex-skills.git
+cd claude-code-codex-skills
+cp -R claude/skills claude/agents \
+  claude/output-styles "$HOME/.claude/"
+cp claude/CLAUDE.md "$HOME/.claude/"</code></pre>
+        </article>
+      </div>
+      <p class="install-note">The repository also includes update scripts for macOS, Linux, and Windows. They preserve unrelated local configuration and back up conflicts before replacement. Review the README before using them on a customized installation.</p>
+    </section>
+  </main>
 
-<section id="git">
-  <h2>git <span class="tag">the repo is shared</span></h2>
-  <p>State gets inspected before acting; destructive commands are replaced with recoverable ones.</p>
-  <pre class="diff"><span class="d">- git add . && git commit -m "fix" && git push --force</span><span class="a">+ git status --short --branch</span><span class="a">+ git add src/parser.ts test/parser.test.ts</span><span class="a">+ git commit -m "Handle BOM in config files"</span><span class="a">+ git push --force-with-lease   # only because a rewrite was requested</span></pre>
-</section>
-
-<section id="typescript">
-  <h2>typescript <span class="tag">types that mean something</span></h2>
-  <p>No `any` escapes, no lying assertions — illegal states become unrepresentable.</p>
-  <pre class="diff"><span class="d">- const user = JSON.parse(raw) as any;</span><span class="d">- if (user.status == 1 || user.status == "active") { ... }</span><span class="a">+ const user = UserSchema.parse(raw);</span><span class="a">+ if (user.status === "active") { ... }</span><span class="h">  // status: "active" | "suspended" — the third case can't exist</span></pre>
-</section>
-
-<section id="javascript">
-  <h2>javascript <span class="tag">modern, predictable JS</span></h2>
-  <p>Loose equality, accidental mutation and floating promises don't survive review.</p>
-  <pre class="diff"><span class="d">- items.sort();              // mutates, sorts numbers as strings</span><span class="d">- if (total == "0") reset();</span><span class="a">+ const sorted = [...items].sort((a, b) => a - b);</span><span class="a">+ if (total === 0) await reset();</span></pre>
-</section>
-
-<section id="node-js">
-  <h2>node-js <span class="tag">the event loop is not yours to block</span></h2>
-  <p>Sync I/O leaves request paths; errors and shutdown get handled like production matters.</p>
-  <pre class="diff"><span class="d">- app.get("/report", (req, res) => {</span><span class="d">-   const data = fs.readFileSync(reportPath);</span><span class="a">+ app.get("/report", async (req, res, next) => {</span><span class="a">+   const data = await fs.promises.readFile(reportPath);</span></pre>
-</section>
-
-<section id="react">
-  <h2>react <span class="tag">state where it belongs</span></h2>
-  <p>Derived state stops living in effects; dependencies stop being lied about.</p>
-  <pre class="diff"><span class="d">- const [fullName, setFullName] = useState("");</span><span class="d">- useEffect(() => { setFullName(first + " " + last); }, [first]);</span><span class="a">+ const fullName = `${first} ${last}`;</span></pre>
-</section>
-
-<section id="nextjs">
-  <h2>nextjs <span class="tag">server first</span></h2>
-  <p>Data fetching moves to the server component; the client bundle stops shipping fetch waterfalls.</p>
-  <pre class="diff"><span class="d">- "use client";</span><span class="d">- useEffect(() => { fetch("/api/posts").then(...) }, []);</span><span class="a">+ export default async function Posts() {</span><span class="a">+   const posts = await db.post.findMany({ take: 20 });</span><span class="a">+   return &lt;PostList posts={posts} /&gt;;</span><span class="a">+ }</span></pre>
-</section>
-
-<section id="python">
-  <h2>python <span class="tag">idiomatic and typed</span></h2>
-  <p>The classic traps — mutable defaults, bare excepts, float money — get caught before they ship.</p>
-  <pre class="diff"><span class="d">- def add_item(item, cart=[]):</span><span class="d">-     cart.append(item)</span><span class="a">+ def add_item(item: Item, cart: list[Item] | None = None) -&gt; list[Item]:</span><span class="a">+     cart = cart if cart is not None else []</span><span class="a">+     cart.append(item)</span></pre>
-</section>
-
-<section id="sql">
-  <h2>sql <span class="tag">queries the planner can love</span></h2>
-  <p>N+1 loops become joins; `SELECT *` becomes explicit columns; migrations get rollback paths.</p>
-  <pre class="diff"><span class="d">- for user in users:                      # 1 + N queries</span><span class="d">-     orders = query("SELECT * FROM orders WHERE user_id = %s", user.id)</span><span class="a">+ SELECT u.id, u.email, o.id, o.total</span><span class="a">+ FROM users u JOIN orders o ON o.user_id = u.id</span><span class="a">+ WHERE o.created_at &gt;= %s;               -- one query, indexed</span></pre>
-</section>
-
-<section id="mongodb">
-  <h2>mongodb <span class="tag">documents by workload</span></h2>
-  <p>Unbounded reads get projections, limits and indexes; schemas follow the queries.</p>
-  <pre class="diff"><span class="d">- const all = await db.collection("events").find({}).toArray();</span><span class="d">- const recent = all.filter(e =&gt; e.ts &gt; since).slice(0, 50);</span><span class="a">+ const recent = await db.collection("events")</span><span class="a">+   .find({ ts: { $gt: since } }, { projection: { type: 1, ts: 1 } })</span><span class="a">+   .sort({ ts: -1 }).limit(50).toArray();   // uses { ts: -1 } index</span></pre>
-</section>
-
-<section id="redis">
-  <h2>redis <span class="tag">fast stays fast</span></h2>
-  <p>Blocking commands leave production paths; keys get TTLs and a naming scheme.</p>
-  <pre class="diff"><span class="d">- const keys = await redis.keys("session:*");   // blocks the server</span><span class="a">+ for await (const key of redis.scanIterator({ MATCH: "session:*",</span><span class="a">+                                              COUNT: 100 })) { ... }</span><span class="a">+ await redis.set(`session:${id}`, data, { EX: 3600 });</span></pre>
-</section>
-
-<section id="powershell">
-  <h2>powershell <span class="tag">objects, not strings</span></h2>
-  <p>Text parsing gives way to the object pipeline; errors become terminating and handled.</p>
-  <pre class="diff"><span class="d">- $size = (dir $path | Out-String) -split "`n" | Select-String "Length"</span><span class="a">+ $size = (Get-ChildItem $path -File | Measure-Object Length -Sum).Sum</span></pre>
-</section>
-
-<section id="ui-ux-design">
-  <h2>ui-ux-design <span class="tag">designed, not generated</span></h2>
-  <p>Emoji icons, template gradients and lorem ipsum are replaced with tokens, states and real content.</p>
-  <pre class="diff"><span class="d">- &lt;div class="card"&gt;✨ Feature 1&lt;/div&gt;</span><span class="d">- background: linear-gradient(135deg, #667eea, #764ba2);</span><span class="a">+ &lt;article class="card"&gt;&lt;svg class="icon"&gt;…&lt;/svg&gt; Invoice reminders&lt;/article&gt;</span><span class="a">+ background: var(--surface);</span><span class="a">+ .card:focus-visible { outline: 2px solid var(--accent); }</span></pre>
-</section>
-
-</main>
-<footer>
-  <a href="https://github.com/dayfinggg/claude-code-codex-skills">claude-code-codex-skills</a> · MIT
-</footer>
+  <footer class="site-footer">
+    <div class="shell">
+      <p>Claude Code &amp; Codex Skills · MIT License</p>
+      <p><a href="https://github.com/dayfinggg/claude-code-codex-skills">Source and documentation on GitHub</a></p>
+    </div>
+  </footer>
 </body>
 </html>

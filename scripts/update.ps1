@@ -149,7 +149,7 @@ try {
             -Name "Codex" `
             -Source (Join-Path $SourceRoot.FullName "codex") `
             -Destination (Join-Path $HOME ".codex") `
-            -ManagedPaths @("config.toml", "model-instructions-v1.md", "agents", "skills")
+            -ManagedPaths @("config.toml", "model-instructions.md", "agents", "skills")
     }
     if ($RunClaude) {
         Update-Target `

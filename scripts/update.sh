@@ -166,7 +166,7 @@ fi
 
 if [ "$run_codex" = true ]; then
   update_target Codex "$source_root/codex" "$HOME/.codex" \
-    config.toml model-instructions-v1.md agents skills
+    config.toml model-instructions.md agents skills
 fi
 if [ "$run_claude" = true ]; then
   update_target Claude "$source_root/claude" "$HOME/.claude" \
