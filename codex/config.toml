@@ -20,5 +20,9 @@ interrupt_message = false
 [desktop]
 appearanceTheme = "light"
 
+[features]
+js_repl = false
+default_mode_request_user_input = true
+
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
