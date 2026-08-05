@@ -709,15 +709,27 @@
         <article class="install-option">
           <h3>Merge with your setup</h3>
           <p>Keep existing Codex settings, add the agents and skills, and connect the shared operating instructions.</p>
-          <pre><code>curl -fsSL https://raw.githubusercontent.com/dayfinggg/openai-codex-agent-skills/main/scripts/install.sh | sh -s -- --merge</code></pre>
+          <pre><code>cp -R "$HOME/.codex" "$HOME/.codex.backup-$(date +%Y%m%d-%H%M%S)" 2>/dev/null || true
+git clone https://github.com/dayfinggg/openai-codex-agent-skills.git
+mkdir -p "$HOME/.codex/agents" "$HOME/.codex/skills"
+cp -R openai-codex-agent-skills/codex/agents/. "$HOME/.codex/agents/"
+cp -R openai-codex-agent-skills/codex/skills/. "$HOME/.codex/skills/"
+cp openai-codex-agent-skills/codex/model-instructions.md "$HOME/.codex/"</code></pre>
         </article>
         <article class="install-option">
           <h3>Replace everything</h3>
-          <p>Replace the managed Codex configuration with the complete setup. Previous files are backed up first.</p>
-          <pre><code>curl -fsSL https://raw.githubusercontent.com/dayfinggg/openai-codex-agent-skills/main/scripts/install.sh | sh -s -- --replace</code></pre>
+          <p>Back up your current directory, then replace the managed Codex configuration with the complete setup.</p>
+          <pre><code>cp -R "$HOME/.codex" "$HOME/.codex.backup-$(date +%Y%m%d-%H%M%S)" 2>/dev/null || true
+git clone https://github.com/dayfinggg/openai-codex-agent-skills.git
+rm -rf "$HOME/.codex/agents" "$HOME/.codex/skills"
+mkdir -p "$HOME/.codex"
+cp -R openai-codex-agent-skills/codex/agents \
+  openai-codex-agent-skills/codex/skills "$HOME/.codex/"
+cp openai-codex-agent-skills/codex/model-instructions.md \
+  openai-codex-agent-skills/codex/config.toml "$HOME/.codex/"</code></pre>
         </article>
       </div>
-      <p class="install-note">Windows PowerShell commands and the exact files affected by each mode are listed in the README. Restart Codex after installation.</p>
+      <p class="install-note">For merge mode, add <code>model_instructions_file = "model-instructions.md"</code> as a top-level setting in <code>config.toml</code>. Windows PowerShell commands are in the README. Restart Codex after installation.</p>
     </section>
   </main>
 

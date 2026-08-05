@@ -1,14 +1,14 @@
 # OpenAI Codex Agent Skills
 
-English · [Українська](README.uk.md) · [Русский](README.ru.md)
+[English](README.md) · Українська · [Русский](README.ru.md)
 
-Instructions, agents, and skills for OpenAI Codex.
+Інструкції, агенти та навички для OpenAI Codex.
 
-## Add to an existing configuration
+## Додати до наявної конфігурації
 
-Back up `~/.codex`, clone the repository, and copy the managed files.
+Створіть резервну копію `~/.codex`, клонуйте репозиторій і скопіюйте керовані файли.
 
-### macOS and Linux
+### macOS і Linux
 
 ```bash
 cp -R "$HOME/.codex" "$HOME/.codex.backup-$(date +%Y%m%d-%H%M%S)" 2>/dev/null || true
@@ -30,17 +30,17 @@ Copy-Item -Recurse -Force .\openai-codex-agent-skills\codex\skills\* "$HOME\.cod
 Copy-Item -Force .\openai-codex-agent-skills\codex\model-instructions.md "$HOME\.codex\"
 ```
 
-Add this top-level line to `~/.codex/config.toml`:
+Додайте цей рядок верхнього рівня до `~/.codex/config.toml`:
 
 ```toml
 model_instructions_file = "model-instructions.md"
 ```
 
-## Replace the complete configuration
+## Повністю замінити конфігурацію
 
-This replaces `config.toml`, `model-instructions.md`, `agents`, and `skills`.
+Команди замінюють `config.toml`, `model-instructions.md`, `agents` і `skills`.
 
-### macOS and Linux
+### macOS і Linux
 
 ```bash
 cp -R "$HOME/.codex" "$HOME/.codex.backup-$(date +%Y%m%d-%H%M%S)" 2>/dev/null || true
@@ -62,8 +62,8 @@ Copy-Item -Recurse -Force .\openai-codex-agent-skills\codex\agents, .\openai-cod
 Copy-Item -Force .\openai-codex-agent-skills\codex\model-instructions.md, .\openai-codex-agent-skills\codex\config.toml "$HOME\.codex\"
 ```
 
-Restart Codex after installation.
+Після встановлення перезапустіть Codex.
 
-## Contents
+## Склад
 
-13 engineering skills, 5 specialist agents, shared instructions, and a complete Codex configuration. MIT License.
+13 інженерних навичок, 5 спеціалізованих агентів, спільні інструкції та повна конфігурація Codex. Ліцензія MIT.
