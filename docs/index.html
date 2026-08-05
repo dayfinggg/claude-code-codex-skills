@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Claude Code & Codex Skills — focused, evidence-led agent workflows</title>
-  <meta name="description" content="Compact instructions and focused skills for Claude Code and OpenAI Codex: controlled scope, current engineering guidance, clean UI/UX, and observed verification.">
-  <link rel="canonical" href="https://dayfinggg.github.io/claude-code-codex-skills/">
+  <title>OpenAI Codex Agent Skills — production-ready workflows</title>
+  <meta name="description" content="OpenAI Codex agent skills, specialist roles, and configuration for bounded engineering work, current guidance, accessible UI/UX, and observed verification.">
+  <link rel="canonical" href="https://dayfinggg.github.io/openai-codex-agent-skills/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Claude Code & Codex Skills">
-  <meta property="og:description" content="Compact agent instructions, focused engineering and design skills, and verification tied to observed evidence.">
-  <meta property="og:url" content="https://dayfinggg.github.io/claude-code-codex-skills/">
+  <meta property="og:title" content="OpenAI Codex Agent Skills">
+  <meta property="og:description" content="Production-oriented Codex instructions, focused engineering and design skills, specialist agents, and verification tied to observed evidence.">
+  <meta property="og:url" content="https://dayfinggg.github.io/openai-codex-agent-skills/">
   <meta name="theme-color" content="#f4f1e8">
   <style>
     :root {
@@ -548,7 +548,7 @@
 
   <header class="site-header">
     <div class="shell">
-      <a class="brand" href="./" aria-label="Claude Code and Codex Skills home">
+      <a class="brand" href="./" aria-label="OpenAI Codex Agent Skills home">
         <span class="brand-mark" aria-hidden="true"></span>
         <span>Agent Skills</span>
       </a>
@@ -558,7 +558,7 @@
           <li><a href="#catalog">Catalog</a></li>
           <li><a href="#design">UI/UX</a></li>
           <li><a href="#install">Install</a></li>
-          <li><a href="https://github.com/dayfinggg/claude-code-codex-skills">GitHub ↗</a></li>
+          <li><a href="https://github.com/dayfinggg/openai-codex-agent-skills">GitHub ↗</a></li>
         </ul>
       </nav>
     </div>
@@ -567,12 +567,12 @@
   <main id="main-content">
     <section class="hero shell" aria-labelledby="hero-title">
       <div>
-        <p class="eyebrow">Claude Code + OpenAI Codex</p>
-        <h1 id="hero-title">Coding agents that know what done means.</h1>
-        <p class="hero-copy">Compact instructions and focused skills for Claude Code and Codex. They keep the task bounded, ground decisions in the real project, and tie completion to checks that actually ran.</p>
+        <p class="eyebrow">OpenAI Codex Agent Skills</p>
+        <h1 id="hero-title">Codex workflows that know what done means.</h1>
+        <p class="hero-copy">Production-oriented instructions, focused skills, and specialist agents for OpenAI Codex. They keep work bounded, ground decisions in the real project, and tie completion to checks that actually ran.</p>
         <div class="actions">
           <a class="button button-primary" href="#install">Install the catalog <span aria-hidden="true">↓</span></a>
-          <a class="button" href="https://github.com/dayfinggg/claude-code-codex-skills">Browse the repository <span aria-hidden="true">↗</span></a>
+          <a class="button" href="https://github.com/dayfinggg/openai-codex-agent-skills">Browse the repository <span aria-hidden="true">↗</span></a>
         </div>
       </div>
 
@@ -626,7 +626,7 @@
         <p class="kicker">Focused catalog</p>
         <div>
           <h2 id="catalog-title">One skill for the job at hand.</h2>
-          <p class="section-intro">Claude Code includes 18 focused skills. Codex uses a leaner 13-skill catalog built around specification, architecture, implementation, review, research, and skill governance.</p>
+          <p class="section-intro">Thirteen focused Codex skills cover specification, architecture, implementation, review, research, interface design, and skill governance without turning every request into the same workflow.</p>
         </div>
       </div>
 
@@ -700,38 +700,31 @@
       <div class="section-heading">
         <p class="kicker">Installation</p>
         <div>
-          <h2 id="install-title">Start with the files you need.</h2>
-          <p class="section-intro">Clone the repository, back up any existing configuration, copy the matching catalog, and restart the application. The Codex template applies portable model, permission, agent, web, and documentation defaults.</p>
+          <h2 id="install-title">Keep your setup or replace it.</h2>
+          <p class="section-intro">Choose merge to preserve your current configuration. Choose replace to install the complete opinionated setup. Both modes back up every file they change.</p>
         </div>
       </div>
 
       <div class="install-grid">
         <article class="install-option">
-          <h3>OpenAI Codex</h3>
-          <p>Install the operating policy, specialist agents, and the 13-skill catalog. The included config enables full filesystem access and disables runtime approval prompts, so use it only on a trusted machine and project.</p>
-          <pre><code>git clone https://github.com/dayfinggg/claude-code-codex-skills.git
-cd claude-code-codex-skills
-cp -R codex/agents codex/skills "$HOME/.codex/"
-cp codex/model-instructions.md codex/config.toml "$HOME/.codex/"</code></pre>
+          <h3>Merge with your setup</h3>
+          <p>Keep existing Codex settings, add the agents and skills, and connect the shared operating instructions.</p>
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/dayfinggg/openai-codex-agent-skills/main/scripts/install.sh | sh -s -- --merge</code></pre>
         </article>
         <article class="install-option">
-          <h3>Claude Code</h3>
-          <p>Install Claude's working rules, output style, specialist agents, and 18 focused skills.</p>
-          <pre><code>git clone https://github.com/dayfinggg/claude-code-codex-skills.git
-cd claude-code-codex-skills
-cp -R claude/skills claude/agents \
-  claude/output-styles "$HOME/.claude/"
-cp claude/CLAUDE.md "$HOME/.claude/"</code></pre>
+          <h3>Replace everything</h3>
+          <p>Replace the managed Codex configuration with the complete setup. Previous files are backed up first.</p>
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/dayfinggg/openai-codex-agent-skills/main/scripts/install.sh | sh -s -- --replace</code></pre>
         </article>
       </div>
-      <p class="install-note">The repository also includes update scripts for macOS, Linux, and Windows. They preserve unrelated local configuration and back up conflicts before replacement. Review the README before using them on a customized installation.</p>
+      <p class="install-note">Windows PowerShell commands and the exact files affected by each mode are listed in the README. Restart Codex after installation.</p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="shell">
-      <p>Claude Code &amp; Codex Skills · MIT License</p>
-      <p><a href="https://github.com/dayfinggg/claude-code-codex-skills">Source and documentation on GitHub</a></p>
+      <p>OpenAI Codex Agent Skills · MIT License</p>
+      <p><a href="https://github.com/dayfinggg/openai-codex-agent-skills">Source and documentation on GitHub</a></p>
     </div>
   </footer>
 </body>

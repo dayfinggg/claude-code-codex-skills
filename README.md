@@ -1,175 +1,47 @@
-# Claude Code & Codex Skills
+# OpenAI Codex Agent Skills
 
-Personal agent instructions, focused skills, and specialist subagents for Claude Code and OpenAI Codex.
+Готовый набор инструкций, агентов и навыков для OpenAI Codex.
 
-The Codex setup contains a compact global policy, five specialist agents, and thirteen focused skills. Codex discovers the available agents and skills at runtime, so the global policy does not repeat their routing rules or contain machine-specific installation paths.
+## Установка
 
-## Skills
+### Добавить в существующую конфигурацию
 
-| Area | Skills |
-| --- | --- |
-| Specification and planning | `clarify-and-specify`, `spec-to-tasks` |
-| Architecture and domain | `design-project-architecture`, `domain-modeling` |
-| Implementation quality | `production-code-quality`, `tdd`, `implement-and-verify` |
-| Diagnosis and review | `diagnose-root-cause`, `review-changes` |
-| Evidence | `research-current-sources` |
-| Skill governance | `audit-agent-skills`, `learn-from-history` |
-| Product interface | `design-ui-ux` |
+Сохраняет текущие настройки. Добавляет навыки и агентов, подключает `model-instructions.md`.
 
-Each skill has a narrow trigger contract and a focused workflow rather than a universal checklist for every request. Explicit implementation work is not redirected into clarification or planning merely because it is large or has several stages.
-
-The skills use progressive reference files so language rules, architecture guidance, planning evidence, design scenarios, and uncommon branches load only when the task needs them. The architecture skill now covers measurable quality scenarios, data and distributed-system decisions, team boundaries, reversible evolution, and proportionate fitness functions. `design-ui-ux` adds task-scaled workflows, design-system governance, platform fit, WCAG 2.2, public-web search visibility, performance guidance, and separate controls for generated interfaces and AI product features.
-
-This structure follows the current [OpenAI GPT-5.6 prompt guidance](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6): state an instruction once, define the outcome and evidence bar, avoid repeating tool descriptions, and validate prompt reductions on representative work. OpenAI reports a directional internal sample in which leaner coding-agent prompts improved evaluation scores by about 10–15% while reducing total tokens by 41–66% and cost by 33–67%. These ranges are not guarantees for this catalog.
-
-## Agents
-
-| Claude agent | Codex agent | Responsibility |
-| --- | --- | --- |
-| — | `routine_executor` | Clear, bounded, repeatable implementation and focused validation |
-| — | `complex_executor` | Ambiguous, architectural, domain-rich, or multi-stage implementation |
-| — | `research_strategist` | Current, rare, disputed, or poorly indexed information |
-| — | `quality_reviewer` | Independent correctness, security, compatibility, and quality review |
-| — | `skill_curator` | Skill safety, precision, trigger quality, and evidence-based evolution |
-
-GPT-5.6 Sol is the primary model in the distributed configuration. GPT-5.6 Terra Max is the compatible default for specialist agents, including routine execution, while the individual agent files keep their own bounded responsibilities. Agent selection remains a runtime concern rather than a duplicated rule in `model-instructions.md`.
-
-## Behavior
-
-The instructions prioritize a minimal complete solution, controlled scope, repository evidence, honest uncertainty, production code without placeholders, and verification proportional to risk. Necessary safe local actions run without another confirmation. A request authorizes the external writes it names, while unrequested destructive, privileged, costly, or material external actions still require permission. The distributed Codex profile intentionally keeps full filesystem access and disables runtime approval prompts; the behavioral permission boundary still applies, but the runtime does not enforce it. Use this profile only on a trusted machine and project. Live web search is enabled.
-
-Ordinary answers use connected, finished prose in the user's language. They prefer familiar local words over avoidable English borrowings and jargon, preserve exact technical identifiers, and avoid promotional conclusions. Unordered and dash-led Markdown lists are not used. Numbered lists remain available for real procedures, rankings, and stable referenced items. Tables carry comparisons and repeated-field summaries. Engineering completion reports contain two short explanatory paragraphs followed by compact tables for changes, commands and observed checks, and sources with the rule taken from each one.
-
-The writing contract combines [Google's paragraph structure](https://developers.google.com/style/paragraph-structure), [Google's heading guidance](https://developers.google.com/style/headings), [Microsoft's simple and human voice](https://learn.microsoft.com/en-us/style-guide/brand-voice-above-all-simple-human), [GOV.UK clear-language guidance](https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-language/), [Gramota.ru punctuation rules](https://gramota.ru/biblioteka/spravochniki/pravila-russkoj-orfografii-i-punktuacii/tochka-s-zapyatoj), and the official [Ukrainian orthography](https://mon.gov.ua/osvita-2/zagalna-serednya-osvita/ukrainskiy-pravopis). The catalog's ban on unordered report lists is a deliberate user-facing format decision, not a claim that those sources prohibit bullets in every kind of document.
-
-On Claude Code the rules live in two places, split by what each channel does best. `CLAUDE.md` holds the working rules: scope, evidence, change safety, implementation quality, verification. The `Engineering voice` output style holds everything about how Claude talks: turn cadence, language, response shape, formatting, and the report tables. An output style edits the system prompt, so it is the stronger place for behavior that has to hold on every turn. On Codex a single `model-instructions.md` carries all of it.
-
-## Claude
-
-```text
-claude/
-  CLAUDE.md               working rules: scope, evidence, change safety, quality, verification
-  output-styles/          the Engineering voice style: cadence, language, response shape
-  agents/                 five specialist agents
-  skills/                 eighteen engineering skills
-  settings.json           reference values to merge into your own settings
-```
-
-Back up the existing configuration first. Replace `skills` and `agents` rather than copying over them, otherwise retired entries remain discoverable.
-
-### macOS / Linux
+**macOS / Linux**
 
 ```bash
-git clone https://github.com/dayfinggg/claude-code-codex-skills.git
-cd claude-code-codex-skills
-cp -R claude/skills claude/agents claude/output-styles "$HOME/.claude/"
-cp claude/CLAUDE.md "$HOME/.claude/"
+curl -fsSL https://raw.githubusercontent.com/dayfinggg/openai-codex-agent-skills/main/scripts/install.sh | sh -s -- --merge
 ```
 
-### Windows PowerShell
+**Windows PowerShell**
 
 ```powershell
-git clone https://github.com/dayfinggg/claude-code-codex-skills.git
-Set-Location claude-code-codex-skills
-Copy-Item -Recurse -Force .\claude\skills, .\claude\agents, .\claude\output-styles "$HOME\.claude\"
-Copy-Item -Force .\claude\CLAUDE.md "$HOME\.claude\"
+& ([scriptblock]::Create((Invoke-RestMethod https://raw.githubusercontent.com/dayfinggg/openai-codex-agent-skills/main/scripts/install.ps1))) -Mode Merge
 ```
 
-Turn the output style on: set `"outputStyle": "Engineering voice"` in `~/.claude/settings.json`, or pick it under **Output style** in `/config`. It applies from the next session. The style keeps Claude Code's built-in software engineering instructions through `keep-coding-instructions: true`, so it changes how Claude communicates, not how it codes.
+### Полностью заменить конфигурацию
 
-Restart Claude Code so it picks up the skills, agents, and style.
+Заменяет `config.toml`, `model-instructions.md`, `agents` и `skills`. Старые файлы сохраняются в `~/.codex-backups/`.
 
-`claude/settings.json` is a reference file: copy the keys you want into your own `~/.claude/settings.json` instead of replacing it. The ones that matter for this setup:
-
-```json
-{
-  "outputStyle": "Engineering voice",
-  "effortLevel": "high"
-}
-```
-
-Keep `hooks`, `statusLine`, MCP servers, and anything else tied to your machine in your own settings file — the reference file carries none of them.
-
-## Codex
-
-```text
-codex/
-  agents/                 five specialist agents
-  config.toml             portable minimal template
-  model-instructions.md   global operating policy
-  skills/                 thirteen focused Codex skills
-```
-
-System-managed Codex skills from `~/.codex/skills/.system` are not vendored. Codex installs and updates them separately.
-
-### macOS / Linux
+**macOS / Linux**
 
 ```bash
-cp -R codex/agents codex/skills "$HOME/.codex/"
-cp codex/model-instructions.md codex/config.toml "$HOME/.codex/"
+curl -fsSL https://raw.githubusercontent.com/dayfinggg/openai-codex-agent-skills/main/scripts/install.sh | sh -s -- --replace
 ```
 
-### Windows PowerShell
+**Windows PowerShell**
 
 ```powershell
-Copy-Item -Recurse -Force .\codex\agents, .\codex\skills "$HOME\.codex\"
-Copy-Item -Force .\codex\model-instructions.md, .\codex\config.toml "$HOME\.codex\"
+& ([scriptblock]::Create((Invoke-RestMethod https://raw.githubusercontent.com/dayfinggg/openai-codex-agent-skills/main/scripts/install.ps1))) -Mode Replace
 ```
 
-Back up an existing `config.toml` before a manual installation. The distributed configuration intentionally replaces local model, permission, agent, web-search, and documentation-server defaults. It enables `danger-full-access` with approval prompts disabled as an explicit owner preference. Choose a sandboxed local profile instead when that trust assumption does not hold:
+Перезапустите Codex после установки.
 
-```toml
-model_instructions_file = "model-instructions.md"
-```
+## Состав
 
-Restart Codex after installation so it rediscovers agents and skills.
+`codex/skills` содержит 13 инженерных навыков. `codex/agents` содержит 5 специализированных агентов. `codex/model-instructions.md` задаёт общие правила работы. `codex/config.toml` содержит готовую полную конфигурацию.
 
-## Update without Git
-
-The update scripts download the latest `main` archive, compare it with the
-previously installed revision, and apply only files changed upstream. Local
-edits to files unchanged upstream are preserved. When both the upstream and
-local copies changed, the local copy is backed up before replacement. Files
-retired upstream are removed only when their installed copy was not modified
-locally. Codex `config.toml` is managed and backed up before replacement;
-Claude `settings.json` is not changed.
-
-By default, the scripts update existing `~/.codex` and `~/.claude`
-installations. Pass a target when you want to update or create only one of them.
-
-### macOS / Linux
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/dayfinggg/claude-code-codex-skills/main/scripts/update.sh | sh
-```
-
-To keep a reusable local command:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/dayfinggg/claude-code-codex-skills/main/scripts/update.sh -o "$HOME/update-agent-skills.sh"
-chmod +x "$HOME/update-agent-skills.sh"
-"$HOME/update-agent-skills.sh" --codex
-```
-
-Available targets are `--auto`, `--codex`, `--claude`, and `--all`.
-
-### Windows PowerShell
-
-```powershell
-Invoke-RestMethod https://raw.githubusercontent.com/dayfinggg/claude-code-codex-skills/main/scripts/update.ps1 |
-    Invoke-Expression
-```
-
-To keep a reusable local command:
-
-```powershell
-Invoke-WebRequest https://raw.githubusercontent.com/dayfinggg/claude-code-codex-skills/main/scripts/update.ps1 `
-    -OutFile "$HOME\update-agent-skills.ps1"
-& "$HOME\update-agent-skills.ps1" -Target Codex
-```
-
-Available targets are `Auto`, `Codex`, `Claude`, and `All`.
-
-## License
+## Лицензия
 
 MIT
