@@ -8,6 +8,11 @@ Reviewed 2026-08-03. Prefer current project, platform, and language documentatio
 - [Software Engineering at Google](https://abseil.io/resources/swe-book) — sustainable software over time, scale, and trade-offs.
 - [Google SRE Book](https://sre.google/sre-book/table-of-contents/) — reliability, incident response, release engineering, and postmortems.
 - [DORA software delivery performance metrics](https://dora.dev/guides/dora-metrics/) — outcome measures for continuous improvement.
+- [Jeff Erickson, *Algorithms*](https://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf) — algorithm selection, complexity, dynamic programming, graphs, flows, and explicit worst-case limits.
+- [Pat Morin, *Open Data Structures*](https://www.aupress.ca/app/uploads/120226_99Z_Morin_2013-Open_Data_Structures.pdf) — operation-sensitive data-structure costs and measured algorithmic trade-offs.
+- [Allen B. Downey, *The Little Book of Semaphores*](https://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf) — synchronization invariants, bounded buffers, progress, and concurrency failure patterns.
+- [NIST SP 800-204A](https://csrc.nist.gov/pubs/sp/800/204/a/final) — security, resiliency, traffic control, and observability for service-to-service systems.
+- [NIST SP 800-204C](https://csrc.nist.gov/pubs/sp/800/204/c/final) — risk-based DevSecOps controls and observable delivery gates.
 
 ## Secure development
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evaluate Agent Instructions"
+  short_description: "Measure prompt and skill changes safely"
+  default_prompt: "Use $evaluate-agent-instructions to compare this prompt, AGENTS.md, model instruction, or skill change against a reproducible baseline."

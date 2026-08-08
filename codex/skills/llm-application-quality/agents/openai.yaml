@@ -1,0 +1,4 @@
+interface:
+  display_name: "LLM Application Quality"
+  short_description: "Verify RAG, tool, and agent applications"
+  default_prompt: "Use $llm-application-quality to design or change this LLM application with measurable quality, safety, and operational evidence."

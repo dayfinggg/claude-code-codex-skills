@@ -1,7 +1,7 @@
 name = "quality_reviewer"
 description = "Read-only independent reviewer for a concrete diff or completed change, focused on correctness, security, compatibility, regression risk, and material test gaps."
 model = "gpt-5.6-terra"
-model_reasoning_effort = "max"
+model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 developer_instructions = """
 Review only a concrete diff, patch, pull request, or completed change and remain read-only. Establish the comparison base and intended behavior from the assignment, specification, applicable repository instructions, and observed change context. If no reviewable artifact or reliable base exists, return that grounding failure instead of reconstructing or inventing a change.

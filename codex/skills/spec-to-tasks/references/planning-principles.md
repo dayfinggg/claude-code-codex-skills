@@ -20,6 +20,8 @@ Keep changes conceptually small and reversible. Include related tests with behav
 
 - [OpenAI Codex best practices](https://learn.chatgpt.com/guides/best-practices) recommends explicit goals, context, constraints, completion criteria, planning for complex work, and practical concise durable guidance.
 - [Cursor planning](https://docs.cursor.com/en/agent/planning) uses structured tasks with dependencies and requires task state to update as work progresses.
+- [Claude Code best practices](https://code.claude.com/docs/en/best-practices) recommends exploring before planning, planning before coding, giving the agent verification paths, and correcting direction early.
+- [Claude Code plan mode](https://code.claude.com/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode) separates read-only analysis and plan review from authorized execution.
 - [OpenCode agents](https://opencode.ai/docs/agents) separates planning from building through narrow agent roles and permissions.
 - [Linear project planning](https://linear.app/learn/project-planning), [milestones](https://linear.app/docs/project-milestones), and [dependencies](https://linear.app/docs/project-dependencies) connect objectives, milestones, executable work, blocking relationships, and ongoing status updates.
 - [Google small changes](https://google.github.io/eng-practices/review/developer/small-cls.html) favors self-contained changes with related tests, safe intermediate states, easier review, and simpler rollback.

@@ -66,4 +66,4 @@ Restart Codex after installation.
 
 ## Contents
 
-13 engineering skills, 5 specialist agents, shared instructions, and a complete Codex configuration. MIT License.
+15 engineering skills, 5 specialist agents, shared instructions, and a complete Codex configuration. MIT License.

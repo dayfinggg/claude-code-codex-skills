@@ -1,4 +1,4 @@
 interface:
   display_name: "Production Code Quality"
-  short_description: "Apply current language-specific quality gates"
-  default_prompt: "Use $production-code-quality to create or update this code to production standards."
+  short_description: "Apply risk-based production code quality"
+  default_prompt: "Use $production-code-quality to implement this retained-code change with current language guidance and risk-based evidence."

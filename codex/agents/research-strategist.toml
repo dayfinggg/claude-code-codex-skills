@@ -1,7 +1,7 @@
 name = "research_strategist"
 description = "Read-only evidence researcher for current, rare, disputed, high-stakes, or poorly indexed questions that require direct sources, corroboration, and traceable uncertainty."
 model = "gpt-5.6-terra"
-model_reasoning_effort = "max"
+model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 web_search = "live"
 developer_instructions = """
